@@ -107,6 +107,7 @@ std::ostream & operator<<(std::ostream &os, const Permis &p) {
     os << "  " << p.dataExpirare << p.cnp << '\n';
     os << "  " << p.categorie << '\n';
     os << "//////////////////////////////////////////////" << '\n';
+    return os;
 
 }
 class Adresa {
@@ -197,6 +198,7 @@ std::ostream & operator<<(std::ostream &os, const Adresa &p) {
     if (p.ap != -1) {
         os << "ap." << p.ap << ' ';
     }
+    return os;
 }
 class Buletin {
 unsigned long long cnp;
@@ -330,6 +332,7 @@ std :: ostream & operator << (std :: ostream & os, const Buletin & p) {
     os << p.emitator << "              " << p.valabilitate << '\n';
     os << p.cod << "   esp   " << p.orasPrescurtat;
     os << "////////////////////////////////////////////////////////////////////";
+    return os;
 
 }
 
@@ -482,6 +485,7 @@ std::ostream &operator<<(std::ostream &os, const Talon &p) {
     os << p.cilindree << '\n';
     os << "SERIA\n" << p.serieSasiu << '\n' << "  NR Inmatriculare \n" << p.numarInmatriculare << '\n';
     os << "////////////////////////////////////////////////////////////////////\n";
+    return os;
 
 }
 class Acte {
@@ -535,6 +539,7 @@ public:
 
 std::ostream &operator<<(std::ostream &os, const Acte &p) {
   os << "Acte\nPermis\n" << p.p << "\nBuletin\n" << p.b << "\nTalon\n" << p.t << '\n';
+    return os;
 }
 
 
@@ -588,6 +593,7 @@ std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
     if (p.rezultat > 0.4) {
         os<< "Rezultat alcool test sange: "<<p.rezultat_sange<<'\n';
     }
+    return os;
 }
 
 class Masina {
@@ -684,6 +690,7 @@ std::ostream &operator<<(std::ostream &os, const Masina &p) {
     os << "Serie sasiu: " << p.serieSasiu << '\n';
     os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
     os << "////////////////////////////////////////////////////////////////////\n";
+    return os;
 
 }
 
