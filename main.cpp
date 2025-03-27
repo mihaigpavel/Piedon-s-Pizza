@@ -95,9 +95,19 @@ public:
         categorie = std::move(other.categorie);
         return *this;
     }
-
+    friend std::ostream & operator<<(std::ostream &os, const Permis &p);
 
 };
+std::ostream & operator<<(std::ostream &os, const Permis &p) {
+        std::cout<< "//////////////////////////////////////////////"<<'\n';
+        std::cout<<"  "<<p.nume<<'\n';
+        std::cout<<"  "<<p.prenume<<'\n';
+        std::cout<<"  "<<p.dataNastere << p.orasNastere <<p.judetNastere << '\n';
+        std::cout<<"  "<<p.dataObtinere << p.emitator<<'\n';
+        std::cout<<"  "<<p.dataExpirare << p.cnp<<'\n';
+        std::cout<<"  "<<p.categorie <<'\n';
+        std::cout<< "//////////////////////////////////////////////"<<'\n';
+}
 class Adresa {
     std::string judet;
     std::string oras;
@@ -168,7 +178,28 @@ public:
         sc = other.sc;
         return *this;
     }
+    friend std::ostream & operator<<(std::ostream &os, const Adresa &p);
 };
+
+
+std::ostream & operator<<(std::ostream &os, const Adresa &p) {
+    std::cout<< "Jud." <<p.judet<<" ";
+    std::cout<< "Oras" <<p.oras<<'\n';
+    std::cout<< "Str." <<p.strada<<' ';
+    std::cout<< "nr." <<p.nr<<' ';
+    if (p.sc != -1) {
+        std::cout<< "Sc." <<p.sc<<' ';
+    }
+    if (p.et != -1) {
+        std::cout<< "et." <<p.et<<' ';
+    }
+    if (p.ap != -1) {
+        std::cout<< "ap." <<p.ap<<' ';
+    }
+
+
+
+}
 class Buletin {
 unsigned long long cnp;
     std::string serie;
@@ -283,7 +314,25 @@ Buletin & operator=(Buletin &&other) {
     CifraControl = other.CifraControl;
     return *this;
 }
+    friend std::ostream & operator<<(std::ostream &os, const Buletin &);
 };
+
+std :: ostream & operator << (std :: ostream & os, const Buletin & p) {
+    std:: cout<<"////////////////////////////////////////////////////////////////////";
+    std:: cout<<"ROUMANIE   "<<"ROMANIA   "<<"ROMANIA\n";
+    std::cout<<"              SERIA "<<p.serie<<"  NR "<<p.nr<<'\n';
+    std::cout<<"Nume/Nom/Last name\n";
+    std::cout<<p.nume<<'\n';
+    std::cout<<"Prenume/Prenom/First name\n";
+    std::cout<<p.prenume<<'\n';
+    std::cout<<"Cetatenie/Nationalite,NAtionality\n"<<p.cetatenie<<'\n';
+    std::cout<<"Loc nastere/Lieu de naissance/Place of birth\nJud."<<p.judetNastere<<" "<<p.orasNastere<<'\n';
+    std::cout<<"Domiciliu/Adresse/address\n"<<p.adr;
+    std:: cout<<"Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
+    std::cout<<p.emitator<<"              "<<p.valabilitate<<'\n';
+    std:: cout<<p.cod << "   esp   "<<p.orasPrescurtat;
+    std:: cout<<"////////////////////////////////////////////////////////////////////";
+}
 
 class Talon {
     std::string serieSasiu;
@@ -413,29 +462,55 @@ public:
         adr = std::move(other.adr);
         return *this;
     }
+    friend std::ostream &operator<<(std::ostream &os, const Talon &talon);
 };
+
+std::ostream &operator<<(std::ostream &os, const Talon &p) {
+
+    std::cout << "////////////////////////////////////////////////////////////////////\n";
+    std::cout<< "Certificat de Inmatriculare\n";
+    std::cout << "Marca/Brand/Make\n";
+    std::cout << p.marca << '\n';
+    std::cout << "Model/Model/Model\n";
+    std::cout << p.model << '\n';
+    std::cout << "Culoare/Color/Couleur\n";
+    std::cout << p.culoare << '\n';
+    std::cout << "Tip autovehicul/Vehicle type/Type de véhicule\n";
+    std::cout << p.tipAutovehicul << '\n';
+    std::cout << "An fabricatie/Year of manufacture/Année de fabrication\n";
+    std::cout << p.anFabricatie << '\n';
+    std::cout << "Cilindree/Engine capacity/Capacité du moteur\n";
+    std::cout << p.cilindree << '\n';
+    std::cout << "SERIA\n" << p.serieSasiu <<'\n'<< "  NR Inmatriculare \n" << p.numarInmatriculare << '\n';
+    std::cout << "////////////////////////////////////////////////////////////////////\n";
+
+}
 class Acte {
  Permis p;
     Talon t;
+    Buletin b;
 
 public:
- Acte(const Permis &p, const Talon &t)
+ Acte(const Permis &p, const Talon &t, const Buletin &b)
      : p(p),
-       t(t) {
+       t(t),
+       b(b) {
  }
 
  ~Acte() {
-     std::cout << "Acte deleted" << std::endl;
+     std::cout << "acte deleted\n";
  }
 
  Acte(const Acte &other)
      : p(other.p),
-       t(other.t) {
+       t(other.t),
+       b(other.b) {
  }
 
  Acte(Acte &&other)
      : p(std::move(other.p)),
-       t(std::move(other.t)) {
+       t(std::move(other.t)),
+       b(std::move(other.b)) {
  }
 
  Acte & operator=(const Acte &other) {
@@ -443,6 +518,7 @@ public:
          return *this;
      p = other.p;
      t = other.t;
+     b = other.b;
      return *this;
  }
 
@@ -451,9 +527,19 @@ public:
          return *this;
      p = std::move(other.p);
      t = std::move(other.t);
+     b = std::move(other.b);
      return *this;
  }
+
+    friend std::ostream &operator<<(std::ostream &os, const Acte &p);
 };
+
+std::ostream &operator<<(std::ostream &os, const Acte &p) {
+  std::cout << "Acte\nPermis\n" << p.p << '\nBuletin\n' << p.b << '\nTalon\n' << p.t << '\n';
+}
+
+
+
 class AlcoolTest {
 int rezultat;
     int rezultat_sange;
@@ -494,125 +580,16 @@ AlcoolTest & operator=(AlcoolTest &&other) {
     return *this;
 }
 
+friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
+
 };
-class LegitimatiePolitist{
-    std::string nume;
-    std::string prenume;
-    std::string grad;
-    std::string numarLegitimatie;
-    std::string sectie;
-    std::string dataEliberare;
-    std::string dataExpirare;
-    std::string emitent;
 
-public:
-    LegitimatiePolitist(const std::string &nume, const std::string &prenume, const std::string &grad,
-        const std::string &numar_legitimatie, const std::string &sectie, const std::string &data_eliberare,
-        const std::string &data_expirare, const std::string &emitent)
-        : nume(nume),
-          prenume(prenume),
-          grad(grad),
-          numarLegitimatie(numar_legitimatie),
-          sectie(sectie),
-          dataEliberare(data_eliberare),
-          dataExpirare(data_expirare),
-          emitent(emitent) {
+std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
+    std::cout<< "Rezultat alcool test: "<<p.rezultat<<'\n';
+    if (p.rezultat > 0.4) {
+        std::cout<< "Rezultat alcool test sange: "<<p.rezultat_sange<<'\n';
     }
-
-    ~LegitimatiePolitist() {
-        std::cout << "LegitimatiePolitist deleted" << std::endl;
-    }
-
-    LegitimatiePolitist(const LegitimatiePolitist &other)
-        : nume(other.nume),
-          prenume(other.prenume),
-          grad(other.grad),
-          numarLegitimatie(other.numarLegitimatie),
-          sectie(other.sectie),
-          dataEliberare(other.dataEliberare),
-          dataExpirare(other.dataExpirare),
-          emitent(other.emitent) {
-    }
-
-    LegitimatiePolitist(LegitimatiePolitist &&other)
-        : nume(std::move(other.nume)),
-          prenume(std::move(other.prenume)),
-          grad(std::move(other.grad)),
-          numarLegitimatie(std::move(other.numarLegitimatie)),
-          sectie(std::move(other.sectie)),
-          dataEliberare(std::move(other.dataEliberare)),
-          dataExpirare(std::move(other.dataExpirare)),
-          emitent(std::move(other.emitent)) {
-    }
-
-    LegitimatiePolitist & operator=(const LegitimatiePolitist &other) {
-        if (this == &other)
-            return *this;
-        nume = other.nume;
-        prenume = other.prenume;
-        grad = other.grad;
-        numarLegitimatie = other.numarLegitimatie;
-        sectie = other.sectie;
-        dataEliberare = other.dataEliberare;
-        dataExpirare = other.dataExpirare;
-        emitent = other.emitent;
-        return *this;
-    }
-
-    LegitimatiePolitist & operator=(LegitimatiePolitist &&other) {
-        if (this == &other)
-            return *this;
-        nume = std::move(other.nume);
-        prenume = std::move(other.prenume);
-        grad = std::move(other.grad);
-        numarLegitimatie = std::move(other.numarLegitimatie);
-        sectie = std::move(other.sectie);
-        dataEliberare = std::move(other.dataEliberare);
-        dataExpirare = std::move(other.dataExpirare);
-        emitent = std::move(other.emitent);
-        return *this;
-    }
-};
-class Politist {
-Buletin id;
-LegitimatiePolitist legitimatie;
-
-public:
-Politist(const Buletin &id, const LegitimatiePolitist &legitimatie)
-    : id(id),
-      legitimatie(legitimatie) {
 }
-
-    ~Politist() {
-    std::cout << "Politist deleted" << std::endl;
-}
-
-Politist(const Politist &other)
-    : id(other.id),
-      legitimatie(other.legitimatie) {
-}
-
-Politist(Politist &&other)
-    : id(std::move(other.id)),
-      legitimatie(std::move(other.legitimatie)) {
-}
-
-Politist & operator=(const Politist &other) {
-    if (this == &other)
-        return *this;
-    id = other.id;
-    legitimatie = other.legitimatie;
-    return *this;
-}
-
-Politist & operator=(Politist &&other) {
-    if (this == &other)
-        return *this;
-    id = std::move(other.id);
-    legitimatie = std::move(other.legitimatie);
-    return *this;
-}
-};
 
 class Masina {
     std::string marca;
@@ -691,7 +668,23 @@ public:
         numarInmatriculare = std::move(other.numarInmatriculare);
         return *this;
     }
+    friend std::ostream &operator<<(std::ostream &os, const Masina &p);
 };
+
+
+std::ostream &operator<<(std::ostream &os, const Masina &p) {
+    std::cout<< "Masina\n";
+    std::cout << "////////////////////////////////////////////////////////////////////\n";
+    std::cout << "Marca: " << p.marca << '\n';
+    std::cout << "Model: " << p.model << '\n';
+    std::cout << "Culoare: " << p.culoare << '\n';
+    std::cout << "An fabricatie: " << p.anFabricatie << '\n';
+    std::cout << "Cilindree: " << p.cilindree << '\n';
+    std::cout << "Putere: " << p.putere << '\n';
+    std::cout << "Serie sasiu: " << p.serieSasiu << '\n';
+    std::cout << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
+    std::cout << "////////////////////////////////////////////////////////////////////\n";
+}
 
 int main() {
 
