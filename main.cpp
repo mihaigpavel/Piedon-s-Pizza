@@ -671,6 +671,7 @@ public:
 };
 
 
+
 std::ostream &operator<<(std::ostream &os, const Masina &p) {
     os << "Masina\n";
     os << "////////////////////////////////////////////////////////////////////\n";
