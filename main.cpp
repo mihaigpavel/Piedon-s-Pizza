@@ -99,14 +99,15 @@ public:
 
 };
 std::ostream & operator<<(std::ostream &os, const Permis &p) {
-        std::cout<< "//////////////////////////////////////////////"<<'\n';
-        std::cout<<"  "<<p.nume<<'\n';
-        std::cout<<"  "<<p.prenume<<'\n';
-        std::cout<<"  "<<p.dataNastere << p.orasNastere <<p.judetNastere << '\n';
-        std::cout<<"  "<<p.dataObtinere << p.emitator<<'\n';
-        std::cout<<"  "<<p.dataExpirare << p.cnp<<'\n';
-        std::cout<<"  "<<p.categorie <<'\n';
-        std::cout<< "//////////////////////////////////////////////"<<'\n';
+    os << "//////////////////////////////////////////////" << '\n';
+    os << "  " << p.nume << '\n';
+    os << "  " << p.prenume << '\n';
+    os << "  " << p.dataNastere << p.orasNastere << p.judetNastere << '\n';
+    os << "  " << p.dataObtinere << p.emitator << '\n';
+    os << "  " << p.dataExpirare << p.cnp << '\n';
+    os << "  " << p.categorie << '\n';
+    os << "//////////////////////////////////////////////" << '\n';
+
 }
 class Adresa {
     std::string judet;
@@ -183,22 +184,19 @@ public:
 
 
 std::ostream & operator<<(std::ostream &os, const Adresa &p) {
-    std::cout<< "Jud." <<p.judet<<" ";
-    std::cout<< "Oras" <<p.oras<<'\n';
-    std::cout<< "Str." <<p.strada<<' ';
-    std::cout<< "nr." <<p.nr<<' ';
+    os << "Jud." << p.judet << " ";
+    os << "Oras" << p.oras << '\n';
+    os << "Str." << p.strada << ' ';
+    os << "nr." << p.nr << ' ';
     if (p.sc != -1) {
-        std::cout<< "Sc." <<p.sc<<' ';
+        os << "Sc." << p.sc << ' ';
     }
     if (p.et != -1) {
-        std::cout<< "et." <<p.et<<' ';
+        os << "et." << p.et << ' ';
     }
     if (p.ap != -1) {
-        std::cout<< "ap." <<p.ap<<' ';
+        os << "ap." << p.ap << ' ';
     }
-
-
-
 }
 class Buletin {
 unsigned long long cnp;
@@ -318,20 +316,21 @@ Buletin & operator=(Buletin &&other) {
 };
 
 std :: ostream & operator << (std :: ostream & os, const Buletin & p) {
-    std:: cout<<"////////////////////////////////////////////////////////////////////";
-    std:: cout<<"ROUMANIE   "<<"ROMANIA   "<<"ROMANIA\n";
-    std::cout<<"              SERIA "<<p.serie<<"  NR "<<p.nr<<'\n';
-    std::cout<<"Nume/Nom/Last name\n";
-    std::cout<<p.nume<<'\n';
-    std::cout<<"Prenume/Prenom/First name\n";
-    std::cout<<p.prenume<<'\n';
-    std::cout<<"Cetatenie/Nationalite,NAtionality\n"<<p.cetatenie<<'\n';
-    std::cout<<"Loc nastere/Lieu de naissance/Place of birth\nJud."<<p.judetNastere<<" "<<p.orasNastere<<'\n';
-    std::cout<<"Domiciliu/Adresse/address\n"<<p.adr;
-    std:: cout<<"Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
-    std::cout<<p.emitator<<"              "<<p.valabilitate<<'\n';
-    std:: cout<<p.cod << "   esp   "<<p.orasPrescurtat;
-    std:: cout<<"////////////////////////////////////////////////////////////////////";
+    os << "////////////////////////////////////////////////////////////////////";
+    os << "ROUMANIE   " << "ROMANIA   " << "ROMANIA\n";
+    os << "              SERIA " << p.serie << "  NR " << p.nr << '\n';
+    os << "Nume/Nom/Last name\n";
+    os << p.nume << '\n';
+    os << "Prenume/Prenom/First name\n";
+    os << p.prenume << '\n';
+    os << "Cetatenie/Nationalite,NAtionality\n" << p.cetatenie << '\n';
+    os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.judetNastere << " " << p.orasNastere << '\n';
+    os << "Domiciliu/Adresse/address\n" << p.adr;
+    os << "Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
+    os << p.emitator << "              " << p.valabilitate << '\n';
+    os << p.cod << "   esp   " << p.orasPrescurtat;
+    os << "////////////////////////////////////////////////////////////////////";
+
 }
 
 class Talon {
@@ -467,22 +466,22 @@ public:
 
 std::ostream &operator<<(std::ostream &os, const Talon &p) {
 
-    std::cout << "////////////////////////////////////////////////////////////////////\n";
-    std::cout<< "Certificat de Inmatriculare\n";
-    std::cout << "Marca/Brand/Make\n";
-    std::cout << p.marca << '\n';
-    std::cout << "Model/Model/Model\n";
-    std::cout << p.model << '\n';
-    std::cout << "Culoare/Color/Couleur\n";
-    std::cout << p.culoare << '\n';
-    std::cout << "Tip autovehicul/Vehicle type/Type de véhicule\n";
-    std::cout << p.tipAutovehicul << '\n';
-    std::cout << "An fabricatie/Year of manufacture/Année de fabrication\n";
-    std::cout << p.anFabricatie << '\n';
-    std::cout << "Cilindree/Engine capacity/Capacité du moteur\n";
-    std::cout << p.cilindree << '\n';
-    std::cout << "SERIA\n" << p.serieSasiu <<'\n'<< "  NR Inmatriculare \n" << p.numarInmatriculare << '\n';
-    std::cout << "////////////////////////////////////////////////////////////////////\n";
+    os << "////////////////////////////////////////////////////////////////////\n";
+    os << "Certificat de Inmatriculare\n";
+    os << "Marca/Brand/Make\n";
+    os << p.marca << '\n';
+    os << "Model/Model/Model\n";
+    os << p.model << '\n';
+    os << "Culoare/Color/Couleur\n";
+    os << p.culoare << '\n';
+    os << "Tip autovehicul/Vehicle type/Type de véhicule\n";
+    os << p.tipAutovehicul << '\n';
+    os << "An fabricatie/Year of manufacture/Année de fabrication\n";
+    os << p.anFabricatie << '\n';
+    os << "Cilindree/Engine capacity/Capacité du moteur\n";
+    os << p.cilindree << '\n';
+    os << "SERIA\n" << p.serieSasiu << '\n' << "  NR Inmatriculare \n" << p.numarInmatriculare << '\n';
+    os << "////////////////////////////////////////////////////////////////////\n";
 
 }
 class Acte {
@@ -535,7 +534,7 @@ public:
 };
 
 std::ostream &operator<<(std::ostream &os, const Acte &p) {
-  std::cout << "Acte\nPermis\n" << p.p << '\nBuletin\n' << p.b << '\nTalon\n' << p.t << '\n';
+  os << "Acte\nPermis\n" << p.p << "\nBuletin\n" << p.b << "\nTalon\n" << p.t << '\n';
 }
 
 
@@ -585,9 +584,9 @@ friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
 };
 
 std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
-    std::cout<< "Rezultat alcool test: "<<p.rezultat<<'\n';
+    os<< "Rezultat alcool test: "<<p.rezultat<<'\n';
     if (p.rezultat > 0.4) {
-        std::cout<< "Rezultat alcool test sange: "<<p.rezultat_sange<<'\n';
+        os<< "Rezultat alcool test sange: "<<p.rezultat_sange<<'\n';
     }
 }
 
@@ -673,17 +672,18 @@ public:
 
 
 std::ostream &operator<<(std::ostream &os, const Masina &p) {
-    std::cout<< "Masina\n";
-    std::cout << "////////////////////////////////////////////////////////////////////\n";
-    std::cout << "Marca: " << p.marca << '\n';
-    std::cout << "Model: " << p.model << '\n';
-    std::cout << "Culoare: " << p.culoare << '\n';
-    std::cout << "An fabricatie: " << p.anFabricatie << '\n';
-    std::cout << "Cilindree: " << p.cilindree << '\n';
-    std::cout << "Putere: " << p.putere << '\n';
-    std::cout << "Serie sasiu: " << p.serieSasiu << '\n';
-    std::cout << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
-    std::cout << "////////////////////////////////////////////////////////////////////\n";
+    os << "Masina\n";
+    os << "////////////////////////////////////////////////////////////////////\n";
+    os << "Marca: " << p.marca << '\n';
+    os << "Model: " << p.model << '\n';
+    os << "Culoare: " << p.culoare << '\n';
+    os << "An fabricatie: " << p.anFabricatie << '\n';
+    os << "Cilindree: " << p.cilindree << '\n';
+    os << "Putere: " << p.putere << '\n';
+    os << "Serie sasiu: " << p.serieSasiu << '\n';
+    os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
+    os << "////////////////////////////////////////////////////////////////////\n";
+
 }
 
 int main() {
