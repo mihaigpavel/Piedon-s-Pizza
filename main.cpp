@@ -1,44 +1,24 @@
-#include <iostream>
-#include <array>
-
-#include <Helper.h>
 #include <string>
 
 class Document {
+private:
     std::string dataEliberare;
     std::string dataExpirare;
-    std::string emitator;
+    std::string emitent;
+    std::string numar;
+    std::string serie;
 
 public:
-    Document(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitator)
+    Document(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent,
+        const std::string &numar, const std::string &serie)
         : dataEliberare(data_eliberare),
           dataExpirare(data_expirare),
-          emitator(emitator) {
+          emitent(emitent),
+          numar(numar),
+          serie(serie) {
     }
 
-    [[nodiscard]] std::string & get_data_eliberare() {
-        return dataEliberare;
-    }
 
-    void set_data_eliberare(const std::string &data_eliberare) {
-        dataEliberare = data_eliberare;
-    }
-
-    [[nodiscard]] std::string & get_data_expirare() {
-        return dataExpirare;
-    }
-
-    void set_data_expirare(const std::string &data_expirare) {
-        dataExpirare = data_expirare;
-    }
-
-    [[nodiscard]] std::string & get_emitator() {
-        return emitator;
-    }
-
-    void set_emitator(const std::string &emitator) {
-        this->emitator = emitator;
-    }
 };
 
 
