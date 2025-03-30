@@ -1,115 +1,166 @@
 #include <iostream>
 #include <array>
 
-#include <Helper.h>
+//#include <Helper.h>
 #include <string>
-
-
-class Permis {
+class DatePersonale {
     std::string nume;
     std::string prenume;
-    std::string dataNastere;
     std::string orasNastere;
     std::string judetNastere;
-    std::string dataObtinere;
+    std::string DataObtinere;
     std::string dataExpirare;
     std::string emitator;
     unsigned long long cnp;
-    std::string categorie;
 
 public:
-    Permis(const std::string &nume, const std::string &prenume, const std::string &data_nastere,
-        const std::string &oras_nastere, const std::string &judet_nastere, const std::string &data_obtinere,
-        const std::string &data_expirare, const std::string &emitator, const unsigned long long cnp,
-        const std::string &categorie)
+    DatePersonale(const std::string &nume, const std::string &prenume, const std::string &oras_nastere,
+        const std::string &judet_nastere, const std::string &data_obtinere, const std::string &data_expirare,
+        const std::string &emitator, unsigned long long cnp)
         : nume(nume),
           prenume(prenume),
-          dataNastere(data_nastere),
           orasNastere(oras_nastere),
           judetNastere(judet_nastere),
-          dataObtinere(data_obtinere),
+          DataObtinere(data_obtinere),
           dataExpirare(data_expirare),
           emitator(emitator),
-          cnp(cnp),
-          categorie(categorie) {
+          cnp(cnp) {
     }
 
-    ~Permis() {
-        std::cout<<"Permis deleted"<<std::endl;
+    ~DatePersonale(){
+        std::cout << "DatePersonale deleted" << std::endl;
     }
 
-    Permis(const Permis &other)
+    DatePersonale(const DatePersonale &other)
         : nume(other.nume),
           prenume(other.prenume),
-          dataNastere(other.dataNastere),
           orasNastere(other.orasNastere),
           judetNastere(other.judetNastere),
-          dataObtinere(other.dataObtinere),
+          DataObtinere(other.DataObtinere),
           dataExpirare(other.dataExpirare),
           emitator(other.emitator),
-          cnp(other.cnp),
-          categorie(other.categorie) {
+          cnp(other.cnp) {
     }
 
-    Permis(Permis &&other)
+    DatePersonale(DatePersonale &&other) noexcept
         : nume(std::move(other.nume)),
           prenume(std::move(other.prenume)),
-          dataNastere(std::move(other.dataNastere)),
           orasNastere(std::move(other.orasNastere)),
           judetNastere(std::move(other.judetNastere)),
-          dataObtinere(std::move(other.dataObtinere)),
+          DataObtinere(std::move(other.DataObtinere)),
           dataExpirare(std::move(other.dataExpirare)),
           emitator(std::move(other.emitator)),
-          cnp(other.cnp),
-          categorie(std::move(other.categorie)) {
+          cnp(other.cnp) {
     }
 
-    Permis & operator=(const Permis &other) {
+    DatePersonale & operator=(const DatePersonale &other) {
         if (this == &other)
             return *this;
         nume = other.nume;
         prenume = other.prenume;
-        dataNastere = other.dataNastere;
         orasNastere = other.orasNastere;
         judetNastere = other.judetNastere;
-        dataObtinere = other.dataObtinere;
+        DataObtinere = other.DataObtinere;
         dataExpirare = other.dataExpirare;
         emitator = other.emitator;
         cnp = other.cnp;
-        categorie = other.categorie;
         return *this;
     }
 
-    Permis & operator=(Permis &&other) {
+    DatePersonale & operator=(DatePersonale &&other) noexcept {
         if (this == &other)
             return *this;
         nume = std::move(other.nume);
         prenume = std::move(other.prenume);
-        dataNastere = std::move(other.dataNastere);
         orasNastere = std::move(other.orasNastere);
         judetNastere = std::move(other.judetNastere);
-        dataObtinere = std::move(other.dataObtinere);
+        DataObtinere = std::move(other.DataObtinere);
         dataExpirare = std::move(other.dataExpirare);
         emitator = std::move(other.emitator);
         cnp = other.cnp;
-        categorie = std::move(other.categorie);
         return *this;
     }
-    friend std::ostream & operator<<(std::ostream &os, const Permis &p);
 
+    [[nodiscard]] std::string get_nume() const {
+        return nume;
+    }
+
+    void set_nume(const std::string &nume) {
+        this->nume = nume;
+    }
+
+    [[nodiscard]] std::string get_prenume() const {
+        return prenume;
+    }
+
+    void set_prenume(const std::string &prenume) {
+        this->prenume = prenume;
+    }
+
+    [[nodiscard]] std::string get_oras_nastere() const {
+        return orasNastere;
+    }
+
+    void set_oras_nastere(const std::string &oras_nastere) {
+        orasNastere = oras_nastere;
+    }
+
+    [[nodiscard]] std::string get_judet_nastere() const {
+        return judetNastere;
+    }
+
+    void set_judet_nastere(const std::string &judet_nastere) {
+        judetNastere = judet_nastere;
+    }
+
+    [[nodiscard]] std::string get_data_obtinere() const {
+        return DataObtinere;
+    }
+
+    void set_data_obtinere(const std::string &data_obtinere) {
+        DataObtinere = data_obtinere;
+    }
+
+    [[nodiscard]] std::string get_data_expirare() const {
+        return dataExpirare;
+    }
+
+    void set_data_expirare(const std::string &data_expirare) {
+        dataExpirare = data_expirare;
+    }
+
+    [[nodiscard]] std::string get_emitator() const {
+        return emitator;
+    }
+
+    void set_emitator(const std::string &emitator) {
+        this->emitator = emitator;
+    }
+
+    [[nodiscard]] unsigned long long get_cnp() const {
+        return cnp;
+    }
+
+    void set_cnp(const unsigned long long cnp) {
+        this->cnp = cnp;
+    }
+
+    friend std::ostream & operator<<(std::ostream &os, const DatePersonale &obj);
 };
-std::ostream & operator<<(std::ostream &os, const Permis &p) {
-    os << "//////////////////////////////////////////////" << '\n';
-    os << "  " << p.nume << '\n';
-    os << "  " << p.prenume << '\n';
-    os << "  " << p.dataNastere << p.orasNastere << p.judetNastere << '\n';
-    os << "  " << p.dataObtinere << p.emitator << '\n';
-    os << "  " << p.dataExpirare << p.cnp << '\n';
-    os << "  " << p.categorie << '\n';
-    os << "//////////////////////////////////////////////" << '\n';
-    return os;
 
+std::ostream & operator<<(std::ostream &os, const DatePersonale &obj) {
+    os<<"//////////////////////////////////////////////" << '\n';
+    os << "  " << obj.nume << '\n';
+    os << "  " << obj.prenume << '\n';
+    os << "  " << obj.orasNastere << '\n';
+    os << "  " << obj.judetNastere << '\n';
+    os << "  " << obj.DataObtinere << '\n';
+    os << "  " << obj.dataExpirare << '\n';
+    os << "  " << obj.emitator << '\n';
+    os << "  " << obj.cnp << '\n';
+    os << "//////////////////////////////////////////////" << '\n';
 }
+
 class Adresa {
     std::string judet;
     std::string oras;
@@ -120,8 +171,7 @@ class Adresa {
     int sc;
 
 public:
-    Adresa(const std::string &judet, const std::string &oras, const std::string &strada, const int nr, const int et,
-        const int ap, const int sc)
+    Adresa(const std::string &judet, const std::string &oras, const std::string &strada, int nr, int et, int ap, int sc)
         : judet(judet),
           oras(oras),
           strada(strada),
@@ -131,60 +181,36 @@ public:
           sc(sc) {
     }
 
-    ~Adresa() {
-        std::cout<<"Adresa deleted"<<std::endl;
+    [[nodiscard]] std::string get_judet() const {
+        return judet;
     }
 
-    Adresa(const Adresa &other)
-        : judet(other.judet),
-          oras(other.oras),
-          strada(other.strada),
-          nr(other.nr),
-          et(other.et),
-          ap(other.ap),
-          sc(other.sc) {
+    [[nodiscard]] std::string get_oras() const {
+        return oras;
     }
 
-    Adresa(Adresa &&other)
-        : judet(std::move(other.judet)),
-          oras(std::move(other.oras)),
-          strada(std::move(other.strada)),
-          nr(other.nr),
-          et(other.et),
-          ap(other.ap),
-          sc(other.sc) {
+    [[nodiscard]] std::string get_strada() const {
+        return strada;
     }
 
-    Adresa & operator=(const Adresa &other) {
-        if (this == &other)
-            return *this;
-        judet = other.judet;
-        oras = other.oras;
-        strada = other.strada;
-        nr = other.nr;
-        et = other.et;
-        ap = other.ap;
-        sc = other.sc;
-        return *this;
+    [[nodiscard]] int get_nr() const {
+        return nr;
     }
 
-    Adresa & operator=(Adresa &&other) {
-        if (this == &other)
-            return *this;
-        judet = std::move(other.judet);
-        oras = std::move(other.oras);
-        strada = std::move(other.strada);
-        nr = other.nr;
-        et = other.et;
-        ap = other.ap;
-        sc = other.sc;
-        return *this;
+    [[nodiscard]] int get_et() const {
+        return et;
+    }
+
+    [[nodiscard]] int get_ap() const {
+        return ap;
+    }
+
+    [[nodiscard]] int get_sc() const {
+        return sc;
     }
     friend std::ostream & operator<<(std::ostream &os, const Adresa &p);
 };
-
-
-std::ostream & operator<<(std::ostream &os, const Adresa &p) {
+std:: ostream & operator<<(std::ostream &os, const Adresa &p) {
     os << "Jud." << p.judet << " ";
     os << "Oras" << p.oras << '\n';
     os << "Str." << p.strada << ' ';
@@ -201,166 +227,127 @@ std::ostream & operator<<(std::ostream &os, const Adresa &p) {
     return os;
 }
 class Buletin {
-unsigned long long cnp;
+    DatePersonale dp;
+    Adresa adr;
     std::string serie;
-    int nr;
     std::string cod;
-    std::string nume;
-    std::string prenume;
     std::string cetatenie;
-    std::string orasNastere;
-    std::string judetNastere;
-  Adresa adr;
-    std::string emitator;
-    std::string valabilitate;
-    std::string orasPrescurtat;
     int CifraControl;
+    int nr;
 
 public:
-Buletin(const unsigned long long cnp, const std::string &serie, const int nr, const std::string &cod,
-    const std::string &nume, const std::string &prenume, const std::string &cetatenie, const std::string &oras_nastere,
-    const std::string &judet_nastere, const Adresa &adr, const std::string &emitator, const std::string &valabilitate,
-    const std::string &oras_prescurtat, const int cifra_control)
-    : cnp(cnp),
-      serie(serie),
-      nr(nr),
-      cod(cod),
-      nume(nume),
-      prenume(prenume),
-      cetatenie(cetatenie),
-      orasNastere(oras_nastere),
-      judetNastere(judet_nastere),
-      adr(adr),
-      emitator(emitator),
-      valabilitate(valabilitate),
-      orasPrescurtat(oras_prescurtat),
-      CifraControl(cifra_control) {
-}
+    Buletin(const DatePersonale &dp, const Adresa &adr, const std::string &serie, const std::string &cod,
+        const std::string &cetatenie, int cifra_control, int nr)
+        : dp(dp),
+          adr(adr),
+          serie(serie),
+          cod(cod),
+          cetatenie(cetatenie),
+          CifraControl(cifra_control),
+          nr(nr) {
+    }
 
-~Buletin() {
-    std::cout<<"Buletin deleted"<<std::endl;
-}
+    [[nodiscard]] DatePersonale get_dp() const {
+        return dp;
+    }
 
-Buletin(const Buletin &other)
-    : cnp(other.cnp),
-      serie(other.serie),
-      nr(other.nr),
-      cod(other.cod),
-      nume(other.nume),
-      prenume(other.prenume),
-      cetatenie(other.cetatenie),
-      orasNastere(other.orasNastere),
-      judetNastere(other.judetNastere),
-      adr(other.adr),
-      emitator(other.emitator),
-      valabilitate(other.valabilitate),
-      orasPrescurtat(other.orasPrescurtat),
-      CifraControl(other.CifraControl) {
-}
+    [[nodiscard]] Adresa get_adr() const {
+        return adr;
+    }
 
-Buletin(Buletin &&other)
-    : cnp(other.cnp),
-      serie(std::move(other.serie)),
-      nr(other.nr),
-      cod(std::move(other.cod)),
-      nume(std::move(other.nume)),
-      prenume(std::move(other.prenume)),
-      cetatenie(std::move(other.cetatenie)),
-      orasNastere(std::move(other.orasNastere)),
-      judetNastere(std::move(other.judetNastere)),
-      adr(std::move(other.adr)),
-      emitator(std::move(other.emitator)),
-      valabilitate(std::move(other.valabilitate)),
-      orasPrescurtat(std::move(other.orasPrescurtat)),
-      CifraControl(other.CifraControl) {
-}
+    [[nodiscard]] std::string get_serie() const {
+        return serie;
+    }
 
-Buletin & operator=(const Buletin &other) {
-    if (this == &other)
-        return *this;
-    cnp = other.cnp;
-    serie = other.serie;
-    nr = other.nr;
-    cod = other.cod;
-    nume = other.nume;
-    prenume = other.prenume;
-    cetatenie = other.cetatenie;
-    orasNastere = other.orasNastere;
-    judetNastere = other.judetNastere;
-    adr = other.adr;
-    emitator = other.emitator;
-    valabilitate = other.valabilitate;
-    orasPrescurtat = other.orasPrescurtat;
-    CifraControl = other.CifraControl;
-    return *this;
-}
+    [[nodiscard]] std::string get_cod() const {
+        return cod;
+    }
 
-Buletin & operator=(Buletin &&other) {
-    if (this == &other)
-        return *this;
-    cnp = other.cnp;
-    serie = std::move(other.serie);
-    nr = other.nr;
-    cod = std::move(other.cod);
-    nume = std::move(other.nume);
-    prenume = std::move(other.prenume);
-    cetatenie = std::move(other.cetatenie);
-    orasNastere = std::move(other.orasNastere);
-    judetNastere = std::move(other.judetNastere);
-    adr = std::move(other.adr);
-    emitator = std::move(other.emitator);
-    valabilitate = std::move(other.valabilitate);
-    orasPrescurtat = std::move(other.orasPrescurtat);
-    CifraControl = other.CifraControl;
-    return *this;
-}
-    friend std::ostream & operator<<(std::ostream &os, const Buletin &);
+    [[nodiscard]] std::string get_cetatenie() const {
+        return cetatenie;
+    }
+
+    [[nodiscard]] int get_cifra_control() const {
+        return CifraControl;
+    }
+
+    [[nodiscard]] int get_nr() const {
+        return nr;
+    }
+
+    friend std::ostream & operator<<(std::ostream &os, const Buletin &p);
 };
-
 std :: ostream & operator << (std :: ostream & os, const Buletin & p) {
     os << "////////////////////////////////////////////////////////////////////";
     os << "ROUMANIE   " << "ROMANIA   " << "ROMANIA\n";
     os << "              SERIA " << p.serie << "  NR " << p.nr << '\n';
     os << "Nume/Nom/Last name\n";
-    os << p.nume << '\n';
+    os << p.dp.get_nume() << '\n';
     os << "Prenume/Prenom/First name\n";
-    os << p.prenume << '\n';
+    os << p.dp.get_prenume() << '\n';
     os << "Cetatenie/Nationalite,NAtionality\n" << p.cetatenie << '\n';
-    os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.judetNastere << " " << p.orasNastere << '\n';
+    os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.dp.get_judet_nastere() << " " << p.dp.get_oras_nastere() << '\n';
     os << "Domiciliu/Adresse/address\n" << p.adr;
     os << "Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
-    os << p.emitator << "              " << p.valabilitate << '\n';
-    os << p.cod << "   esp   " << p.orasPrescurtat;
+    os << p.dp.get_emitator() << "              " << p.dp.get_data_obtinere()<<"-"<<p.dp.get_data_expirare() << '\n';
+    os << p.cod << "   esp   " << p.dp.get_judet_nastere();
     os << "////////////////////////////////////////////////////////////////////";
     return os;
 
 }
 
-class Talon {
-    std::string serieSasiu;
+class Permis {
+    DatePersonale dp;
+    std::string categorie;
+   const  std::string dataNastere;
+
+public:
+    Permis(const DatePersonale &dp, const std::string &categorie, const std::string &data_nastere)
+        : dp(dp),
+          categorie(categorie),
+          dataNastere(data_nastere) {
+    }
+    [[nodiscard]] DatePersonale get_dp() const {
+        return dp;
+    }
+
+    [[nodiscard]] std::string get_categorie() const {
+        return categorie;
+    }
+
+    [[nodiscard]] std::string get_dataNastere() const {
+        return dataNastere;
+    }
+
+private:
+    friend std::ostream & operator<<(std::ostream &os, const Permis &p);
+};
+std::ostream & operator<<(std::ostream &os, const Permis &p) {
+    os << "//////////////////////////////////////////////" << '\n';
+    os << "  " << p.dp.get_nume() << '\n';
+    os << "  " << p.dp.get_prenume() << '\n';
+    os << "  " << p.dataNastere << p.dp.get_oras_nastere() << p.dp.get_judet_nastere() << '\n';
+    os << "  " << p.dp.get_data_obtinere() << p.dp.get_emitator() << '\n';
+    os << "  " << p.dp.get_data_expirare() << p.dp.get_cnp() << '\n';
+    os << "  " << p.categorie << '\n';
+    os << "//////////////////////////////////////////////" << '\n';
+    return os;
+}
+class SpecificatiiMasina {
+    const std::string serieSasiu;
     std::string numarInmatriculare;
-    std::string marca;
-    std::string model;
+    const std::string marca;
+    const std::string model;
     std::string culoare;
     std::string tipAutovehicul;
     unsigned int anFabricatie;
-    unsigned int cilindree;
+    unsigned int cilindre;
     unsigned int putere;
-    std::string categorieVehicul;
-    std::string numeProprietar;
-    std::string prenumeProprietar;
-    std::string dataInmatriculare;
-    std::string valabilitateITP;
-    std::string valabilitateRCA;
-    Adresa adr;
 
 public:
-    Talon(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
+    SpecificatiiMasina(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
         const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
-        const unsigned int an_fabricatie, const unsigned int cilindree, const unsigned int putere,
-        const std::string &categorie_vehicul, const std::string &nume_proprietar, const std::string &prenume_proprietar,
-        const std::string &data_inmatriculare, const std::string &valabilitate_itp, const std::string &valabilitate_rca,
-        const Adresa &adr)
+        unsigned int an_fabricatie, unsigned int cilindre, unsigned int putere)
         : serieSasiu(serie_sasiu),
           numarInmatriculare(numar_inmatriculare),
           marca(marca),
@@ -368,9 +355,76 @@ public:
           culoare(culoare),
           tipAutovehicul(tip_autovehicul),
           anFabricatie(an_fabricatie),
-          cilindree(cilindree),
-          putere(putere),
-          categorieVehicul(categorie_vehicul),
+          cilindre(cilindre),
+          putere(putere) {
+    }
+
+    [[nodiscard]] std::string get_serie_sasiu() const {
+        return serieSasiu;
+    }
+
+    [[nodiscard]] std::string get_numar_inmatriculare() const {
+        return numarInmatriculare;
+    }
+
+    [[nodiscard]] std::string get_marca() const {
+        return marca;
+    }
+
+    [[nodiscard]] std::string get_model() const {
+        return model;
+    }
+
+    [[nodiscard]] std::string get_culoare() const {
+        return culoare;
+    }
+
+    [[nodiscard]] std::string get_tip_autovehicul() const {
+        return tipAutovehicul;
+    }
+
+    [[nodiscard]] unsigned int get_an_fabricatie() const {
+        return anFabricatie;
+    }
+
+    [[nodiscard]] unsigned int get_cilindre() const {
+        return cilindre;
+    }
+
+    [[nodiscard]] unsigned int get_putere() const {
+        return putere;
+    }
+    friend std::ostream & operator<<(std::ostream &os, const SpecificatiiMasina &p);
+};
+std::ostream & operator<<(std::ostream &os, const SpecificatiiMasina &p) {
+    os << "////////////////////////////////////////////////////////////////////\n";
+    os << "Serie sasiu: " << p.serieSasiu << '\n';
+    os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
+    os << "Marca: " << p.marca << '\n';
+    os << "Model: " << p.model << '\n';
+    os << "Culoare: " << p.culoare << '\n';
+    os << "An fabricatie: " << p.anFabricatie << '\n';
+    os << "cilindre: " << p.cilindre << '\n';
+    os << "Putere: " << p.putere << '\n';
+    os << "Tip autovehicul: " << p.tipAutovehicul << '\n';
+    os << "////////////////////////////////////////////////////////////////////\n";
+    return os;
+}
+
+class Talon {
+    const SpecificatiiMasina masina;
+    std::string numeProprietar;
+    std::string prenumeProprietar;
+    const std::string dataInmatriculare;
+    std::string valabilitateITP;
+    std::string valabilitateRCA;
+    Adresa adr;
+
+public:
+    Talon(const SpecificatiiMasina &masina, const std::string &nume_proprietar, const std::string &prenume_proprietar,
+        const std::string &data_inmatriculare, const std::string &valabilitate_itp, const std::string &valabilitate_rca,
+        const Adresa &adr)
+        : masina(masina),
           numeProprietar(nume_proprietar),
           prenumeProprietar(prenume_proprietar),
           dataInmatriculare(data_inmatriculare),
@@ -379,215 +433,129 @@ public:
           adr(adr) {
     }
 
-    ~Talon() {
-        std::cout << "Talon deleted"<< std::endl;
+    [[nodiscard]] SpecificatiiMasina get_masina() const {
+        return masina;
     }
 
-    Talon(const Talon &other)
-        : serieSasiu(other.serieSasiu),
-          numarInmatriculare(other.numarInmatriculare),
-          marca(other.marca),
-          model(other.model),
-          culoare(other.culoare),
-          tipAutovehicul(other.tipAutovehicul),
-          anFabricatie(other.anFabricatie),
-          cilindree(other.cilindree),
-          putere(other.putere),
-          categorieVehicul(other.categorieVehicul),
-          numeProprietar(other.numeProprietar),
-          prenumeProprietar(other.prenumeProprietar),
-          dataInmatriculare(other.dataInmatriculare),
-          valabilitateITP(other.valabilitateITP),
-          valabilitateRCA(other.valabilitateRCA),
-          adr(other.adr) {
+    [[nodiscard]] std::string get_nume_proprietar() const {
+        return numeProprietar;
     }
 
-    Talon(Talon &&other)
-        : serieSasiu(std::move(other.serieSasiu)),
-          numarInmatriculare(std::move(other.numarInmatriculare)),
-          marca(std::move(other.marca)),
-          model(std::move(other.model)),
-          culoare(std::move(other.culoare)),
-          tipAutovehicul(std::move(other.tipAutovehicul)),
-          anFabricatie(other.anFabricatie),
-          cilindree(other.cilindree),
-          putere(other.putere),
-          categorieVehicul(std::move(other.categorieVehicul)),
-          numeProprietar(std::move(other.numeProprietar)),
-          prenumeProprietar(std::move(other.prenumeProprietar)),
-          dataInmatriculare(std::move(other.dataInmatriculare)),
-          valabilitateITP(std::move(other.valabilitateITP)),
-          valabilitateRCA(std::move(other.valabilitateRCA)),
-          adr(std::move(other.adr)) {
+    [[nodiscard]] std::string get_prenume_proprietar() const {
+        return prenumeProprietar;
     }
 
-    Talon & operator=(const Talon &other) {
-        if (this == &other)
-            return *this;
-        serieSasiu = other.serieSasiu;
-        numarInmatriculare = other.numarInmatriculare;
-        marca = other.marca;
-        model = other.model;
-        culoare = other.culoare;
-        tipAutovehicul = other.tipAutovehicul;
-        anFabricatie = other.anFabricatie;
-        cilindree = other.cilindree;
-        putere = other.putere;
-        categorieVehicul = other.categorieVehicul;
-        numeProprietar = other.numeProprietar;
-        prenumeProprietar = other.prenumeProprietar;
-        dataInmatriculare = other.dataInmatriculare;
-        valabilitateITP = other.valabilitateITP;
-        valabilitateRCA = other.valabilitateRCA;
-        adr = other.adr;
-        return *this;
+    [[nodiscard]] std::string get_data_inmatriculare() const {
+        return dataInmatriculare;
     }
 
-    Talon & operator=(Talon &&other) {
-        if (this == &other)
-            return *this;
-        serieSasiu = std::move(other.serieSasiu);
-        numarInmatriculare = std::move(other.numarInmatriculare);
-        marca = std::move(other.marca);
-        model = std::move(other.model);
-        culoare = std::move(other.culoare);
-        tipAutovehicul = std::move(other.tipAutovehicul);
-        anFabricatie = other.anFabricatie;
-        cilindree = other.cilindree;
-        putere = other.putere;
-        categorieVehicul = std::move(other.categorieVehicul);
-        numeProprietar = std::move(other.numeProprietar);
-        prenumeProprietar = std::move(other.prenumeProprietar);
-        dataInmatriculare = std::move(other.dataInmatriculare);
-        valabilitateITP = std::move(other.valabilitateITP);
-        valabilitateRCA = std::move(other.valabilitateRCA);
-        adr = std::move(other.adr);
-        return *this;
+    [[nodiscard]] std::string get_valabilitate_itp() const {
+        return valabilitateITP;
+    }
+
+    [[nodiscard]] std::string get_valabilitate_rca() const {
+        return valabilitateRCA;
+    }
+
+    [[nodiscard]] Adresa get_adr() const {
+        return adr;
     }
     friend std::ostream &operator<<(std::ostream &os, const Talon &talon);
 };
-
 std::ostream &operator<<(std::ostream &os, const Talon &p) {
 
     os << "////////////////////////////////////////////////////////////////////\n";
     os << "Certificat de Inmatriculare\n";
+    os<< "Numar de inmatriculare\n";
+    os << p.masina.get_numar_inmatriculare() << '\n';
     os << "Marca/Brand/Make\n";
-    os << p.marca << '\n';
+    os << p.masina.get_marca() << '\n';
     os << "Model/Model/Model\n";
-    os << p.model << '\n';
+    os << p.masina.get_model() << '\n';
     os << "Culoare/Color/Couleur\n";
-    os << p.culoare << '\n';
+    os << p.masina.get_culoare() << '\n';
     os << "Tip autovehicul/Vehicle type/Type de véhicule\n";
-    os << p.tipAutovehicul << '\n';
+    os << p.masina.get_tip_autovehicul() << '\n';
     os << "An fabricatie/Year of manufacture/Année de fabrication\n";
-    os << p.anFabricatie << '\n';
-    os << "Cilindree/Engine capacity/Capacité du moteur\n";
-    os << p.cilindree << '\n';
-    os << "SERIA\n" << p.serieSasiu << '\n' << "  NR Inmatriculare \n" << p.numarInmatriculare << '\n';
+    os << p.masina.get_an_fabricatie() << '\n';
+    os <<"Nume/Nom/Last name\n";
+    os << p.numeProprietar << '\n';
+    os << "Prenume/Prenom/First name\n";
+    os << p.prenumeProprietar << '\n';
+    os << "Adresa/Adresse/Address\n";
+    os << p.adr;
+    os << "Data inmatriculare/Date d'immatriculation/Date of registration\n";
+    os << p.dataInmatriculare << '\n';
+    os << "Valabilitate ITP/ITP validity/ITP validité\n";
+    os << p.valabilitateITP << '\n';
+    os << "Valabilitate RCA/RCA validity/RCA validité\n";
+    os << p.valabilitateRCA << '\n';
+    os << "Putere/Power/puissance\n";
+    os << p.masina.get_putere() << '\n';
+    os << "cilindre/Engine capacity/Capacité du moteur\n";
+    os << p.masina.get_cilindre() << '\n';
+    os << "SERIA\n" << p.masina.get_serie_sasiu() << '\n';
     os << "////////////////////////////////////////////////////////////////////\n";
     return os;
 
 }
-class Acte {
- Permis p;
-    Talon t;
-    Buletin b;
+class Masina {
+   const SpecificatiiMasina masina;
+   const unsigned int viteza;
 
 public:
- Acte(const Permis &p, const Talon &t, const Buletin &b)
-     : p(p),
-       t(t),
-       b(b) {
- }
+    Masina(const SpecificatiiMasina &masina, unsigned int viteza)
+        : masina(masina),
+          viteza(viteza) {
+    }
 
- ~Acte() {
-     std::cout << "acte deleted\n";
- }
+    [[nodiscard]] SpecificatiiMasina get_masina() const {
+        return masina;
+    }
 
- Acte(const Acte &other)
-     : p(other.p),
-       t(other.t),
-       b(other.b) {
- }
+    [[nodiscard]] unsigned int get_viteza() const {
+        return viteza;
+    }
+    friend std::ostream &operator<<(std::ostream &os, const Masina &p);
 
- Acte(Acte &&other)
-     : p(std::move(other.p)),
-       t(std::move(other.t)),
-       b(std::move(other.b)) {
- }
-
- Acte & operator=(const Acte &other) {
-     if (this == &other)
-         return *this;
-     p = other.p;
-     t = other.t;
-     b = other.b;
-     return *this;
- }
-
- Acte & operator=(Acte &&other) {
-     if (this == &other)
-         return *this;
-     p = std::move(other.p);
-     t = std::move(other.t);
-     b = std::move(other.b);
-     return *this;
- }
-
-    friend std::ostream &operator<<(std::ostream &os, const Acte &p);
 };
 
-std::ostream &operator<<(std::ostream &os, const Acte &p) {
-  os << "Acte\nPermis\n" << p.p << "\nBuletin\n" << p.b << "\nTalon\n" << p.t << '\n';
+std::ostream &operator<<(std::ostream &os, const Masina &p) {
+    os << "Masina\n";
+    os << "////////////////////////////////////////////////////////////////////\n";
+    os << "Viteza: " << p.viteza << '\n';
+    os << "Marca: " << p.masina.get_marca() << '\n';
+    os << "Model: " << p.masina.get_model() << '\n';
+    os << "Culoare: " << p.masina.get_culoare() << '\n';
+    os << "An fabricatie: " << p.masina.get_an_fabricatie() << '\n';
+    os << "cilindre: " << p.masina.get_cilindre() << '\n';
+    os << "Putere: " << p.masina.get_putere() << '\n';
+    os << "Serie sasiu: " << p.masina.get_serie_sasiu() << '\n';
+    os << "Numar inmatriculare: " << p.masina.get_numar_inmatriculare() << '\n';
+    os << "////////////////////////////////////////////////////////////////////\n";
     return os;
+
 }
-
-
 
 class AlcoolTest {
-int rezultat;
-    int rezultat_sange;
+   const float rezultat;
+    const float rezultat_sange;
 
 public:
-AlcoolTest(const int rezultat, const int rezultat_sange)
-    : rezultat(rezultat),
-      rezultat_sange(rezultat_sange) {
-}
+    AlcoolTest(float rezultat, float rezultat_sange)
+        : rezultat(rezultat),
+          rezultat_sange(rezultat_sange) {
+    }
 
-~AlcoolTest() {
-    std::cout << "AlcoolTest deleted" << std::endl;
-}
+    [[nodiscard]] float rezultat1() const {
+        return rezultat;
+    }
 
-AlcoolTest(const AlcoolTest &other)
-    : rezultat(other.rezultat),
-      rezultat_sange(other.rezultat_sange) {
-}
-
-AlcoolTest(AlcoolTest &&other)
-    : rezultat(other.rezultat),
-      rezultat_sange(other.rezultat_sange) {
-}
-
-AlcoolTest & operator=(const AlcoolTest &other) {
-    if (this == &other)
-        return *this;
-    rezultat = other.rezultat;
-    rezultat_sange = other.rezultat_sange;
-    return *this;
-}
-
-AlcoolTest & operator=(AlcoolTest &&other) {
-    if (this == &other)
-        return *this;
-    rezultat = other.rezultat;
-    rezultat_sange = other.rezultat_sange;
-    return *this;
-}
-
-friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
-
+    [[nodiscard]] float rezultat_sange1() const {
+        return rezultat_sange;
+    }
+    friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
 };
-
 std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
     os<< "Rezultat alcool test: "<<p.rezultat<<'\n';
     if (p.rezultat > 0.4) {
@@ -595,106 +563,10 @@ std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
     }
     return os;
 }
+class Joc {
 
-class Masina {
-    std::string marca;
-    std::string model;
-    std::string culoare;
-    unsigned int anFabricatie;
-    unsigned int cilindree;
-    unsigned int putere;
-    std::string serieSasiu;
-    std::string numarInmatriculare;
-
-public:
-    Masina(const std::string &marca, const std::string &model, const std::string &culoare,
-        const unsigned int an_fabricatie, const unsigned int cilindree, const unsigned int putere,
-        const std::string &serie_sasiu, const std::string &numar_inmatriculare)
-        : marca(marca),
-          model(model),
-          culoare(culoare),
-          anFabricatie(an_fabricatie),
-          cilindree(cilindree),
-          putere(putere),
-          serieSasiu(serie_sasiu),
-          numarInmatriculare(numar_inmatriculare) {
-    }
-
-    ~Masina() {
-        std::cout << "Masina deleted" << std::endl;
-    }
-
-    Masina(const Masina &other)
-        : marca(other.marca),
-          model(other.model),
-          culoare(other.culoare),
-          anFabricatie(other.anFabricatie),
-          cilindree(other.cilindree),
-          putere(other.putere),
-          serieSasiu(other.serieSasiu),
-          numarInmatriculare(other.numarInmatriculare) {
-    }
-
-    Masina(Masina &&other)
-        : marca(std::move(other.marca)),
-          model(std::move(other.model)),
-          culoare(std::move(other.culoare)),
-          anFabricatie(other.anFabricatie),
-          cilindree(other.cilindree),
-          putere(other.putere),
-          serieSasiu(std::move(other.serieSasiu)),
-          numarInmatriculare(std::move(other.numarInmatriculare)) {
-    }
-
-    Masina & operator=(const Masina &other) {
-        if (this == &other)
-            return *this;
-        marca = other.marca;
-        model = other.model;
-        culoare = other.culoare;
-        anFabricatie = other.anFabricatie;
-        cilindree = other.cilindree;
-        putere = other.putere;
-        serieSasiu = other.serieSasiu;
-        numarInmatriculare = other.numarInmatriculare;
-        return *this;
-    }
-
-    Masina & operator=(Masina &&other) {
-        if (this == &other)
-            return *this;
-        marca = std::move(other.marca);
-        model = std::move(other.model);
-        culoare = std::move(other.culoare);
-        anFabricatie = other.anFabricatie;
-        cilindree = other.cilindree;
-        putere = other.putere;
-        serieSasiu = std::move(other.serieSasiu);
-        numarInmatriculare = std::move(other.numarInmatriculare);
-        return *this;
-    }
-    friend std::ostream &operator<<(std::ostream &os, const Masina &p);
 };
 
-
-
-std::ostream &operator<<(std::ostream &os, const Masina &p) {
-    os << "Masina\n";
-    os << "////////////////////////////////////////////////////////////////////\n";
-    os << "Marca: " << p.marca << '\n';
-    os << "Model: " << p.model << '\n';
-    os << "Culoare: " << p.culoare << '\n';
-    os << "An fabricatie: " << p.anFabricatie << '\n';
-    os << "Cilindree: " << p.cilindree << '\n';
-    os << "Putere: " << p.putere << '\n';
-    os << "Serie sasiu: " << p.serieSasiu << '\n';
-    os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
-    os << "////////////////////////////////////////////////////////////////////\n";
-    return os;
-
-}
-
 int main() {
-
     return 0;
 }

@@ -51,6 +51,7 @@ include(cmake/CopyHelper.cmake)
 add_executable(${MAIN_EXECUTABLE_NAME}
     main.cpp
     generated/src/Helper.cpp
+        main.cpp
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
