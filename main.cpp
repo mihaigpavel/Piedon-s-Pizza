@@ -537,7 +537,7 @@ std::ostream &operator<<(std::ostream &os, const Masina &p) {
     return os;
 
 }
-
+/*
 class AlcoolTest {
    const float rezultat;
     const float rezultat_sange;
@@ -564,6 +564,7 @@ std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
     }
     return os;
 }
+*/
 class Joc {
 
 };
