@@ -81,7 +81,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] const  std::string get_nume() const {
+    [[nodiscard]] std::string get_nume() const {
         return nume;
     }
 
@@ -89,7 +89,7 @@ public:
         this->nume = nume1;
     }
 
-    [[nodiscard]] const std::string get_prenume() const {
+    [[nodiscard]] std::string get_prenume() const {
         return prenume;
     }
 
@@ -97,7 +97,7 @@ public:
         this->prenume = prenume1;
     }
 
-    [[nodiscard]] const std::string get_oras_nastere() const {
+    [[nodiscard]] std::string get_oras_nastere() const {
         return orasNastere;
     }
 
@@ -105,7 +105,7 @@ public:
         orasNastere = oras_nastere1;
     }
 
-    [[nodiscard]] const std::string get_judet_nastere() const {
+    [[nodiscard]] std::string get_judet_nastere() const {
         return judetNastere;
     }
 
@@ -113,7 +113,7 @@ public:
         judetNastere = judet_nastere1;
     }
 
-    [[nodiscard]] const std::string get_data_obtinere() const {
+    [[nodiscard]] std::string get_data_obtinere() const {
         return DataObtinere;
     }
 
@@ -121,7 +121,7 @@ public:
         DataObtinere = data_obtinere1;
     }
 
-    [[nodiscard]] const std::string get_data_expirare() const {
+    [[nodiscard]] std::string get_data_expirare() const {
         return dataExpirare;
     }
 
@@ -129,7 +129,7 @@ public:
         dataExpirare = data_expirare1;
     }
 
-    [[nodiscard]] const std::string get_emitator() const {
+    [[nodiscard]] std::string get_emitator() const {
         return emitator;
     }
 
@@ -141,7 +141,7 @@ public:
         return cnp;
     }
 
-    void const set_cnp(const unsigned long long cnp1) {
+    void set_cnp(const unsigned long long cnp1) {
         this->cnp = cnp1;
     }
 
@@ -182,31 +182,31 @@ public:
           sc(sc) {
     }
 
-    [[nodiscard]] const std::string get_judet() const {
+    [[nodiscard]] std::string get_judet() const {
         return judet;
     }
 
-    [[nodiscard]] const std::string get_oras() const {
+    [[nodiscard]] std::string get_oras() const {
         return oras;
     }
 
-    [[nodiscard]] const std::string get_strada() const {
+    [[nodiscard]] std::string get_strada() const {
         return strada;
     }
 
-    [[nodiscard]] const int get_nr() const {
+    [[nodiscard]]  int get_nr() const {
         return nr;
     }
 
-    [[nodiscard]] const int get_et() const {
+    [[nodiscard]]  int get_et() const {
         return et;
     }
 
-    [[nodiscard]] const int get_ap() const {
+    [[nodiscard]]  int get_ap() const {
         return ap;
     }
 
-    [[nodiscard]] const int get_sc() const {
+    [[nodiscard]]  int get_sc() const {
         return sc;
     }
     friend std::ostream & operator<<(std::ostream &os, const Adresa &p);
@@ -248,31 +248,31 @@ public:
           nr(nr) {
     }
 
-    [[nodiscard]] const DatePersonale get_dp() const {
+    [[nodiscard]]  DatePersonale get_dp() const {
         return dp;
     }
 
-    [[nodiscard]] const Adresa get_adr() const {
+    [[nodiscard]]  Adresa get_adr() const {
         return adr;
     }
 
-    [[nodiscard]] const std::string get_serie() const {
+    [[nodiscard]]  std::string get_serie() const {
         return serie;
     }
 
-    [[nodiscard]] const std::string get_cod() const {
+    [[nodiscard]]  std::string get_cod() const {
         return cod;
     }
 
-    [[nodiscard]] const std::string get_cetatenie() const {
+    [[nodiscard]] std::string get_cetatenie() const {
         return cetatenie;
     }
 
-    [[nodiscard]] const int get_cifra_control() const {
+    [[nodiscard]]  int get_cifra_control() const {
         return CifraControl;
     }
 
-    [[nodiscard]] const int get_nr() const {
+    [[nodiscard]] int get_nr() const {
         return nr;
     }
 
@@ -308,15 +308,15 @@ public:
           categorie(categorie),
           dataNastere(data_nastere) {
     }
-    [[nodiscard]] const DatePersonale get_dp() const {
+    [[nodiscard]] DatePersonale get_dp() const {
         return dp;
     }
 
-    [[nodiscard]] const  std::string get_categorie() const {
+    [[nodiscard]] std::string get_categorie() const {
         return categorie;
     }
 
-    [[nodiscard]] const  std::string get_dataNastere() const {
+    [[nodiscard]]  std::string get_dataNastere() const {
         return dataNastere;
     }
 
@@ -360,39 +360,39 @@ public:
           putere(putere) {
     }
 
-    [[nodiscard]] const std::string get_serie_sasiu() const {
+    [[nodiscard]]  std::string get_serie_sasiu() const {
         return serieSasiu;
     }
 
-    [[nodiscard]] const std::string get_numar_inmatriculare() const {
+    [[nodiscard]]  std::string get_numar_inmatriculare() const {
         return numarInmatriculare;
     }
 
-    [[nodiscard]] const std::string get_marca() const {
+    [[nodiscard]]  std::string get_marca() const {
         return marca;
     }
 
-    [[nodiscard]] const std::string get_model() const {
+    [[nodiscard]]  std::string get_model() const {
         return model;
     }
 
-    [[nodiscard]] const std::string get_culoare() const {
+    [[nodiscard]]  std::string get_culoare() const {
         return culoare;
     }
 
-    [[nodiscard]] const std::string get_tip_autovehicul() const {
+    [[nodiscard]]  std::string get_tip_autovehicul() const {
         return tipAutovehicul;
     }
 
-    [[nodiscard]] const unsigned int get_an_fabricatie() const {
+    [[nodiscard]] unsigned int get_an_fabricatie() const {
         return anFabricatie;
     }
 
-    [[nodiscard]] const unsigned int get_cilindre() const {
+    [[nodiscard]] unsigned int get_cilindre() const {
         return cilindre;
     }
 
-    [[nodiscard]] const unsigned int get_putere() const {
+    [[nodiscard]] unsigned int get_putere() const {
         return putere;
     }
     friend std::ostream & operator<<(std::ostream &os, const SpecificatiiMasina &p);
@@ -434,31 +434,31 @@ public:
           adr(adr) {
     }
 
-    [[nodiscard]] const SpecificatiiMasina get_masina() const {
+    [[nodiscard]]  SpecificatiiMasina get_masina() const {
         return masina;
     }
 
-    [[nodiscard]] const  std::string get_nume_proprietar() const {
+    [[nodiscard]]   std::string get_nume_proprietar() const {
         return numeProprietar;
     }
 
-    [[nodiscard]] const std::string get_prenume_proprietar() const {
+    [[nodiscard]]  std::string get_prenume_proprietar() const {
         return prenumeProprietar;
     }
 
-    [[nodiscard]] const std::string get_data_inmatriculare() const {
+    [[nodiscard]]  std::string get_data_inmatriculare() const {
         return dataInmatriculare;
     }
 
-    [[nodiscard]] const std::string get_valabilitate_itp() const {
+    [[nodiscard]]  std::string get_valabilitate_itp() const {
         return valabilitateITP;
     }
 
-    [[nodiscard]] const std::string get_valabilitate_rca() const {
+    [[nodiscard]] std::string get_valabilitate_rca() const {
         return valabilitateRCA;
     }
 
-    [[nodiscard]] const Adresa get_adr() const {
+    [[nodiscard]]  Adresa get_adr() const {
         return adr;
     }
     friend std::ostream &operator<<(std::ostream &os, const Talon &talon);
@@ -510,11 +510,11 @@ public:
           viteza(viteza) {
     }
 
-    [[nodiscard]] const SpecificatiiMasina get_masina() const {
+    [[nodiscard]]  SpecificatiiMasina get_masina() const {
         return masina;
     }
 
-    [[nodiscard]] const unsigned int get_viteza() const {
+    [[nodiscard]]  unsigned int get_viteza() const {
         return viteza;
     }
     friend std::ostream &operator<<(std::ostream &os, const Masina &p);
@@ -548,11 +548,11 @@ public:
           rezultat_sange(rezultat_sange) {
     }
 
-    [[nodiscard]] const float rezultat1() const {
+    [[nodiscard]]  float rezultat1() const {
         return rezultat;
     }
 
-    [[nodiscard]] const float rezultat_sange1() const {
+    [[nodiscard]]  float rezultat_sange1() const {
         return rezultat_sange;
     }
     friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
