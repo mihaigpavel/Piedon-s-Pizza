@@ -1,5 +1,5 @@
 #include <string>
-
+#include <iostream>
 class Document {
 private:
     std::string dataEliberare;
@@ -17,7 +17,17 @@ public:
           numar(numar),
           serie(serie) {
     }
+    Document(const Document &other)
+        : dataEliberare(other.dataEliberare),
+          dataExpirare(other.dataExpirare),
+          emitent(other.emitent),
+          numar(other.numar),
+          serie(other.serie) {
+    }
 
+    ~Document(){
+        std:: cout << "Destructor called for Document" << std::endl;
+    }
 
 };
 
