@@ -1,5 +1,8 @@
-#include <string>
 #include <iostream>
+#include <array>
+
+#include <Helper.h>
+#include <string>
 class Document {
 private:
     std::string dataEliberare;
@@ -9,6 +12,7 @@ private:
     std::string serie;
 
 public:
+    // constructor
     Document(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent,
         const std::string &numar, const std::string &serie)
         : dataEliberare(data_eliberare),
@@ -18,10 +22,13 @@ public:
           serie(serie) {
     }
 
+
+    // Destructor
     ~Document(){
-        std:: cout << "Destructor called for Document" << std::endl;
+        std::cout << "Document deleted" << std::endl;
     }
 
+    // Copy constructor and move constructor
     Document(const Document &other)
         : dataEliberare(other.dataEliberare),
           dataExpirare(other.dataExpirare),
@@ -29,7 +36,6 @@ public:
           numar(other.numar),
           serie(other.serie) {
     }
-
     Document(Document &&other) noexcept
         : dataEliberare(std::move(other.dataEliberare)),
           dataExpirare(std::move(other.dataExpirare)),
@@ -60,28 +66,11 @@ public:
         return *this;
     }
 
-    [[nodiscard]] const std::string & get_data_eliberare() const {
-        return dataEliberare;
-    }
 
-    [[nodiscard]] const std::string & get_data_expirare() const {
-        return dataExpirare;
-    }
-
-    [[nodiscard]] const std::string & get_emitent() const {
-        return emitent;
-    }
-
-    [[nodiscard]] const std::string & get_numar() const {
-        return numar;
-    }
-
-    [[nodiscard]] const std::string & get_serie() const {
-        return serie;
-    }
 };
 
 
 int main() {
+
     return 0;
 }
