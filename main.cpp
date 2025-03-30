@@ -100,10 +100,51 @@ public:
     }
 };
 
+class Persoana {
+private:
+    std::string nume;
+    std::string prenume;
+    std::string cnp;
+    char sex = 'M';
+
+public:
+    Persoana(const std::string &nume, const std::string &prenume, const std::string &cnp, char sex)
+        : nume(nume),
+          prenume(prenume),
+          cnp(cnp),
+          sex(sex) {
+    }
+
+    [[nodiscard]] const std::string &get_nume() const {
+        return nume;
+    }
+
+    [[nodiscard]] const std::string &get_prenume() const {
+        return prenume;
+    }
+
+    [[nodiscard]] const std::string &get_cnp() const {
+        return cnp;
+    }
+
+    [[nodiscard]] char get_sex() const {
+        return sex;
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const Persoana &obj) {
+        os << "//////////////////////////////////////////////" << '\n';
+        os << "Nume: " << obj.get_nume() << '\n';
+        os << "Prenume: " << obj.get_prenume() << '\n';
+        os << "Cnp: " << obj.get_cnp() << '\n';
+        os << "sex: " << obj.get_sex() << '\n';
+        os << "//////////////////////////////////////////////" << '\n';
+    }
+};
 
 int main() {
-
     Document doc1("01-01-2023", "01-01-2024", "Emitent1", "123456", "AB");
-    std::cout<<doc1;
+    std::cout << doc1;
+    Persoana mihai("Pavel","Mihai","123",'M');
+    std:: cout << mihai;
     return 0;
 }
