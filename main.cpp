@@ -141,6 +141,7 @@ public:
         return cnp;
     }
 
+
     void set_cnp(const unsigned long long cnp1) {
         this->cnp = cnp1;
     }
