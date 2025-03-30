@@ -570,6 +570,7 @@ class Joc {
 };
 
 
+
 int main() {
     return 0;
 }
