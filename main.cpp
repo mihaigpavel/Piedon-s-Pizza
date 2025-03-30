@@ -559,11 +559,11 @@ public:
     }
 
     bool esteDosarPenal() {
-        return alcolemie > pragDosarPenalAlcolemie;
+        return alcolemie > get_prag_dosar_penal_alcolemie();
     }
 
     bool esteCazDeAmenda() {
-        return alcolemie > 0.0 && alcolemie <= pragDosarPenalAlcolemie;
+        return alcolemie > 0.0 && get_alcolemie() <= get_prag_dosar_penal_alcolemie();
     }
 
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcolemie &p) {
