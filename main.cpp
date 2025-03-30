@@ -29,6 +29,46 @@ public:
         std:: cout << "Destructor called for Document" << std::endl;
     }
 
+    Document(const Document &other)
+        : dataEliberare(other.dataEliberare),
+          dataExpirare(other.dataExpirare),
+          emitent(other.emitent),
+          numar(other.numar),
+          serie(other.serie) {
+    }
+
+    Document(Document &&other) noexcept
+        : dataEliberare(std::move(other.dataEliberare)),
+          dataExpirare(std::move(other.dataExpirare)),
+          emitent(std::move(other.emitent)),
+          numar(std::move(other.numar)),
+          serie(std::move(other.serie)) {
+    }
+
+    Document & operator=(const Document &other) {
+        if (this == &other)
+            return *this;
+        dataEliberare = other.dataEliberare;
+        dataExpirare = other.dataExpirare;
+        emitent = other.emitent;
+        numar = other.numar;
+        serie = other.serie;
+        return *this;
+    }
+
+    Document & operator=(Document &&other) noexcept {
+        if (this == &other)
+            return *this;
+        dataEliberare = std::move(other.dataEliberare);
+        dataExpirare = std::move(other.dataExpirare);
+        emitent = std::move(other.emitent);
+        numar = std::move(other.numar);
+        serie = std::move(other.serie);
+        return *this;
+    }
+
+
+
 };
 
 
