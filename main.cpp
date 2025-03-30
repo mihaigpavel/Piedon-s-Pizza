@@ -17,13 +17,6 @@ public:
           numar(numar),
           serie(serie) {
     }
-    Document(const Document &other)
-        : dataEliberare(other.dataEliberare),
-          dataExpirare(other.dataExpirare),
-          emitent(other.emitent),
-          numar(other.numar),
-          serie(other.serie) {
-    }
 
     ~Document(){
         std:: cout << "Destructor called for Document" << std::endl;
@@ -67,8 +60,25 @@ public:
         return *this;
     }
 
+    [[nodiscard]] const std::string & get_data_eliberare() const {
+        return dataEliberare;
+    }
 
+    [[nodiscard]] const std::string & get_data_expirare() const {
+        return dataExpirare;
+    }
 
+    [[nodiscard]] const std::string & get_emitent() const {
+        return emitent;
+    }
+
+    [[nodiscard]] const std::string & get_numar() const {
+        return numar;
+    }
+
+    [[nodiscard]] const std::string & get_serie() const {
+        return serie;
+    }
 };
 
 
