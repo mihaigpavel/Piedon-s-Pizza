@@ -137,7 +137,7 @@ public:
         this->emitator = emitator1;
     }
 
-    [[nodiscard]] const unsigned long long get_cnp() const {
+    [[nodiscard]] unsigned long long get_cnp() const {
         return cnp;
     }
 
