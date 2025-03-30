@@ -697,7 +697,7 @@ public:
 
     // Destructor
     ~Joc() {
-        std::cout << "Joc terminat." << std::endl;
+        std::cout << "Joc terminat.Numar raspunsuri corecte:"<< numarRaspunsuriCorecte << std::endl;
     }
 };
 
