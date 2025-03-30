@@ -16,16 +16,28 @@ public:
           emitator(emitator) {
     }
 
-    [[nodiscard]] std::string data_eliberare() const {
+    [[nodiscard]] std::string & get_data_eliberare() {
         return dataEliberare;
     }
 
-    [[nodiscard]] std::string data_expirare() const {
+    void set_data_eliberare(const std::string &data_eliberare) {
+        dataEliberare = data_eliberare;
+    }
+
+    [[nodiscard]] std::string & get_data_expirare() {
         return dataExpirare;
     }
 
-    [[nodiscard]] std::string emitator1() const {
+    void set_data_expirare(const std::string &data_expirare) {
+        dataExpirare = data_expirare;
+    }
+
+    [[nodiscard]] std::string & get_emitator() {
         return emitator;
+    }
+
+    void set_emitator(const std::string &emitator) {
+        this->emitator = emitator;
     }
 };
 
