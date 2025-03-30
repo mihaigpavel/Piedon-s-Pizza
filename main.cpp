@@ -159,6 +159,7 @@ std::ostream & operator<<(std::ostream &os, const DatePersonale &obj) {
     os << "  " << obj.emitator << '\n';
     os << "  " << obj.cnp << '\n';
     os << "//////////////////////////////////////////////" << '\n';
+    return os;
 }
 
 class Adresa {
