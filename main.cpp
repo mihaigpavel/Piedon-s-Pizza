@@ -66,6 +66,26 @@ public:
         return *this;
     }
 
+    [[nodiscard]] const std::string & get_data_eliberare() const {
+        return dataEliberare;
+    }
+
+    [[nodiscard]] const std::string & get_data_expirare() const {
+        return dataExpirare;
+    }
+
+    [[nodiscard]] const std::string & get_emitent() const {
+        return emitent;
+    }
+
+    [[nodiscard]] const std::string & get_numar() const {
+        return numar;
+    }
+
+    [[nodiscard]] const std::string & get_serie() const {
+        return serie;
+    }
+
 
 };
 
