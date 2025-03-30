@@ -150,7 +150,6 @@ public:
 };
 
 class Adresa {
-    std::string tara;
     std::string judet;
     std::string judetPrescurtat;
     std::string localitate;
@@ -160,10 +159,10 @@ class Adresa {
     std::string apartament;
 
 public:
-    Adresa(const std::string &tara, const std::string &judet, const std::string &judet_prescurtat,
+    Adresa( const std::string &judet, const std::string &judet_prescurtat,
         const std::string &localitate, const std::string &strada, const std::string &numar, const std::string &bloc,
         const std::string &apartament)
-        : tara(tara),
+        :
           judet(judet),
           judetPrescurtat(judet_prescurtat),
           localitate(localitate),
@@ -171,10 +170,6 @@ public:
           numar(numar),
           bloc(bloc),
           apartament(apartament) {
-    }
-
-    [[nodiscard]] const std::string & get_tara() const {
-        return tara;
     }
 
     [[nodiscard]] const std::string & get_judet() const {
@@ -456,9 +451,9 @@ int main() {
     std::cout << doc1;
     Persoana mihai("Mihai", "Popescu", "1234567890123", "01-01-2000", 'M');
     std:: cout << mihai;
-    Adresa adresa("Romania", "Bucuresti", "B", "Bucuresti", "Strada 1", "1", "1", "1");
+    Adresa adresa( "Bucuresti", "B", "Bucuresti", "Strada 1", "1", "1", "1");
     std::cout << adresa;
-    CarteIdentitate carte(doc1, mihai, adresa, adresa, "Romania");
+   CarteIdentitate carte(  doc1, mihai, adresa, adresa, "Romania");
     std::cout << carte;
     Permis permis(doc1, mihai, "B", adresa);
     std::cout << permis;
