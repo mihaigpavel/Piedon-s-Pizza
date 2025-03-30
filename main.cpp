@@ -446,6 +446,67 @@ public:
     }
 };
 
+
+class DetectieRadar {
+    Autovehicul autovehicul;
+    int vitezaDetectata;
+    std:: string locatieDetectie;
+    const int vitezaMaxLegalaOras = 50;
+    const int vitezaMaxLegalaAutostrada = 130;
+    const int vitezaMaxLegalaDn = 90;
+
+public:
+    DetectieRadar(const Autovehicul &autovehicul, int viteza_detectata, const std::string &locatie_detectie)
+        : autovehicul(autovehicul),
+          vitezaDetectata(viteza_detectata),
+          locatieDetectie(locatie_detectie) {
+    }
+
+    [[nodiscard]] const Autovehicul & get_autovehicul() const {
+        return autovehicul;
+    }
+
+    [[nodiscard]] int get_viteza_detectata() const {
+        return vitezaDetectata;
+    }
+
+    [[nodiscard]] const std::string & get_locatie_detectie() const {
+        return locatieDetectie;
+    }
+
+    [[nodiscard]] int get_viteza_max_legala_oras() const {
+        return vitezaMaxLegalaOras;
+    }
+
+    [[nodiscard]] int get_viteza_max_legala_autostrada() const {
+        return vitezaMaxLegalaAutostrada;
+    }
+
+    [[nodiscard]] int get_viteza_max_legala_dn() const {
+        return vitezaMaxLegalaDn;
+    }
+
+    friend std::ostream & operator<<(std::ostream &os, const DetectieRadar &p) {
+        os << "Detectie Radar\n";
+        os << "numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
+        os << "Viteza detectata:"<< p.get_viteza_detectata() << '\n';
+        os << "Locatie detectie: " << p.get_locatie_detectie() << '\n';
+        os << "////////////////////////////////////////////////////////////////////\n";
+        return os;
+    }
+
+    bool esteDepasireDeViteza() {
+        if (locatieDetectie == "oras") {
+            return vitezaDetectata > vitezaMaxLegalaOras;
+        } else if (locatieDetectie == "autostrada") {
+            return vitezaDetectata > vitezaMaxLegalaAutostrada;
+        } else if (locatieDetectie == "dn") {
+            return vitezaDetectata > vitezaMaxLegalaDn;
+        }
+        return false;
+    }
+
+};
 int main() {
     Document doc1("01-01-2023", "01-01-2024", "Emitent1", "123456", "AB");
     std::cout << doc1;
