@@ -1,6 +1,5 @@
 #include <iostream>
 #include <array>
-
 #include <Helper.h>
 #include <string>
 
@@ -23,10 +22,18 @@ public:
           serie(serie) {
     }
 
+    Document(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent,
+             const std::string &numar)
+        : dataEliberare(data_eliberare),
+          dataExpirare(data_expirare),
+          emitent(emitent),
+          numar(numar) {
+    }
 
-    // Destructor
-    ~Document() {
-        std::cout << "Document deleted" << std::endl;
+    Document(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent)
+        : dataEliberare(data_eliberare),
+          dataExpirare(data_expirare),
+          emitent(emitent) {
     }
 
     // Copy constructor and move constructor
@@ -110,7 +117,7 @@ private:
 
 public:
     Persoana(const std::string &nume, const std::string &prenume, const std::string &cnp,
-        const std::string &data_nastere, char sex)
+             const std::string &data_nastere, char sex)
         : nume(nume),
           prenume(prenume),
           cnp(cnp),
@@ -133,6 +140,7 @@ public:
     [[nodiscard]] char get_sex() const {
         return sex;
     }
+
     [[nodiscard]] const std::string &get_data_nastere() const {
         return dataNastere;
     }
@@ -159,11 +167,10 @@ class Adresa {
     std::string apartament;
 
 public:
-    Adresa( const std::string &judet, const std::string &judet_prescurtat,
-        const std::string &localitate, const std::string &strada, const std::string &numar, const std::string &bloc,
-        const std::string &apartament)
-        :
-          judet(judet),
+    Adresa(const std::string &judet, const std::string &judet_prescurtat,
+           const std::string &localitate, const std::string &strada, const std::string &numar, const std::string &bloc,
+           const std::string &apartament)
+        : judet(judet),
           judetPrescurtat(judet_prescurtat),
           localitate(localitate),
           strada(strada),
@@ -172,34 +179,40 @@ public:
           apartament(apartament) {
     }
 
-    [[nodiscard]] const std::string & get_judet() const {
+    Adresa(const std::string &judet_prescurtat, const std::string &localitate)
+        : judetPrescurtat(judet_prescurtat),
+          localitate(localitate) {
+    }
+
+    [[nodiscard]] const std::string &get_judet() const {
         return judet;
     }
 
-    [[nodiscard]] const std::string & get_localitate() const {
+    [[nodiscard]] const std::string &get_localitate() const {
         return localitate;
     }
 
-    [[nodiscard]] const std::string & get_strada() const {
+    [[nodiscard]] const std::string &get_strada() const {
         return strada;
     }
 
-    [[nodiscard]] const std::string & get_numar() const {
+    [[nodiscard]] const std::string &get_numar() const {
         return numar;
     }
 
-    [[nodiscard]] const std::string & get_bloc() const {
+    [[nodiscard]] const std::string &get_bloc() const {
         return bloc;
     }
 
-    [[nodiscard]] const std::string & get_apartament() const {
+    [[nodiscard]] const std::string &get_apartament() const {
         return apartament;
     }
-    [[nodiscard]] const std::string & get_judet_prescurtat() const {
+
+    [[nodiscard]] const std::string &get_judet_prescurtat() const {
         return judetPrescurtat;
     }
 
-   friend std:: ostream & operator<<(std::ostream &os, const Adresa &p) {
+    friend std::ostream &operator<<(std::ostream &os, const Adresa &p) {
         os << "Jud." << p.get_judet() << " ";
         os << "Loc." << p.get_localitate() << '\n';
         os << "Str." << p.get_strada() << ' ';
@@ -216,10 +229,11 @@ class CarteIdentitate {
     Persoana persoana;
     Adresa adresaDomiciliu;
     Adresa adresaNastere;
-  std::string cetatenia;
+    std::string cetatenia;
+
 public:
     CarteIdentitate(const Document &document, const Persoana &persoana, const Adresa &adresa_domiciliu,
-        const Adresa &adresa_nastere, const std::string &cetatenia)
+                    const Adresa &adresa_nastere, const std::string &cetatenia)
         : document(document),
           persoana(persoana),
           adresaDomiciliu(adresa_domiciliu),
@@ -227,42 +241,44 @@ public:
           cetatenia(cetatenia) {
     }
 
-    [[nodiscard]] const Document & get_document() const {
+    [[nodiscard]] const Document &get_document() const {
         return document;
     }
 
-    [[nodiscard]] const Persoana & get_persoana() const {
+    [[nodiscard]] const Persoana &get_persoana() const {
         return persoana;
     }
 
-    [[nodiscard]] const Adresa & get_adresa_domiciliu() const {
+    [[nodiscard]] const Adresa &get_adresa_domiciliu() const {
         return adresaDomiciliu;
     }
 
-    [[nodiscard]] const Adresa & get_adresa_nastere() const {
+    [[nodiscard]] const Adresa &get_adresa_nastere() const {
         return adresaNastere;
     }
 
-    [[nodiscard]] const std::string & get_cetatenia() const {
+    [[nodiscard]] const std::string &get_cetatenia() const {
         return cetatenia;
     }
 
-    friend std :: ostream & operator << (std :: ostream & os, const CarteIdentitate & p) {
+    friend std::ostream &operator <<(std::ostream &os, const CarteIdentitate &p) {
+        os << "Carte de identitare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "ROUMANIE   " << "ROMANIA   " << "ROMANIA\n";
-        os << "              SERIA " << p.get_document().get_serie() << "  NR " << p.get_document().get_numar() << '\n';
+        os << "SERIA " << p.get_document().get_serie() << "  NR " << p.get_document().get_numar() << '\n';
         os << "Nume/Nom/Last name\n";
         os << p.get_persoana().get_nume() << '\n';
         os << "Prenume/Prenom/First name\n";
         os << p.get_persoana().get_prenume() << '\n';
         os << "Cetatenie/Nationalite,NAtionality\n" << p.get_cetatenia() << '\n';
-        os << "Loc nastere/Lieu de naissance/Place of birth\nJud." <<p.get_adresa_nastere().get_judet() << " Loc." << p.get_adresa_nastere().get_judet_prescurtat() << '\n';
+        os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.get_adresa_nastere().get_judet() << " Loc." << p
+                .get_adresa_nastere().get_judet_prescurtat() << '\n';
         os << "Domiciliu/Adresse/address\n" << p.get_adresa_domiciliu();
         os << "Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
-        os << p.get_document().get_emitent() << "              " << p.get_document().get_data_eliberare()<<"-"<<p.get_document().get_data_expirare() << '\n';
+        os << p.get_document().get_emitent() << "              " << p.get_document().get_data_eliberare() << "-" << p.
+                get_document().get_data_expirare() << '\n';
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
-
     }
 };
 
@@ -270,39 +286,43 @@ class Permis {
     Document document;
     Persoana persoana;
     std::string categorie;
-Adresa adresaNastere;
+    Adresa adresaNastere;
+
 public:
     Permis(const Document &document, const Persoana &persoana, const std::string &categorie,
-        const Adresa &adresa_nastere)
+           const Adresa &adresa_nastere)
         : document(document),
           persoana(persoana),
           categorie(categorie),
           adresaNastere(adresa_nastere) {
     }
 
-    [[nodiscard]] const Document & get_document() const {
+    [[nodiscard]] const Document &get_document() const {
         return document;
     }
 
-    [[nodiscard]] const Persoana & get_persoana() const {
+    [[nodiscard]] const Persoana &get_persoana() const {
         return persoana;
     }
 
-    [[nodiscard]] const std::string & get_categorie() const {
+    [[nodiscard]] const std::string &get_categorie() const {
         return categorie;
     }
-    [[nodiscard]] const Adresa & get_adresa_nastere() const {
+
+    [[nodiscard]] const Adresa &get_adresa_nastere() const {
         return adresaNastere;
     }
 
-    friend std::ostream & operator<<(std::ostream &os, const Permis &p) {
+    friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
+        os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
         os << "  " << p.get_persoana().get_nume() << '\n';
         os << "  " << p.get_persoana().get_prenume() << '\n';
-        os << "  " << p.get_persoana().get_data_nastere() << " "<<p.get_adresa_nastere().get_localitate()<< " "<< p.get_adresa_nastere().get_judet_prescurtat() << '\n';
-        os << "  " << p.get_document().get_data_eliberare() << "    "<<p.get_document().get_emitent() << '\n';
-        os << "  " << p.get_document().get_data_expirare() << "    " <<p.get_persoana().get_cnp()<< '\n';
-        os <<"  "<< p.get_categorie()<< '\n';
+        os << "  " << p.get_persoana().get_data_nastere() << " " << p.get_adresa_nastere().get_localitate() << " " << p.
+                get_adresa_nastere().get_judet_prescurtat() << '\n';
+        os << "  " << p.get_document().get_data_eliberare() << "    " << p.get_document().get_emitent() << '\n';
+        os << "  " << p.get_document().get_data_expirare() << "    " << p.get_persoana().get_cnp() << '\n';
+        os << "  " << p.get_categorie() << '\n';
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
@@ -322,8 +342,8 @@ class Autovehicul {
 
 public:
     Autovehicul(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
-        const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
-        unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere)
+                const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
+                unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere)
         : serieSasiu(serie_sasiu),
           numarInmatriculare(numar_inmatriculare),
           marca(marca),
@@ -335,27 +355,27 @@ public:
           putere(putere) {
     }
 
-    [[nodiscard]] const std::string & get_serie_sasiu() const {
+    [[nodiscard]] const std::string &get_serie_sasiu() const {
         return serieSasiu;
     }
 
-    [[nodiscard]] const std::string & get_numar_inmatriculare() const {
+    [[nodiscard]] const std::string &get_numar_inmatriculare() const {
         return numarInmatriculare;
     }
 
-    [[nodiscard]] const std::string & get_marca() const {
+    [[nodiscard]] const std::string &get_marca() const {
         return marca;
     }
 
-    [[nodiscard]] const std::string & get_model() const {
+    [[nodiscard]] const std::string &get_model() const {
         return model;
     }
 
-    [[nodiscard]] const std::string & get_culoare() const {
+    [[nodiscard]] const std::string &get_culoare() const {
         return culoare;
     }
 
-    [[nodiscard]] const std::string & get_tip_autovehicul() const {
+    [[nodiscard]] const std::string &get_tip_autovehicul() const {
         return tipAutovehicul;
     }
 
@@ -372,7 +392,7 @@ public:
     }
 
 
-    friend std::ostream & operator<<(std::ostream &os, const Autovehicul &p) {
+    friend std::ostream &operator<<(std::ostream &os, const Autovehicul &p) {
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "Serie sasiu: " << p.get_serie_sasiu() << '\n';
         os << "Numar inmatriculare: " << p.get_numar_inmatriculare() << '\n';
@@ -386,7 +406,6 @@ public:
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
-
 };
 
 class Talon {
@@ -398,7 +417,7 @@ class Talon {
 
 public:
     Talon(const Document &document, const Autovehicul &autovehicul, const Persoana &proprietar,
-        const Adresa &adresa_proprietar, const std::string &data_expirare_itp)
+          const Adresa &adresa_proprietar, const std::string &data_expirare_itp)
         : document(document),
           autovehicul(autovehicul),
           proprietar(proprietar),
@@ -406,36 +425,37 @@ public:
           DataExpirareItp(data_expirare_itp) {
     }
 
-    [[nodiscard]] const Document & get_document() const {
+    [[nodiscard]] const Document &get_document() const {
         return document;
     }
 
-    [[nodiscard]] const Autovehicul & get_autovehicul() const {
+    [[nodiscard]] const Autovehicul &get_autovehicul() const {
         return autovehicul;
     }
 
-    [[nodiscard]] const Persoana & get_proprietar() const {
+    [[nodiscard]] const Persoana &get_proprietar() const {
         return proprietar;
     }
 
-    [[nodiscard]] const Adresa & get_adresa_proprietar() const {
+    [[nodiscard]] const Adresa &get_adresa_proprietar() const {
         return adresaProprietar;
     }
 
-    [[nodiscard]] const std::string & get_data_expirare_itp() const {
+    [[nodiscard]] const std::string &get_data_expirare_itp() const {
         return DataExpirareItp;
     }
 
-    friend std::ostream & operator<<(std::ostream &os, const Talon &p) {
+    friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
+        os << "Certificat de inmatriculare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
         os << "tipul autovehiculului: " << p.get_autovehicul().get_tip_autovehicul() << '\n';
         os << "marca: " << p.get_autovehicul().get_marca() << '\n';
         os << "model: " << p.get_autovehicul().get_model() << '\n';
-        os<< "seria sasiu: " << p.get_autovehicul().get_serie_sasiu() << '\n';
+        os << "seria sasiu: " << p.get_autovehicul().get_serie_sasiu() << '\n';
         os << "proprietar: " << p.get_proprietar().get_nume() << ' ' << p.get_proprietar().get_prenume() << '\n';
         os << "adresa: " << p.get_adresa_proprietar();
-        os<<"culoarea: " << p.get_autovehicul().get_culoare() << '\n';
+        os << "culoarea: " << p.get_autovehicul().get_culoare() << '\n';
         os << "an fabricatie: " << p.get_autovehicul().get_an_fabricatie() << '\n';
         os << "capacitate cilindrica: " << p.get_autovehicul().get_capacitate_cilindrica() << '\n';
         os << "putere: " << p.get_autovehicul().get_putere() << '\n';
@@ -450,10 +470,22 @@ public:
 class DetectieRadar {
     Autovehicul autovehicul;
     int vitezaDetectata;
-    std:: string locatieDetectie;
+    std::string locatieDetectie;
     const int vitezaMaxLegalaOras = 50;
     const int vitezaMaxLegalaAutostrada = 130;
     const int vitezaMaxLegalaDn = 90;
+    const int pragDepasireVitezaRetinerePermis = 50;
+
+    int calculeazaDepasireViteza() {
+        if (locatieDetectie == "oras") {
+            return vitezaDetectata - vitezaMaxLegalaOras;
+        } else if (locatieDetectie == "autostrada") {
+            return vitezaDetectata - vitezaMaxLegalaAutostrada;
+        } else if (locatieDetectie == "dn") {
+            return vitezaDetectata - vitezaMaxLegalaDn;
+        }
+        return false;
+    }
 
 public:
     DetectieRadar(const Autovehicul &autovehicul, int viteza_detectata, const std::string &locatie_detectie)
@@ -462,7 +494,7 @@ public:
           locatieDetectie(locatie_detectie) {
     }
 
-    [[nodiscard]] const Autovehicul & get_autovehicul() const {
+    [[nodiscard]] const Autovehicul &get_autovehicul() const {
         return autovehicul;
     }
 
@@ -470,7 +502,7 @@ public:
         return vitezaDetectata;
     }
 
-    [[nodiscard]] const std::string & get_locatie_detectie() const {
+    [[nodiscard]] const std::string &get_locatie_detectie() const {
         return locatieDetectie;
     }
 
@@ -486,41 +518,190 @@ public:
         return vitezaMaxLegalaDn;
     }
 
-    friend std::ostream & operator<<(std::ostream &os, const DetectieRadar &p) {
+    friend std::ostream &operator<<(std::ostream &os, const DetectieRadar &p) {
         os << "Detectie Radar\n";
-        os << "numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
-        os << "Viteza detectata:"<< p.get_viteza_detectata() << '\n';
+        os << "Numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
+        os << "Viteza detectata:" << p.get_viteza_detectata() << '\n';
         os << "Locatie detectie: " << p.get_locatie_detectie() << '\n';
-        os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
 
-    bool esteDepasireDeViteza() {
-        if (locatieDetectie == "oras") {
-            return vitezaDetectata > vitezaMaxLegalaOras;
-        } else if (locatieDetectie == "autostrada") {
-            return vitezaDetectata > vitezaMaxLegalaAutostrada;
-        } else if (locatieDetectie == "dn") {
-            return vitezaDetectata > vitezaMaxLegalaDn;
+    bool esteCazRetinerePermis() {
+        return calculeazaDepasireViteza() > pragDepasireVitezaRetinerePermis;
+    }
+
+    bool esteCazAmenda() {
+        return calculeazaDepasireViteza() > 0 && calculeazaDepasireViteza() <= pragDepasireVitezaRetinerePermis;
+    }
+};
+
+class RezultatTestareAlcolemie {
+    Persoana sofer;
+    double alcolemie;
+    const double pragDosarPenalAlcolemie = 0.8;
+
+public:
+    RezultatTestareAlcolemie(const Persoana &sofer, double alcolemie)
+        : sofer(sofer),
+          alcolemie(alcolemie) {
+    }
+
+    [[nodiscard]] const Persoana &get_sofer() const {
+        return sofer;
+    }
+
+    [[nodiscard]] double get_alcolemie() const {
+        return alcolemie;
+    }
+
+    [[nodiscard]] double get_prag_dosar_penal_alcolemie() const {
+        return pragDosarPenalAlcolemie;
+    }
+
+    bool esteDosarPenal() {
+        return alcolemie > pragDosarPenalAlcolemie;
+    }
+
+    bool esteCazDeAmenda() {
+        return alcolemie > 0.0 && alcolemie <= pragDosarPenalAlcolemie;
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcolemie &p) {
+        os << "Rezultat testare alcolemie:\n";
+        os << "alcolemie: " << p.get_alcolemie() << '\n';
+        return os;
+    }
+};
+
+class InformatiiAfisiate {
+    DetectieRadar detectieRadar;
+    RezultatTestareAlcolemie alcolemie;
+    CarteIdentitate buletin;
+    Permis permis;
+    Talon talon;
+
+public:
+    InformatiiAfisiate(const DetectieRadar &detectie_radar, const RezultatTestareAlcolemie &alcolemie,
+                       const CarteIdentitate &buletin, const Permis &permis, const Talon &talon)
+        : detectieRadar(detectie_radar),
+          alcolemie(alcolemie),
+          buletin(buletin),
+          permis(permis),
+          talon(talon) {
+    }
+
+    [[nodiscard]] const DetectieRadar &get_detectie_radar() const {
+        return detectieRadar;
+    }
+
+    [[nodiscard]] const RezultatTestareAlcolemie &get_alcolemie() const {
+        return alcolemie;
+    }
+
+    [[nodiscard]] const CarteIdentitate &get_buletin() const {
+        return buletin;
+    }
+
+    [[nodiscard]] const Permis &get_permis() const {
+        return permis;
+    }
+
+    [[nodiscard]] const Talon &get_talon() const {
+        return talon;
+    }
+
+    bool esteRaspunsCorect(int raspuns) {
+        if (detectieRadar.esteCazAmenda() and raspuns == 2) {
+            return true;
+        }
+        if ((detectieRadar.esteCazRetinerePermis() or alcolemie.esteCazDeAmenda()) and raspuns == 3) {
+            return true;
+        }
+        if ((alcolemie.esteDosarPenal() or alcolemie.esteDosarPenal()) and raspuns == 4) {
+            return true;
+        }
+        if (!detectieRadar.esteCazAmenda()
+            and !detectieRadar.esteCazRetinerePermis()
+            and !alcolemie.esteCazDeAmenda()
+            and !alcolemie.esteDosarPenal()
+            and raspuns == 1) {
+            return true;
         }
         return false;
     }
 
+    friend std::ostream &operator<<(std::ostream &os, const InformatiiAfisiate &p) {
+        os << "Analizati urmatoarele informatii si raspundeti la intrebare\n";
+        os << p.get_detectie_radar() << '\n';
+        os << p.get_alcolemie() << '\n';
+        os << p.get_buletin() << '\n';
+        os << p.get_permis() << '\n';
+        os << p.get_talon() << '\n';
+        return os;
+    }
 };
+
+class Joc {
+    int numarRaspunsuriCorecte = 0;
+
+private:
+    void afiseazaRaspunsuriPosibile() {
+        std::cout << "Raspunsuri posibile:\n";
+        std::cout << "1. Fara sanctiune\n";
+        std::cout << "2. Contraventie(amenda)\n";
+        std::cout << "3. Retinere permis + amenda\n";
+        std::cout << "4. Retinere permis +dosar penal\n";
+    }
+
+    InformatiiAfisiate construiesteInformatii1() {
+        Autovehicul aut("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        DetectieRadar detectie(aut, 70, "oras");
+        Persoana persCi("Popescu", "Ion", "1234567890123", "01-01-2000", 'M');
+        RezultatTestareAlcolemie rez(persCi, 0.0);
+
+        Document docCi("01-01-2021", "01-01-2025", "SPCLEP Constanta", "901123", "AB");
+        Adresa adresaNastere("Constanta", "ct");
+        Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
+        CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
+
+
+        Document docPermis("01-01-2021", "01-01-2025", "SPCLEP Constanta");
+        Permis permis(docPermis, persCi, "B", adresaNastere);
+
+        Document docTalon("01-01-2021", "01-01-2025", "SPCLEP Constanta", "L10002212");
+        Talon talon(docTalon, aut, persCi, adresaCi, "01-01-2025");
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon);
+    }
+
+public:
+    Joc() {
+        std::cout << "Jocul a inceput!\n\n";
+    }
+
+public:
+    void start() {
+        InformatiiAfisiate informatii1 = construiesteInformatii1();
+        std::cout << informatii1 << '\n';
+        afiseazaRaspunsuriPosibile();
+        std::cout << "Alegeti un raspuns: ";
+        int raspuns = 1;
+        std::cin >> raspuns;
+        if (informatii1.esteRaspunsCorect(raspuns)) {
+            std::cout << "Raspuns corect!\n";
+            numarRaspunsuriCorecte++;
+        } else {
+            std::cout << "Raspuns gresit!\n";
+        }
+    }
+
+    // Destructor
+    ~Joc() {
+        std::cout << "Joc terminat." << std::endl;
+    }
+};
+
 int main() {
-    Document doc1("01-01-2023", "01-01-2024", "Emitent1", "123456", "AB");
-    std::cout << doc1;
-    Persoana mihai("Mihai", "Popescu", "1234567890123", "01-01-2000", 'M');
-    std:: cout << mihai;
-    Adresa adresa( "Bucuresti", "B", "Bucuresti", "Strada 1", "1", "1", "1");
-    std::cout << adresa;
-   CarteIdentitate carte(  doc1, mihai, adresa, adresa, "Romania");
-    std::cout << carte;
-    Permis permis(doc1, mihai, "B", adresa);
-    std::cout << permis;
-    Autovehicul autov("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
-    std::cout << autov;
-    Talon t(doc1, autov, mihai, adresa, "01-01-2025");
-    std::cout << t;
+    Joc joc = Joc();
+    joc.start();
     return 0;
 }
