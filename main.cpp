@@ -300,7 +300,7 @@ std :: ostream & operator << (std :: ostream & os, const Buletin & p) {
 class Permis {
     DatePersonale dp;
     std::string categorie;
-   const  std::string dataNastere;
+   std::string dataNastere;
 
 public:
     Permis(const DatePersonale &dp, const std::string &categorie, const std::string &data_nastere)
@@ -335,10 +335,10 @@ std::ostream & operator<<(std::ostream &os, const Permis &p) {
     return os;
 }
 class SpecificatiiMasina {
-    const std::string serieSasiu;
+    std::string serieSasiu;
     std::string numarInmatriculare;
-    const std::string marca;
-    const std::string model;
+    std::string marca;
+    std::string model;
     std::string culoare;
     std::string tipAutovehicul;
     unsigned int anFabricatie;
@@ -413,10 +413,10 @@ std::ostream & operator<<(std::ostream &os, const SpecificatiiMasina &p) {
 }
 
 class Talon {
-    const SpecificatiiMasina masina;
+    SpecificatiiMasina masina;
     std::string numeProprietar;
     std::string prenumeProprietar;
-    const std::string dataInmatriculare;
+    std::string dataInmatriculare;
     std::string valabilitateITP;
     std::string valabilitateRCA;
     Adresa adr;
@@ -501,8 +501,8 @@ std::ostream &operator<<(std::ostream &os, const Talon &p) {
 
 }
 class Masina {
-   const SpecificatiiMasina masina;
-   const unsigned int viteza;
+   SpecificatiiMasina masina;
+   unsigned int viteza;
 
 public:
     Masina(const SpecificatiiMasina &masina, unsigned int viteza)
@@ -539,8 +539,8 @@ std::ostream &operator<<(std::ostream &os, const Masina &p) {
 }
 
 class AlcoolTest {
-   const float rezultat;
-    const float rezultat_sange;
+    float rezultat;
+    float rezultat_sange;
 
 public:
     AlcoolTest(float rezultat, float rezultat_sange)
@@ -566,7 +566,8 @@ std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
 }
 
 class Joc {
-
+    int punctaj =  0;
+    int punctaj_maxim = 3;
 };
 
 
