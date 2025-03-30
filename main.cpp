@@ -1,7 +1,7 @@
 #include <iostream>
 #include <array>
 
-//#include <Helper.h>
+#include <Helper.h>
 #include <string>
 class DatePersonale {
     std::string nume;
@@ -85,64 +85,64 @@ public:
         return nume;
     }
 
-    void set_nume(const std::string &nume) {
-        this->nume = nume;
+    void set_nume(const std::string &nume1) {
+        this->nume = nume1;
     }
 
     [[nodiscard]] std::string get_prenume() const {
         return prenume;
     }
 
-    void set_prenume(const std::string &prenume) {
-        this->prenume = prenume;
+    void set_prenume(const std::string &prenume1) {
+        this->prenume = prenume1;
     }
 
     [[nodiscard]] std::string get_oras_nastere() const {
         return orasNastere;
     }
 
-    void set_oras_nastere(const std::string &oras_nastere) {
-        orasNastere = oras_nastere;
+    void set_oras_nastere(const std::string &oras_nastere1) {
+        orasNastere = oras_nastere1;
     }
 
     [[nodiscard]] std::string get_judet_nastere() const {
         return judetNastere;
     }
 
-    void set_judet_nastere(const std::string &judet_nastere) {
-        judetNastere = judet_nastere;
+    void set_judet_nastere(const std::string &judet_nastere1) {
+        judetNastere = judet_nastere1;
     }
 
     [[nodiscard]] std::string get_data_obtinere() const {
         return DataObtinere;
     }
 
-    void set_data_obtinere(const std::string &data_obtinere) {
-        DataObtinere = data_obtinere;
+    void set_data_obtinere(const std::string &data_obtinere1) {
+        DataObtinere = data_obtinere1;
     }
 
     [[nodiscard]] std::string get_data_expirare() const {
         return dataExpirare;
     }
 
-    void set_data_expirare(const std::string &data_expirare) {
-        dataExpirare = data_expirare;
+    void set_data_expirare(const std::string &data_expirare1) {
+        dataExpirare = data_expirare1;
     }
 
     [[nodiscard]] std::string get_emitator() const {
         return emitator;
     }
 
-    void set_emitator(const std::string &emitator) {
-        this->emitator = emitator;
+    void set_emitator(const std::string &emitator1) {
+        this->emitator = emitator1;
     }
 
     [[nodiscard]] unsigned long long get_cnp() const {
         return cnp;
     }
 
-    void set_cnp(const unsigned long long cnp) {
-        this->cnp = cnp;
+    void set_cnp(const unsigned long long cnp1) {
+        this->cnp = cnp1;
     }
 
     friend std::ostream & operator<<(std::ostream &os, const DatePersonale &obj);
