@@ -81,7 +81,7 @@ public:
         return *this;
     }
 
-    [[nodiscard]] std::string get_nume() const {
+    [[nodiscard]] const  std::string get_nume() const {
         return nume;
     }
 
@@ -89,7 +89,7 @@ public:
         this->nume = nume1;
     }
 
-    [[nodiscard]] std::string get_prenume() const {
+    [[nodiscard]] const std::string get_prenume() const {
         return prenume;
     }
 
@@ -97,7 +97,7 @@ public:
         this->prenume = prenume1;
     }
 
-    [[nodiscard]] std::string get_oras_nastere() const {
+    [[nodiscard]] const std::string get_oras_nastere() const {
         return orasNastere;
     }
 
@@ -105,7 +105,7 @@ public:
         orasNastere = oras_nastere1;
     }
 
-    [[nodiscard]] std::string get_judet_nastere() const {
+    [[nodiscard]] const std::string get_judet_nastere() const {
         return judetNastere;
     }
 
@@ -113,7 +113,7 @@ public:
         judetNastere = judet_nastere1;
     }
 
-    [[nodiscard]] std::string get_data_obtinere() const {
+    [[nodiscard]] const std::string get_data_obtinere() const {
         return DataObtinere;
     }
 
@@ -121,7 +121,7 @@ public:
         DataObtinere = data_obtinere1;
     }
 
-    [[nodiscard]] std::string get_data_expirare() const {
+    [[nodiscard]] const std::string get_data_expirare() const {
         return dataExpirare;
     }
 
@@ -129,7 +129,7 @@ public:
         dataExpirare = data_expirare1;
     }
 
-    [[nodiscard]] std::string get_emitator() const {
+    [[nodiscard]] const std::string get_emitator() const {
         return emitator;
     }
 
@@ -137,11 +137,11 @@ public:
         this->emitator = emitator1;
     }
 
-    [[nodiscard]] unsigned long long get_cnp() const {
+    [[nodiscard]] const unsigned long long get_cnp() const {
         return cnp;
     }
 
-    void set_cnp(const unsigned long long cnp1) {
+    void const set_cnp(const unsigned long long cnp1) {
         this->cnp = cnp1;
     }
 
@@ -182,31 +182,31 @@ public:
           sc(sc) {
     }
 
-    [[nodiscard]] std::string get_judet() const {
+    [[nodiscard]] const std::string get_judet() const {
         return judet;
     }
 
-    [[nodiscard]] std::string get_oras() const {
+    [[nodiscard]] const std::string get_oras() const {
         return oras;
     }
 
-    [[nodiscard]] std::string get_strada() const {
+    [[nodiscard]] const std::string get_strada() const {
         return strada;
     }
 
-    [[nodiscard]] int get_nr() const {
+    [[nodiscard]] const int get_nr() const {
         return nr;
     }
 
-    [[nodiscard]] int get_et() const {
+    [[nodiscard]] const int get_et() const {
         return et;
     }
 
-    [[nodiscard]] int get_ap() const {
+    [[nodiscard]] const int get_ap() const {
         return ap;
     }
 
-    [[nodiscard]] int get_sc() const {
+    [[nodiscard]] const int get_sc() const {
         return sc;
     }
     friend std::ostream & operator<<(std::ostream &os, const Adresa &p);
@@ -248,31 +248,31 @@ public:
           nr(nr) {
     }
 
-    [[nodiscard]] DatePersonale get_dp() const {
+    [[nodiscard]] const DatePersonale get_dp() const {
         return dp;
     }
 
-    [[nodiscard]] Adresa get_adr() const {
+    [[nodiscard]] const Adresa get_adr() const {
         return adr;
     }
 
-    [[nodiscard]] std::string get_serie() const {
+    [[nodiscard]] const std::string get_serie() const {
         return serie;
     }
 
-    [[nodiscard]] std::string get_cod() const {
+    [[nodiscard]] const std::string get_cod() const {
         return cod;
     }
 
-    [[nodiscard]] std::string get_cetatenie() const {
+    [[nodiscard]] const std::string get_cetatenie() const {
         return cetatenie;
     }
 
-    [[nodiscard]] int get_cifra_control() const {
+    [[nodiscard]] const int get_cifra_control() const {
         return CifraControl;
     }
 
-    [[nodiscard]] int get_nr() const {
+    [[nodiscard]] const int get_nr() const {
         return nr;
     }
 
@@ -308,15 +308,15 @@ public:
           categorie(categorie),
           dataNastere(data_nastere) {
     }
-    [[nodiscard]] DatePersonale get_dp() const {
+    [[nodiscard]] const DatePersonale get_dp() const {
         return dp;
     }
 
-    [[nodiscard]] std::string get_categorie() const {
+    [[nodiscard]] const  std::string get_categorie() const {
         return categorie;
     }
 
-    [[nodiscard]] std::string get_dataNastere() const {
+    [[nodiscard]] const  std::string get_dataNastere() const {
         return dataNastere;
     }
 
@@ -360,39 +360,39 @@ public:
           putere(putere) {
     }
 
-    [[nodiscard]] std::string get_serie_sasiu() const {
+    [[nodiscard]] const std::string get_serie_sasiu() const {
         return serieSasiu;
     }
 
-    [[nodiscard]] std::string get_numar_inmatriculare() const {
+    [[nodiscard]] const std::string get_numar_inmatriculare() const {
         return numarInmatriculare;
     }
 
-    [[nodiscard]] std::string get_marca() const {
+    [[nodiscard]] const std::string get_marca() const {
         return marca;
     }
 
-    [[nodiscard]] std::string get_model() const {
+    [[nodiscard]] const std::string get_model() const {
         return model;
     }
 
-    [[nodiscard]] std::string get_culoare() const {
+    [[nodiscard]] const std::string get_culoare() const {
         return culoare;
     }
 
-    [[nodiscard]] std::string get_tip_autovehicul() const {
+    [[nodiscard]] const std::string get_tip_autovehicul() const {
         return tipAutovehicul;
     }
 
-    [[nodiscard]] unsigned int get_an_fabricatie() const {
+    [[nodiscard]] const unsigned int get_an_fabricatie() const {
         return anFabricatie;
     }
 
-    [[nodiscard]] unsigned int get_cilindre() const {
+    [[nodiscard]] const unsigned int get_cilindre() const {
         return cilindre;
     }
 
-    [[nodiscard]] unsigned int get_putere() const {
+    [[nodiscard]] const unsigned int get_putere() const {
         return putere;
     }
     friend std::ostream & operator<<(std::ostream &os, const SpecificatiiMasina &p);
@@ -434,31 +434,31 @@ public:
           adr(adr) {
     }
 
-    [[nodiscard]] SpecificatiiMasina get_masina() const {
+    [[nodiscard]] const SpecificatiiMasina get_masina() const {
         return masina;
     }
 
-    [[nodiscard]] std::string get_nume_proprietar() const {
+    [[nodiscard]] const  std::string get_nume_proprietar() const {
         return numeProprietar;
     }
 
-    [[nodiscard]] std::string get_prenume_proprietar() const {
+    [[nodiscard]] const std::string get_prenume_proprietar() const {
         return prenumeProprietar;
     }
 
-    [[nodiscard]] std::string get_data_inmatriculare() const {
+    [[nodiscard]] const std::string get_data_inmatriculare() const {
         return dataInmatriculare;
     }
 
-    [[nodiscard]] std::string get_valabilitate_itp() const {
+    [[nodiscard]] const std::string get_valabilitate_itp() const {
         return valabilitateITP;
     }
 
-    [[nodiscard]] std::string get_valabilitate_rca() const {
+    [[nodiscard]] const std::string get_valabilitate_rca() const {
         return valabilitateRCA;
     }
 
-    [[nodiscard]] Adresa get_adr() const {
+    [[nodiscard]] const Adresa get_adr() const {
         return adr;
     }
     friend std::ostream &operator<<(std::ostream &os, const Talon &talon);
@@ -510,11 +510,11 @@ public:
           viteza(viteza) {
     }
 
-    [[nodiscard]] SpecificatiiMasina get_masina() const {
+    [[nodiscard]] const SpecificatiiMasina get_masina() const {
         return masina;
     }
 
-    [[nodiscard]] unsigned int get_viteza() const {
+    [[nodiscard]] const unsigned int get_viteza() const {
         return viteza;
     }
     friend std::ostream &operator<<(std::ostream &os, const Masina &p);
@@ -548,11 +548,11 @@ public:
           rezultat_sange(rezultat_sange) {
     }
 
-    [[nodiscard]] float rezultat1() const {
+    [[nodiscard]] const float rezultat1() const {
         return rezultat;
     }
 
-    [[nodiscard]] float rezultat_sange1() const {
+    [[nodiscard]] const float rezultat_sange1() const {
         return rezultat_sange;
     }
     friend std::ostream &operator<<(std::ostream &os, const AlcoolTest &p);
@@ -566,8 +566,12 @@ std:: ostream & operator<<(std::ostream &os, const AlcoolTest &p) {
 }
 
 class Joc {
-    int punctaj =  0;
-    int punctaj_maxim = 3;
+  //  int punctaj = 0;
+   // const int punctaj_maxim = 3;
+
+
+
+
 };
 
 
