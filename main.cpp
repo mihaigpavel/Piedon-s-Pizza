@@ -569,6 +569,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcolemie &p) {
         os << "Rezultat testare alcolemie:\n";
         os << "alcolemie: " << p.get_alcolemie() << '\n';
+        os << "Nume sofer: " << p.get_sofer().get_nume() << " " <<p.get_sofer().get_prenume() << '\n';
         return os;
     }
 };
