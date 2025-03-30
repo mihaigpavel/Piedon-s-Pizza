@@ -477,14 +477,14 @@ class DetectieRadar {
     const int pragDepasireVitezaRetinerePermis = 50;
 
     int calculeazaDepasireViteza() {
-        if (locatieDetectie == "oras") {
-            return vitezaDetectata - vitezaMaxLegalaOras;
-        } else if (locatieDetectie == "autostrada") {
-            return vitezaDetectata - vitezaMaxLegalaAutostrada;
-        } else if (locatieDetectie == "dn") {
-            return vitezaDetectata - vitezaMaxLegalaDn;
+        if (get_locatie_detectie() == "oras") {
+            return get_viteza_detectata() - get_viteza_max_legala_oras();
+        } else if (get_locatie_detectie() == "autostrada") {
+            return get_viteza_detectata()- get_viteza_max_legala_autostrada();
+        } else if (get_locatie_detectie() == "dn") {
+            return get_viteza_detectata() - get_viteza_max_legala_dn();
         }
-        return false;
+        return 0;
     }
 
 public:
