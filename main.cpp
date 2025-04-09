@@ -263,20 +263,8 @@ public:
           adresaNastere(adresa_nastere) {
     }
 
-    [[nodiscard]] const Document &get_document() const {
-        return document;
-    }
-
     [[nodiscard]] const DatePersonale &get_persoana() const {
         return persoana;
-    }
-
-    [[nodiscard]] const std::string &get_categorie() const {
-        return categorie;
-    }
-
-    [[nodiscard]] const Adresa &get_adresa_nastere() const {
-        return adresaNastere;
     }
 
     bool esteValidaDataNasterePermisVsCnp() {
@@ -453,9 +441,7 @@ public:
           locatieDetectie(locatie_detectie) {
     }
 
-    [[nodiscard]] const Autovehicul &get_autovehicul() const {
-        return autovehicul;
-    }
+
 
     [[nodiscard]] int get_viteza_detectata() const {
         return vitezaDetectata;
