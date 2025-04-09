@@ -632,7 +632,7 @@ public:
         if ((alcolemie.esteDosarPenal() or
             alcolemie.esteDosarPenal() or
             !permis.esteValidaDataNasterePermisVsCnp() or
-            !suntDatelePersonaleIdentice(buletin , permis)) and raspuns == 4) {
+            !suntDatelePersonaleIdentice()) and raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
@@ -658,7 +658,7 @@ public:
     }
 
 private:
-    bool suntDatelePersonaleIdentice(const CarteIdentitate &buletin, const Permis &permis) {
+    bool suntDatelePersonaleIdentice() {
         return buletin.get_datePersoanale().get_cnp() == permis.get_persoana().get_cnp()
                && buletin.get_datePersoanale().get_nume() == permis.get_persoana().get_nume()
                && buletin.get_datePersoanale().get_prenume() == permis.get_persoana().get_prenume();
