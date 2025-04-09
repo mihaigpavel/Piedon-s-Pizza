@@ -136,11 +136,6 @@ public:
     [[nodiscard]] const std::string &get_cnp() const {
         return cnp;
     }
-
-    [[nodiscard]] char get_sex() const {
-        return sex;
-    }
-
     [[nodiscard]] const std::string &get_data_nastere() const {
         return dataNastere;
     }
@@ -192,21 +187,10 @@ public:
         return localitate;
     }
 
-    [[nodiscard]] const std::string &get_strada() const {
-        return strada;
-    }
-
     [[nodiscard]] const std::string &get_numar() const {
         return numar;
     }
 
-    [[nodiscard]] const std::string &get_bloc() const {
-        return bloc;
-    }
-
-    [[nodiscard]] const std::string &get_apartament() const {
-        return apartament;
-    }
 
     [[nodiscard]] const std::string &get_judet_prescurtat() const {
         return judetPrescurtat;
@@ -240,27 +224,9 @@ public:
           adresaNastere(adresa_nastere),
           cetatenia(cetatenia) {
     }
-
-    [[nodiscard]] const Document &get_document() const {
-        return document;
-    }
-
     [[nodiscard]] const DatePersonale &get_datePersoanale() const {
         return datePersonale;
     }
-
-    [[nodiscard]] const Adresa &get_adresa_domiciliu() const {
-        return adresaDomiciliu;
-    }
-
-    [[nodiscard]] const Adresa &get_adresa_nastere() const {
-        return adresaNastere;
-    }
-
-    [[nodiscard]] const std::string &get_cetatenia() const {
-        return cetatenia;
-    }
-
     friend std::ostream &operator <<(std::ostream &os, const CarteIdentitate &p) {
         os << "Carte de identitare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
@@ -438,22 +404,6 @@ public:
         return document;
     }
 
-    [[nodiscard]] const Autovehicul &get_autovehicul() const {
-        return autovehicul;
-    }
-
-    [[nodiscard]] const DatePersonale &get_proprietar() const {
-        return proprietar;
-    }
-
-    [[nodiscard]] const Adresa &get_adresa_proprietar() const {
-        return adresaProprietar;
-    }
-
-    [[nodiscard]] const std::string &get_data_expirare_itp() const {
-        return dataExpirareItp;
-    }
-
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
@@ -555,9 +505,6 @@ public:
           alcolemie(alcolemie) {
     }
 
-    [[nodiscard]] const DatePersonale &get_sofer() const {
-        return sofer;
-    }
 
     [[nodiscard]] double get_alcolemie() const {
         return alcolemie;
@@ -603,44 +550,33 @@ public:
           masina(masina) {
     }
 
-    [[nodiscard]] const DetectieRadar &get_detectie_radar() const {
-        return detectieRadar;
-    }
 
     [[nodiscard]] const RezultatTestareAlcolemie &get_alcolemie() const {
         return alcolemie;
     }
 
-    [[nodiscard]] const CarteIdentitate &get_buletin() const {
-        return buletin;
-    }
 
-    [[nodiscard]] const Permis &get_permis() const {
-        return permis;
-    }
 
-    [[nodiscard]] const Talon &get_talon() const {
-        return talon;
-    }
+
 
     bool esteRaspunsCorect(int raspuns) {
-        if (detectieRadar.esteCazAmenda() and raspuns == 2) {
+        if (detectieRadar.esteCazAmenda() && raspuns == 2) {
             return true;
         }
-        if ((detectieRadar.esteCazRetinerePermis() or alcolemie.esteCazDeAmenda()) and raspuns == 3) {
+        if ((detectieRadar.esteCazRetinerePermis() || alcolemie.esteCazDeAmenda()) && raspuns == 3) {
             return true;
         }
-        if ((alcolemie.esteDosarPenal() or
-             alcolemie.esteDosarPenal() or
-             !permis.esteValidaDataNasterePermisVsCnp() or
-             !suntDatelePersonaleIdentice()) and raspuns == 4) {
+        if ((alcolemie.esteDosarPenal() ||
+             alcolemie.esteDosarPenal() ||
+             !permis.esteValidaDataNasterePermisVsCnp() ||
+             !suntDatelePersonaleIdentice()) && raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
-            and !detectieRadar.esteCazRetinerePermis()
-            and !alcolemie.esteCazDeAmenda()
-            and !alcolemie.esteDosarPenal()
-            and raspuns == 1) {
+            && !detectieRadar.esteCazRetinerePermis()
+            && !alcolemie.esteCazDeAmenda()
+            && !alcolemie.esteDosarPenal()
+            && raspuns == 1) {
             return true;
         }
 
@@ -833,20 +769,20 @@ public:
             afiseazaRaspunsuriPosibile();
             std::cout << "Alegeti un raspuns: ";
             std :: string raspuns;
-            while (std::cin >> raspuns) {
-                if (raspuns!="1" && raspuns!="2" && raspuns!="3" && raspuns!="4") {
-                    std::cout << "Raspuns invalid!Inroduceti una din cifrele 1,2,3,4:\n";
+            std::cin >> raspuns;
+                if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4") {
+
+                    int raspunsInt = std::stoi(raspuns);
+                    if (informatii[i].esteRaspunsCorect(raspunsInt)) {
+                        std::cout << "Raspuns corect!\n";
+                        numarRaspunsuriCorecte++;
+                    } else {
+                        std::cout << "Raspuns gresit!\n";
+                    }
                 } else {
-                    break;
+                    std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4\n";
                 }
-            }
-            int raspunsInt = std::stoi(raspuns);
-            if (informatii[i].esteRaspunsCorect(raspunsInt)) {
-                std::cout << "Raspuns corect!\n";
-                numarRaspunsuriCorecte++;
-            } else {
-                std::cout << "Raspuns gresit!\n";
-            }
+
         }
     }
 
