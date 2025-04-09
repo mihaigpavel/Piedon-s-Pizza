@@ -1,6 +1,6 @@
 # Inspectorul Piedone
 
-## Povestea:
+### Poveste:
 
 Esti Piedone un inspector in politia rutiera din Bucuresti. In cadrul unui filtru ai oprit mai multe masini pentru verificare. Treaba ta acum este sa verifici fiecare caz in parte si sa iei una dintre urmatoarele decizii:
 
@@ -13,7 +13,7 @@ Fiecare dintre actiunile prezentate mai sus sunt notate in terminal cu nr de ord
 
 Jocul este facut pe baza legislatiei in vigoare(01.01.2025)
 
-Sfaturi:
+### Sfaturi:
 
 - Viteza de la care se suspenda permisul este de viteza legala + 50 km/h .
 - Alcoolemie contraventionala < 0.80.
