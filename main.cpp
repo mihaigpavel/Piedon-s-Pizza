@@ -107,7 +107,7 @@ public:
     }
 };
 
-class Persoana {
+class DatePersonale {
 private:
     std::string nume;
     std::string prenume;
@@ -116,7 +116,7 @@ private:
     char sex = 'M';
 
 public:
-    Persoana(const std::string &nume, const std::string &prenume, const std::string &cnp,
+    DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
              const std::string &data_nastere, char sex)
         : nume(nume),
           prenume(prenume),
@@ -145,7 +145,7 @@ public:
         return dataNastere;
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const Persoana &obj) {
+    friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
         os << "//////////////////////////////////////////////" << '\n';
         os << "Nume: " << obj.get_nume() << '\n';
         os << "Prenume: " << obj.get_prenume() << '\n';
@@ -226,13 +226,13 @@ public:
 
 class CarteIdentitate {
     Document document;
-    Persoana persoana;
+    DatePersonale persoana;
     Adresa adresaDomiciliu;
     Adresa adresaNastere;
     std::string cetatenia;
 
 public:
-    CarteIdentitate(const Document &document, const Persoana &persoana, const Adresa &adresa_domiciliu,
+    CarteIdentitate(const Document &document, const DatePersonale &persoana, const Adresa &adresa_domiciliu,
                     const Adresa &adresa_nastere, const std::string &cetatenia)
         : document(document),
           persoana(persoana),
@@ -245,7 +245,7 @@ public:
         return document;
     }
 
-    [[nodiscard]] const Persoana &get_persoana() const {
+    [[nodiscard]] const DatePersonale &get_persoana() const {
         return persoana;
     }
 
@@ -284,12 +284,12 @@ public:
 
 class Permis {
     Document document;
-    Persoana persoana;
+    DatePersonale persoana;
     std::string categorie;
     Adresa adresaNastere;
 
 public:
-    Permis(const Document &document, const Persoana &persoana, const std::string &categorie,
+    Permis(const Document &document, const DatePersonale &persoana, const std::string &categorie,
            const Adresa &adresa_nastere)
         : document(document),
           persoana(persoana),
@@ -301,7 +301,7 @@ public:
         return document;
     }
 
-    [[nodiscard]] const Persoana &get_persoana() const {
+    [[nodiscard]] const DatePersonale &get_persoana() const {
         return persoana;
     }
 
@@ -328,7 +328,23 @@ public:
     }
 };
 
+class Persoana {
+    CarteIdentitate buletin;
+    Permis permis;
 
+public:
+    Persoana(const CarteIdentitate &buletin, const Permis &permis)
+        : buletin(buletin),
+          permis(permis) {
+    }
+
+    ~Persoana() = default;
+    friend std::ostream &operator<<(std::ostream &os, const Persoana &p) {
+        os << p.buletin<<p.permis;
+        return os;
+    }
+
+};
 class Autovehicul {
     std::string serieSasiu;
     std::string numarInmatriculare;
@@ -411,18 +427,18 @@ public:
 class Talon {
     Document document;
     Autovehicul autovehicul;
-    Persoana proprietar;
+    DatePersonale proprietar;
     Adresa adresaProprietar;
-    std::string DataExpirareItp;
+    std::string dataExpirareItp;
 
 public:
-    Talon(const Document &document, const Autovehicul &autovehicul, const Persoana &proprietar,
+    Talon(const Document &document, const Autovehicul &autovehicul, const DatePersonale &proprietar,
           const Adresa &adresa_proprietar, const std::string &data_expirare_itp)
         : document(document),
           autovehicul(autovehicul),
           proprietar(proprietar),
           adresaProprietar(adresa_proprietar),
-          DataExpirareItp(data_expirare_itp) {
+          dataExpirareItp(data_expirare_itp) {
     }
 
     [[nodiscard]] const Document &get_document() const {
@@ -433,7 +449,7 @@ public:
         return autovehicul;
     }
 
-    [[nodiscard]] const Persoana &get_proprietar() const {
+    [[nodiscard]] const DatePersonale &get_proprietar() const {
         return proprietar;
     }
 
@@ -442,7 +458,7 @@ public:
     }
 
     [[nodiscard]] const std::string &get_data_expirare_itp() const {
-        return DataExpirareItp;
+        return dataExpirareItp;
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
@@ -536,17 +552,17 @@ public:
 };
 
 class RezultatTestareAlcolemie {
-    Persoana sofer;
+    DatePersonale sofer;
     double alcolemie;
     const double pragDosarPenalAlcolemie = 0.8;
 
 public:
-    RezultatTestareAlcolemie(const Persoana &sofer, double alcolemie)
+    RezultatTestareAlcolemie(const DatePersonale &sofer, double alcolemie)
         : sofer(sofer),
           alcolemie(alcolemie) {
     }
 
-    [[nodiscard]] const Persoana &get_sofer() const {
+    [[nodiscard]] const DatePersonale &get_sofer() const {
         return sofer;
     }
 
@@ -657,7 +673,7 @@ private:
     InformatiiAfisiate construiesteInformatii1() {
         Autovehicul aut("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         DetectieRadar detectie(aut, 70, "oras");
-        Persoana persCi("Popescu", "Ion", "1234567890123", "01-01-2000", 'M');
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01-01-2000", 'M');
         RezultatTestareAlcolemie rez(persCi, 0.0);
 
         Document docCi("01-01-2021", "01-01-2025", "SPCLEP Constanta", "901123", "AB");
