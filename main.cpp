@@ -226,7 +226,7 @@ public:
 
 class CarteIdentitate {
     Document document;
-    DatePersonale persoana;
+    DatePersonale datePersonale;
     Adresa adresaDomiciliu;
     Adresa adresaNastere;
     std::string cetatenia;
@@ -235,7 +235,7 @@ public:
     CarteIdentitate(const Document &document, const DatePersonale &persoana, const Adresa &adresa_domiciliu,
                     const Adresa &adresa_nastere, const std::string &cetatenia)
         : document(document),
-          persoana(persoana),
+          datePersonale(persoana),
           adresaDomiciliu(adresa_domiciliu),
           adresaNastere(adresa_nastere),
           cetatenia(cetatenia) {
@@ -245,8 +245,8 @@ public:
         return document;
     }
 
-    [[nodiscard]] const DatePersonale &get_persoana() const {
-        return persoana;
+    [[nodiscard]] const DatePersonale &get_datePersoanale() const {
+        return datePersonale;
     }
 
     [[nodiscard]] const Adresa &get_adresa_domiciliu() const {
@@ -267,9 +267,9 @@ public:
         os << "ROUMANIE   " << "ROMANIA   " << "ROMANIA\n";
         os << "SERIA " << p.get_document().get_serie() << "  NR " << p.get_document().get_numar() << '\n';
         os << "Nume/Nom/Last name\n";
-        os << p.get_persoana().get_nume() << '\n';
+        os << p.get_datePersoanale().get_nume() << '\n';
         os << "Prenume/Prenom/First name\n";
-        os << p.get_persoana().get_prenume() << '\n';
+        os << p.get_datePersoanale().get_prenume() << '\n';
         os << "Cetatenie/Nationalite,NAtionality\n" << p.get_cetatenia() << '\n';
         os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.get_adresa_nastere().get_judet() << " Loc." << p
                 .get_adresa_nastere().get_judet_prescurtat() << '\n';
@@ -313,6 +313,15 @@ public:
         return adresaNastere;
     }
 
+    bool esteValidaDataNasterePermisVsCnp() {
+        const std::string cnp = persoana.get_cnp();
+        const std::string dataNastere = persoana.get_data_nastere();
+        const std::string anNastere = cnp.substr(1, 2);
+        const std::string lunaNastere = cnp.substr(3, 2);
+        const std::string ziNastere = cnp.substr(5, 2);
+        return dataNastere == ziNastere + "." + lunaNastere + "." + anNastere;
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
         os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
@@ -326,25 +335,9 @@ public:
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
-};
-
-class Persoana {
-    CarteIdentitate buletin;
-    Permis permis;
-
-public:
-    Persoana(const CarteIdentitate &buletin, const Permis &permis)
-        : buletin(buletin),
-          permis(permis) {
-    }
-
-    ~Persoana() = default;
-    friend std::ostream &operator<<(std::ostream &os, const Persoana &p) {
-        os << p.buletin<<p.permis;
-        return os;
-    }
 
 };
+
 class Autovehicul {
     std::string serieSasiu;
     std::string numarInmatriculare;
@@ -409,6 +402,7 @@ public:
 
 
     friend std::ostream &operator<<(std::ostream &os, const Autovehicul &p) {
+        os << "Autovehicul\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "Serie sasiu: " << p.get_serie_sasiu() << '\n';
         os << "Numar inmatriculare: " << p.get_numar_inmatriculare() << '\n';
@@ -596,15 +590,16 @@ class InformatiiAfisiate {
     CarteIdentitate buletin;
     Permis permis;
     Talon talon;
-
+    Autovehicul masina;
 public:
     InformatiiAfisiate(const DetectieRadar &detectie_radar, const RezultatTestareAlcolemie &alcolemie,
-                       const CarteIdentitate &buletin, const Permis &permis, const Talon &talon)
+        const CarteIdentitate &buletin, const Permis &permis, const Talon &talon, const Autovehicul &masina)
         : detectieRadar(detectie_radar),
           alcolemie(alcolemie),
           buletin(buletin),
           permis(permis),
-          talon(talon) {
+          talon(talon),
+          masina(masina) {
     }
 
     [[nodiscard]] const DetectieRadar &get_detectie_radar() const {
@@ -634,7 +629,10 @@ public:
         if ((detectieRadar.esteCazRetinerePermis() or alcolemie.esteCazDeAmenda()) and raspuns == 3) {
             return true;
         }
-        if ((alcolemie.esteDosarPenal() or alcolemie.esteDosarPenal()) and raspuns == 4) {
+        if ((alcolemie.esteDosarPenal() or
+            alcolemie.esteDosarPenal() or
+            !permis.esteValidaDataNasterePermisVsCnp() or
+            !suntDatelePersonaleIdentice(buletin , permis)) and raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
@@ -644,6 +642,7 @@ public:
             and raspuns == 1) {
             return true;
         }
+
         return false;
     }
 
@@ -654,10 +653,17 @@ public:
         os << p.get_buletin() << '\n';
         os << p.get_permis() << '\n';
         os << p.get_talon() << '\n';
+        os << p.masina;
         return os;
     }
-};
 
+private:
+    bool suntDatelePersonaleIdentice(const CarteIdentitate &buletin, const Permis &permis) {
+        return buletin.get_datePersoanale().get_cnp() == permis.get_persoana().get_cnp()
+               && buletin.get_datePersoanale().get_nume() == permis.get_persoana().get_nume()
+               && buletin.get_datePersoanale().get_prenume() == permis.get_persoana().get_prenume();
+    }
+};
 class Joc {
     int numarRaspunsuriCorecte = 0;
 
@@ -671,23 +677,30 @@ private:
     }
 
     InformatiiAfisiate construiesteInformatii1() {
-        Autovehicul aut("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
-        DetectieRadar detectie(aut, 70, "oras");
-        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01-01-2000", 'M');
+        // trebuiesc create detectiile radar , detectie alcolemie
+        // trebuiesc create documentele care se prezinta la control
+        // trebuie creat informatii despre autovechiculul prezent fizic la control
+        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        DetectieRadar detectie(autDetectieRadar, 70, "oras");
+
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
         RezultatTestareAlcolemie rez(persCi, 0.0);
 
-        Document docCi("01-01-2021", "01-01-2025", "SPCLEP Constanta", "901123", "AB");
+        Document docCi("01.01.2021", "01.01.2025", "SPCLEP Constanta", "901123", "AB");
         Adresa adresaNastere("Constanta", "ct");
         Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
         CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
 
 
-        Document docPermis("01-01-2021", "01-01-2025", "SPCLEP Constanta");
+        Document docPermis("01.01.2021", "01.01.2025", "SPCLEP Constanta");
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
-        Document docTalon("01-01-2021", "01-01-2025", "SPCLEP Constanta", "L10002212");
-        Talon talon(docTalon, aut, persCi, adresaCi, "01-01-2025");
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon);
+        Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
+        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
+        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon , autPrezentFizic);
     }
 
 public:
