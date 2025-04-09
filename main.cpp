@@ -388,9 +388,6 @@ public:
           dataExpirareItp(data_expirare_itp) {
     }
 
-    [[nodiscard]] const Document &get_document() const {
-        return document;
-    }
 
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
