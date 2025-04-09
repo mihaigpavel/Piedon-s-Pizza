@@ -1,4 +1,25 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Inspectorul Piedone
+
+## Povestea:
+
+Esti Piedone un inspector in politia rutiera din Bucuresti. In cadrul unui filtru ai oprit mai multe masini pentru verificare. Treaba ta acum este sa verifici fiecare caz in parte si sa iei una dintre urmatoarele decizii:
+
+1.	Situatia prezentata nu incalca legea.
+2.	Situatia prezentata este contraventie si se va emite o ameda
+3.	Situatia prezentata este contraventie si se va emite amenda + retinere permis de conducere
+4.	Pentru situatia prezentata se deschide dosar penal
+
+Fiecare dintre actiunile prezentate mai sus sunt notate in terminal cu nr de ordine corespunzator.
+
+Jocul este facut pe baza legislatiei in vigoare(01.01.2025)
+
+Sfaturi:
+
+- Viteza de la care se suspenda permisul este de viteza legala + 50 km/h .
+- Alcoolemie contraventionala < 0.80.
+- Alcoolemie dosar penal >=0.80.
+- Compara si verifica informatiile din actele prezentate.
+- Piedone verifica datele din talon cu masina aflata in fata sa.
 
 ### Folosiți template-ul corespunzător grupei voastre!
 
