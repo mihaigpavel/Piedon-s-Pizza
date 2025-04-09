@@ -97,11 +97,11 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Document &obj) {
         os << "//////////////////////////////////////////////" << '\n';
-        os << "Data eliberare: " << obj.get_data_eliberare() << '\n';
-        os << "Data expirare: " << obj.get_data_expirare() << '\n';
-        os << "Emitent: " << obj.get_emitent() << '\n';
-        os << "Numar: " << obj.get_numar() << '\n';
-        os << "Serie: " << obj.get_serie() << '\n';
+        os << "Data eliberare: " << obj.dataEliberare << '\n';
+        os << "Data expirare: " << obj.dataExpirare << '\n';
+        os << "Emitent: " << obj.emitent << '\n';
+        os << "Numar: " << obj.numar << '\n';
+        os << "Serie: " << obj.serie << '\n';
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
@@ -117,7 +117,7 @@ private:
 
 public:
     DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
-             const std::string &data_nastere, char sex)
+                  const std::string &data_nastere, char sex)
         : nume(nume),
           prenume(prenume),
           cnp(cnp),
@@ -147,11 +147,11 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
         os << "//////////////////////////////////////////////" << '\n';
-        os << "Nume: " << obj.get_nume() << '\n';
-        os << "Prenume: " << obj.get_prenume() << '\n';
-        os << "Cnp: " << obj.get_cnp() << '\n';
-        os << "Data nastere: " << obj.get_data_nastere() << '\n';
-        os << "sex: " << obj.get_sex() << '\n';
+        os << "Nume: " << obj.nume << '\n';
+        os << "Prenume: " << obj.prenume<< '\n';
+        os << "Cnp: " << obj.cnp << '\n';
+        os << "Data nastere: " << obj.dataNastere << '\n';
+        os << "sex: " << obj.sex << '\n';
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
@@ -213,12 +213,12 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Adresa &p) {
-        os << "Jud." << p.get_judet() << " ";
-        os << "Loc." << p.get_localitate() << '\n';
-        os << "Str." << p.get_strada() << ' ';
-        os << "nr." << p.get_numar() << ' ';
-        os << "bl." << p.get_bloc() << ' ';
-        os << "ap." << p.get_apartament() << '\n';
+        os << "Jud." << p.judet << " ";
+        os << "Loc." << p.localitate << '\n';
+        os << "Str." << p.strada << ' ';
+        os << "nr." << p.numar << ' ';
+        os << "bl." << p.bloc << ' ';
+        os << "ap." << p.apartament << '\n';
 
         return os;
     }
@@ -265,18 +265,18 @@ public:
         os << "Carte de identitare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "ROUMANIE   " << "ROMANIA   " << "ROMANIA\n";
-        os << "SERIA " << p.get_document().get_serie() << "  NR " << p.get_document().get_numar() << '\n';
+        os << "SERIA " << p.document.get_serie() << "  NR " << p.document.get_numar() << '\n';
         os << "Nume/Nom/Last name\n";
-        os << p.get_datePersoanale().get_nume() << '\n';
+        os << p.datePersonale.get_nume() << '\n';
         os << "Prenume/Prenom/First name\n";
-        os << p.get_datePersoanale().get_prenume() << '\n';
-        os << "Cetatenie/Nationalite,NAtionality\n" << p.get_cetatenia() << '\n';
-        os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.get_adresa_nastere().get_judet() << " Loc." << p
-                .get_adresa_nastere().get_judet_prescurtat() << '\n';
-        os << "Domiciliu/Adresse/address\n" << p.get_adresa_domiciliu();
+        os << p.datePersonale.get_prenume() << '\n';
+        os << "Cetatenie/Nationalite,NAtionality\n" << p.cetatenia << '\n';
+        os << "Loc nastere/Lieu de naissance/Place of birth\nJud." << p.adresaNastere.get_judet() << " Loc." << p
+                .adresaNastere.get_localitate() << '\n';
+        os << "Domiciliu/Adresse/address\n" << p.adresaDomiciliu;
         os << "Emis de/Delivree par/issued by       valabilitate/validite/validity\n";
-        os << p.get_document().get_emitent() << "              " << p.get_document().get_data_eliberare() << "-" << p.
-                get_document().get_data_expirare() << '\n';
+        os << p.document.get_emitent() << "              " << p.document.get_data_eliberare() << "-" << p.
+                document.get_data_expirare() << '\n';
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -325,17 +325,16 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
         os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
-        os << "  " << p.get_persoana().get_nume() << '\n';
-        os << "  " << p.get_persoana().get_prenume() << '\n';
-        os << "  " << p.get_persoana().get_data_nastere() << " " << p.get_adresa_nastere().get_localitate() << " " << p.
-                get_adresa_nastere().get_judet_prescurtat() << '\n';
-        os << "  " << p.get_document().get_data_eliberare() << "    " << p.get_document().get_emitent() << '\n';
-        os << "  " << p.get_document().get_data_expirare() << "    " << p.get_persoana().get_cnp() << '\n';
-        os << "  " << p.get_categorie() << '\n';
+        os << "  " << p.persoana.get_nume() << '\n';
+        os << "  " << p.persoana.get_prenume() << '\n';
+        os << "  " << p.persoana.get_data_nastere() << " " << p.adresaNastere.get_localitate() << " " << p.
+                adresaNastere.get_judet_prescurtat() << '\n';
+        os << "  " << p.document.get_data_eliberare() << "    " << p.document.get_emitent() << '\n';
+        os << "  " << p.document.get_data_expirare() << "    " << p.persoana.get_cnp() << '\n';
+        os << "  " << p.categorie << '\n';
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
-
 };
 
 class Autovehicul {
@@ -404,15 +403,15 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Autovehicul &p) {
         os << "Autovehicul\n";
         os << "////////////////////////////////////////////////////////////////////\n";
-        os << "Serie sasiu: " << p.get_serie_sasiu() << '\n';
-        os << "Numar inmatriculare: " << p.get_numar_inmatriculare() << '\n';
-        os << "Marca: " << p.get_marca() << '\n';
-        os << "Model: " << p.get_model() << '\n';
-        os << "Culoare: " << p.get_culoare() << '\n';
-        os << "An fabricatie: " << p.get_an_fabricatie() << '\n';
-        os << "Capacitate cilindre: " << p.get_capacitate_cilindrica() << '\n';
-        os << "Putere: " << p.get_putere() << '\n';
-        os << "Tip autovehicul: " << p.get_tip_autovehicul() << '\n';
+        os << "Serie sasiu: " << p.serieSasiu << '\n';
+        os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
+        os << "Marca: " << p.marca << '\n';
+        os << "Model: " << p.model << '\n';
+        os << "Culoare: " << p.culoare << '\n';
+        os << "An fabricatie: " << p.anFabricatie << '\n';
+        os << "Capacitate cilindre: " << p.capacitateCilindrica << '\n';
+        os << "Putere: " << p.putere << '\n';
+        os << "Tip autovehicul: " << p.tipAutovehicul << '\n';
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -458,19 +457,19 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
-        os << "numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
-        os << "tipul autovehiculului: " << p.get_autovehicul().get_tip_autovehicul() << '\n';
-        os << "marca: " << p.get_autovehicul().get_marca() << '\n';
-        os << "model: " << p.get_autovehicul().get_model() << '\n';
-        os << "seria sasiu: " << p.get_autovehicul().get_serie_sasiu() << '\n';
-        os << "proprietar: " << p.get_proprietar().get_nume() << ' ' << p.get_proprietar().get_prenume() << '\n';
-        os << "adresa: " << p.get_adresa_proprietar();
-        os << "culoarea: " << p.get_autovehicul().get_culoare() << '\n';
-        os << "an fabricatie: " << p.get_autovehicul().get_an_fabricatie() << '\n';
-        os << "capacitate cilindrica: " << p.get_autovehicul().get_capacitate_cilindrica() << '\n';
-        os << "putere: " << p.get_autovehicul().get_putere() << '\n';
-        os << "emitarote: " << p.get_document().get_emitent() << '\n';
-        os << "data expirare itp: " << p.get_data_expirare_itp() << '\n';
+        os << "numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
+        os << "tipul autovehiculului: " << p.autovehicul.get_tip_autovehicul() << '\n';
+        os << "marca: " << p.autovehicul.get_marca() << '\n';
+        os << "model: " << p.autovehicul.get_model() << '\n';
+        os << "seria sasiu: " << p.autovehicul.get_serie_sasiu() << '\n';
+        os << "proprietar: " << p.proprietar.get_nume() << ' ' << p.proprietar.get_prenume() << '\n';
+        os << "adresa: " << p.adresaProprietar;
+        os << "culoarea: " << p.autovehicul.get_culoare() << '\n';
+        os << "an fabricatie: " << p.autovehicul.get_an_fabricatie() << '\n';
+        os << "capacitate cilindrica: " << p.autovehicul.get_capacitate_cilindrica() << '\n';
+        os << "putere: " << p.autovehicul.get_putere() << '\n';
+        os << "emitarote: " << p.document.get_emitent() << '\n';
+        os << "data expirare itp: " << p.dataExpirareItp << '\n';
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -490,7 +489,7 @@ class DetectieRadar {
         if (get_locatie_detectie() == "oras") {
             return get_viteza_detectata() - get_viteza_max_legala_oras();
         } else if (get_locatie_detectie() == "autostrada") {
-            return get_viteza_detectata()- get_viteza_max_legala_autostrada();
+            return get_viteza_detectata() - get_viteza_max_legala_autostrada();
         } else if (get_locatie_detectie() == "dn") {
             return get_viteza_detectata() - get_viteza_max_legala_dn();
         }
@@ -530,9 +529,9 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const DetectieRadar &p) {
         os << "Detectie Radar\n";
-        os << "Numar inmatriculare: " << p.get_autovehicul().get_numar_inmatriculare() << '\n';
-        os << "Viteza detectata:" << p.get_viteza_detectata() << '\n';
-        os << "Locatie detectie: " << p.get_locatie_detectie() << '\n';
+        os << "Numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
+        os << "Viteza detectata:" << p.vitezaDetectata << '\n';
+        os << "Locatie detectie: " << p.locatieDetectie << '\n';
         return os;
     }
 
@@ -578,8 +577,8 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcolemie &p) {
         os << "Rezultat testare alcolemie:\n";
-        os << "alcolemie: " << p.get_alcolemie() << '\n';
-        os << "Nume sofer: " << p.get_sofer().get_nume() << " " <<p.get_sofer().get_prenume() << '\n';
+        os << "alcolemie: " << p.alcolemie << '\n';
+        os << "Nume sofer: " << p.sofer.get_nume() << " " << p.sofer.get_prenume() << '\n';
         return os;
     }
 };
@@ -591,9 +590,11 @@ class InformatiiAfisiate {
     Permis permis;
     Talon talon;
     Autovehicul masina;
+
 public:
     InformatiiAfisiate(const DetectieRadar &detectie_radar, const RezultatTestareAlcolemie &alcolemie,
-        const CarteIdentitate &buletin, const Permis &permis, const Talon &talon, const Autovehicul &masina)
+                       const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
+                       const Autovehicul &masina)
         : detectieRadar(detectie_radar),
           alcolemie(alcolemie),
           buletin(buletin),
@@ -630,9 +631,9 @@ public:
             return true;
         }
         if ((alcolemie.esteDosarPenal() or
-            alcolemie.esteDosarPenal() or
-            !permis.esteValidaDataNasterePermisVsCnp() or
-            !suntDatelePersonaleIdentice()) and raspuns == 4) {
+             alcolemie.esteDosarPenal() or
+             !permis.esteValidaDataNasterePermisVsCnp() or
+             !suntDatelePersonaleIdentice()) and raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
@@ -648,11 +649,11 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const InformatiiAfisiate &p) {
         os << "Analizati urmatoarele informatii si raspundeti la intrebare\n";
-        os << p.get_detectie_radar() << '\n';
-        os << p.get_alcolemie() << '\n';
-        os << p.get_buletin() << '\n';
-        os << p.get_permis() << '\n';
-        os << p.get_talon() << '\n';
+        os << p.detectieRadar << '\n';
+        os << p.alcolemie << '\n';
+        os << p.buletin << '\n';
+        os << p.permis << '\n';
+        os << p.talon << '\n';
         os << p.masina;
         return os;
     }
@@ -664,6 +665,7 @@ private:
                && buletin.get_datePersoanale().get_prenume() == permis.get_persoana().get_prenume();
     }
 };
+
 class Joc {
     int numarRaspunsuriCorecte = 0;
 
@@ -700,33 +702,157 @@ private:
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
         Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon , autPrezentFizic);
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+    }
+
+    InformatiiAfisiate construiesteInformatii2() {
+        // trebuiesc create detectiile radar , detectie alcolemie
+        // trebuiesc create documentele care se prezinta la control
+        // trebuie creat informatii despre autovechiculul prezent fizic la control
+        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        DetectieRadar detectie(autDetectieRadar, 70, "oras");
+
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
+        RezultatTestareAlcolemie rez(persCi, 0.0);
+
+        Document docCi("01.01.2021", "01.01.2025", "SPCLEP Constanta", "901123", "AB");
+        Adresa adresaNastere("Constanta", "ct");
+        Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
+        CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
+
+
+        Document docPermis("01.01.2021", "01.01.2025", "SPCLEP Constanta");
+        Permis permis(docPermis, persCi, "B", adresaNastere);
+
+        Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
+        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
+        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+    }
+
+    InformatiiAfisiate construiesteInformatii3() {
+        // trebuiesc create detectiile radar , detectie alcolemie
+        // trebuiesc create documentele care se prezinta la control
+        // trebuie creat informatii despre autovechiculul prezent fizic la control
+        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        DetectieRadar detectie(autDetectieRadar, 70, "oras");
+
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
+        RezultatTestareAlcolemie rez(persCi, 0.0);
+
+        Document docCi("01.01.2021", "01.01.2025", "SPCLEP Constanta", "901123", "AB");
+        Adresa adresaNastere("Constanta", "ct");
+        Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
+        CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
+
+
+        Document docPermis("01.01.2021", "01.01.2025", "SPCLEP Constanta");
+        Permis permis(docPermis, persCi, "B", adresaNastere);
+
+        Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
+        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
+        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+    }
+
+
+    InformatiiAfisiate construiesteInformatii4() {
+        // trebuiesc create detectiile radar , detectie alcolemie
+        // trebuiesc create documentele care se prezinta la control
+        // trebuie creat informatii despre autovechiculul prezent fizic la control
+        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        DetectieRadar detectie(autDetectieRadar, 70, "oras");
+
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
+        RezultatTestareAlcolemie rez(persCi, 0.0);
+
+        Document docCi("01.01.2021", "01.01.2025", "SPCLEP Constanta", "901123", "AB");
+        Adresa adresaNastere("Constanta", "ct");
+        Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
+        CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
+
+
+        Document docPermis("01.01.2021", "01.01.2025", "SPCLEP Constanta");
+        Permis permis(docPermis, persCi, "B", adresaNastere);
+
+        Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
+        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
+        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+    }
+
+    InformatiiAfisiate construiesteInformatii5() {
+        // trebuiesc create detectiile radar , detectie alcolemie
+        // trebuiesc create documentele care se prezinta la control
+        // trebuie creat informatii despre autovechiculul prezent fizic la control
+        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        DetectieRadar detectie(autDetectieRadar, 70, "oras");
+
+        DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
+        RezultatTestareAlcolemie rez(persCi, 0.0);
+
+        Document docCi("01.01.2021", "01.01.2025", "SPCLEP Constanta", "901123", "AB");
+        Adresa adresaNastere("Constanta", "ct");
+        Adresa adresaCi("Constanta", "CT", "Constanta", "Strada 1", "1", "1", "1");
+        CarteIdentitate ci(docCi, persCi, adresaCi, adresaNastere, "Romania");
+
+
+        Document docPermis("01.01.2021", "01.01.2025", "SPCLEP Constanta");
+        Permis permis(docPermis, persCi, "B", adresaNastere);
+
+        Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
+        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
+        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+
+        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
 public:
     Joc() {
-        std::cout << "Jocul a inceput!\n\n";
+        std::cout << "Jocul a inceput!\n";
     }
 
 public:
     void start() {
-        InformatiiAfisiate informatii1 = construiesteInformatii1();
-        std::cout << informatii1 << '\n';
-        afiseazaRaspunsuriPosibile();
-        std::cout << "Alegeti un raspuns: ";
-        int raspuns = 1;
-        std::cin >> raspuns;
-        if (informatii1.esteRaspunsCorect(raspuns)) {
-            std::cout << "Raspuns corect!\n";
-            numarRaspunsuriCorecte++;
-        } else {
-            std::cout << "Raspuns gresit!\n";
+        InformatiiAfisiate informatii[5] = {
+            construiesteInformatii1(),
+            construiesteInformatii2(),
+            construiesteInformatii3(),
+            construiesteInformatii4(),
+            construiesteInformatii5()
+        };
+        for (int i = 0; i < 5; ++i) {
+            std::cout << informatii[i] << '\n';
+            afiseazaRaspunsuriPosibile();
+            std::cout << "Alegeti un raspuns: ";
+            std :: string raspuns;
+            while (std::cin >> raspuns) {
+                if (raspuns!="1" && raspuns!="2" && raspuns!="3" && raspuns!="4") {
+                    std::cout << "Raspuns invalid!Inroduceti una din cifrele 1,2,3,4:\n";
+                } else {
+                    break;
+                }
+            }
+            int raspunsInt = std::stoi(raspuns);
+            if (informatii[i].esteRaspunsCorect(raspunsInt)) {
+                std::cout << "Raspuns corect!\n";
+                numarRaspunsuriCorecte++;
+            } else {
+                std::cout << "Raspuns gresit!\n";
+            }
         }
     }
 
     // Destructor
     ~Joc() {
-        std::cout << "Joc terminat.Numar raspunsuri corecte:"<< numarRaspunsuriCorecte << std::endl;
+        std::cout << "Joc terminat.Numar raspunsuri corecte:" << numarRaspunsuriCorecte << std::endl;
     }
 };
 
