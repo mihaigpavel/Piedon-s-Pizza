@@ -281,13 +281,13 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
         os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
-        os << "  " << p.persoana.get_nume() << '\n';
-        os << "  " << p.persoana.get_prenume() << '\n';
-        os << "  " << p.persoana.get_data_nastere() << " " << p.adresaNastere.get_localitate() << " " << p.
+        os << "1. " << p.persoana.get_nume() << '\n';
+        os << "2. " << p.persoana.get_prenume() << '\n';
+        os << "3. " << p.persoana.get_data_nastere() << " " << p.adresaNastere.get_localitate() << ", " << p.
                 adresaNastere.get_judet_prescurtat() << '\n';
-        os << "  " << p.document.get_data_eliberare() << "    " << p.document.get_emitent() << '\n';
-        os << "  " << p.document.get_data_expirare() << "    " << p.persoana.get_cnp() << '\n';
-        os << "  " << p.categorie << '\n';
+        os << "4a. " << p.document.get_data_eliberare() << "   4c. " << p.document.get_emitent() << '\n';
+        os << "4b. " << p.document.get_data_expirare() << "   4d. " << p.persoana.get_cnp() << '\n';
+        os << p.categorie << '\n';
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
@@ -371,6 +371,8 @@ public:
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
+
+
 };
 
 class Talon {
@@ -394,19 +396,19 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
-        os << "numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
-        os << "tipul autovehiculului: " << p.autovehicul.get_tip_autovehicul() << '\n';
-        os << "marca: " << p.autovehicul.get_marca() << '\n';
-        os << "model: " << p.autovehicul.get_model() << '\n';
-        os << "seria sasiu: " << p.autovehicul.get_serie_sasiu() << '\n';
-        os << "proprietar: " << p.proprietar.get_nume() << ' ' << p.proprietar.get_prenume() << '\n';
-        os << "adresa: " << p.adresaProprietar;
-        os << "culoarea: " << p.autovehicul.get_culoare() << '\n';
-        os << "an fabricatie: " << p.autovehicul.get_an_fabricatie() << '\n';
-        os << "capacitate cilindrica: " << p.autovehicul.get_capacitate_cilindrica() << '\n';
-        os << "putere: " << p.autovehicul.get_putere() << '\n';
-        os << "emitarote: " << p.document.get_emitent() << '\n';
-        os << "data expirare itp: " << p.dataExpirareItp << '\n';
+        os << "Numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
+        os << "Tipul autovehiculului: " << p.autovehicul.get_tip_autovehicul() << '\n';
+        os << "Marca: " << p.autovehicul.get_marca() << '\n';
+        os << "Model: " << p.autovehicul.get_model() << '\n';
+        os << "Seria sasiu: " << p.autovehicul.get_serie_sasiu() << '\n';
+        os << "Proprietar: " << p.proprietar.get_nume() << ' ' << p.proprietar.get_prenume() << '\n';
+        os << "Adresa: " << p.adresaProprietar;
+        os << "Culoarea: " << p.autovehicul.get_culoare() << '\n';
+        os << "An fabricatie: " << p.autovehicul.get_an_fabricatie() << '\n';
+        os << "Capacitate cilindrica: " << p.autovehicul.get_capacitate_cilindrica() << '\n';
+        os << "Putere: " << p.autovehicul.get_putere() << '\n';
+        os << "Emitarote: " << p.document.get_emitent() << '\n';
+        os << "Data expirare itp: " << p.dataExpirareItp << '\n';
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -463,7 +465,7 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const DetectieRadar &p) {
-        os << "Detectie Radar\n";
+        os << "Detectie Radar:\n";
         os << "Numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
         os << "Viteza detectata:" << p.vitezaDetectata << '\n';
         os << "Locatie detectie: " << p.locatieDetectie << '\n';
@@ -509,7 +511,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcolemie &p) {
         os << "Rezultat testare alcolemie:\n";
-        os << "alcolemie: " << p.alcolemie << '\n';
+        os << "Alcolemie: " << p.alcolemie << '\n';
         os << "Nume sofer: " << p.sofer.get_nume() << " " << p.sofer.get_prenume() << '\n';
         return os;
     }
@@ -565,11 +567,12 @@ public:
             return true;
         }
 
+
         return false;
     }
 
     friend std::ostream &operator<<(std::ostream &os, const InformatiiAfisiate &p) {
-        os << "Analizati urmatoarele informatii si raspundeti la intrebare\n";
+        os << "Analizati urmatoarele informatii si raspundeti la intrebare\n\n";
         os << p.detectieRadar << '\n';
         os << p.alcolemie << '\n';
         os << p.buletin << '\n';
