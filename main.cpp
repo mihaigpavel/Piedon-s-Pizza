@@ -293,7 +293,7 @@ public:
     }
 };
 
-class Autovehicul {
+class SpecificatiiAutovechivul {
     std::string serieSasiu;
     std::string numarInmatriculare;
     std::string marca;
@@ -305,7 +305,7 @@ class Autovehicul {
     unsigned int putere;
 
 public:
-    Autovehicul(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
+    SpecificatiiAutovechivul(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
                 const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
                 unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere)
         : serieSasiu(serie_sasiu),
@@ -356,7 +356,7 @@ public:
     }
 
 
-    friend std::ostream &operator<<(std::ostream &os, const Autovehicul &p) {
+    friend std::ostream &operator<<(std::ostream &os, const SpecificatiiAutovechivul &p) {
         os << "Autovehicul\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "Serie sasiu: " << p.serieSasiu << '\n';
@@ -377,13 +377,13 @@ public:
 
 class Talon {
     Document document;
-    Autovehicul autovehicul;
+    SpecificatiiAutovechivul autovehicul;
     DatePersonale proprietar;
     Adresa adresaProprietar;
     std::string dataExpirareItp;
 
 public:
-    Talon(const Document &document, const Autovehicul &autovehicul, const DatePersonale &proprietar,
+    Talon(const Document &document, const SpecificatiiAutovechivul &autovehicul, const DatePersonale &proprietar,
           const Adresa &adresa_proprietar, const std::string &data_expirare_itp)
         : document(document),
           autovehicul(autovehicul),
@@ -416,7 +416,7 @@ public:
 
 
 class DetectieRadar {
-    Autovehicul autovehicul;
+    SpecificatiiAutovechivul autovehicul;
     int vitezaDetectata;
     std::string locatieDetectie;
     const int vitezaMaxLegalaOras = 50;
@@ -436,7 +436,7 @@ class DetectieRadar {
     }
 
 public:
-    DetectieRadar(const Autovehicul &autovehicul, int viteza_detectata, const std::string &locatie_detectie)
+    DetectieRadar(const SpecificatiiAutovechivul &autovehicul, int viteza_detectata, const std::string &locatie_detectie)
         : autovehicul(autovehicul),
           vitezaDetectata(viteza_detectata),
           locatieDetectie(locatie_detectie) {
@@ -523,12 +523,12 @@ class InformatiiAfisiate {
     CarteIdentitate buletin;
     Permis permis;
     Talon talon;
-    Autovehicul masina;
+    SpecificatiiAutovechivul masina;
 
 public:
     InformatiiAfisiate(const DetectieRadar &detectie_radar, const RezultatTestareAlcolemie &alcolemie,
                        const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
-                       const Autovehicul &masina)
+                       const SpecificatiiAutovechivul &masina)
         : detectieRadar(detectie_radar),
           alcolemie(alcolemie),
           buletin(buletin),
@@ -606,7 +606,7 @@ private:
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
-        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        SpecificatiiAutovechivul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
         DetectieRadar detectie(autDetectieRadar, 70, "oras");
 
         DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
@@ -622,9 +622,9 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -633,7 +633,7 @@ private:
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
-        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        SpecificatiiAutovechivul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
         DetectieRadar detectie(autDetectieRadar, 70, "oras");
 
         DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
@@ -649,9 +649,9 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -660,7 +660,7 @@ private:
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
-        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        SpecificatiiAutovechivul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
         DetectieRadar detectie(autDetectieRadar, 70, "oras");
 
         DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
@@ -676,9 +676,9 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -688,7 +688,7 @@ private:
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
-        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        SpecificatiiAutovechivul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
         DetectieRadar detectie(autDetectieRadar, 70, "oras");
 
         DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
@@ -704,9 +704,9 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -715,7 +715,7 @@ private:
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
-        Autovehicul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
+        SpecificatiiAutovechivul autDetectieRadar("", "B123ABC", "", "", "", "", 0, 0, 0);
         DetectieRadar detectie(autDetectieRadar, 70, "oras");
 
         DatePersonale persCi("Popescu", "Ion", "1234567890123", "01.01.2000", 'M');
@@ -731,9 +731,9 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        Autovehicul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        Autovehicul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
