@@ -330,15 +330,7 @@ public:
     }
 
     SpecificatiiAutovechivul(const std::string &numar_inmatriculare)
-    : serieSasiu(""),
-      numarInmatriculare(numar_inmatriculare),
-      marca(""),
-      model(""),
-      culoare(""),
-      tipAutovehicul(""),
-      anFabricatie(0),
-      capacitateCilindrica(0),
-      putere(putere) {
+       : numarInmatriculare(numar_inmatriculare) {
     }
 
     [[nodiscard]] const std::string &get_serie_sasiu() const {
