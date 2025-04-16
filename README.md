@@ -8,6 +8,7 @@ Esti Piedone un inspector in politia rutiera din Bucuresti. In cadrul unui filtr
 2.	Situatia prezentata este contraventie si se va emite o ameda
 3.	Situatia prezentata este contraventie si se va emite amenda + retinere permis de conducere
 4.	Pentru situatia prezentata se deschide dosar penal
+5. Pentru situatia prezentata se retine talonul si se va emite amenda
 
 Fiecare dintre actiunile prezentate mai sus sunt notate in terminal cu nr de ordine corespunzator.
 
