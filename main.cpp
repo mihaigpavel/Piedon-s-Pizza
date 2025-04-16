@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <Helper.h>
+#include <string.h>
 #include <string>
 
 class Document {
@@ -178,11 +179,6 @@ public:
         : judetPrescurtat(judet_prescurtat),
           localitate(localitate) {
     }
-
-    [[nodiscard]] const std::string &get_judet() const {
-        return judet;
-    }
-
     [[nodiscard]] const std::string &get_localitate() const {
         return localitate;
     }
@@ -231,8 +227,8 @@ public:
         os << "CARTE DE IDENTITATE\n";
         os << "/////////////////////////////////////////////////////////////////\n";
         os << "ROUMANIE                     ROMANIA                     ROMANIA\n";
-        os << "SERIA: " << p.document.get_serie() << "     NR: " << p.document.get_numar() << '\n';
-        os << "CNP: " << p.datePersonale.get_cnp() << '\n';
+        os << "SERIA " << p.document.get_serie() << "     NR " << p.document.get_numar() << '\n';
+        os << "CNP " << p.datePersonale.get_cnp() << '\n';
         os << "Nume/Nom/Last name\n";
         os << p.datePersonale.get_nume() << '\n';
         os << "Prenume/Prenom/First name\n";
@@ -267,6 +263,10 @@ public:
 
     [[nodiscard]] const DatePersonale &get_persoana() const {
         return persoana;
+    }
+
+    [[nodiscard]] const std::string & get_categorie() const {
+        return categorie;
     }
 
     bool esteValidaDataNasterePermisVsCnp() {
@@ -357,7 +357,7 @@ public:
 
 
     friend std::ostream &operator<<(std::ostream &os, const SpecificatiiAutovechivul &p) {
-        os << "Autovehicul\n";
+        os << "Autovehicul oprit la control\n";
         os << "////////////////////////////////////////////////////////////////////\n";
         os << "Serie sasiu: " << p.serieSasiu << '\n';
         os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
@@ -392,6 +392,9 @@ public:
           dataExpirareItp(data_expirare_itp) {
     }
 
+    [[nodiscard]] const SpecificatiiAutovechivul & get_autovehicul() const {
+        return autovehicul;
+    }
 
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
@@ -556,7 +559,8 @@ public:
         if ((alcolemie.esteDosarPenal() ||
              alcolemie.esteDosarPenal() ||
              !permis.esteValidaDataNasterePermisVsCnp() ||
-             !suntDatelePersonaleIdentice()) && raspuns == 4) {
+             !suntDatelePersonaleIdentice() ||
+             !esteCorespunzatorPermisulPentruAutoturism())  && raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
@@ -588,6 +592,28 @@ private:
                && buletin.get_datePersoanale().get_nume() == permis.get_persoana().get_nume()
                && buletin.get_datePersoanale().get_prenume() == permis.get_persoana().get_prenume();
     }
+
+private:
+    bool esteCorespunzatorPermisulPentruAutoturism() {
+        // Pentru B
+        if (strchr(permis.get_categorie().c_str(),'B')!=NULL and
+            strstr("M1N1O1O2",talon.get_autovehicul().get_tip_autovehicul().c_str())!=NULL)  {
+            return true;
+        }
+        // Pentru C
+        if (strchr(permis.get_categorie().c_str(), 'C') != NULL &&
+            strstr("N2N3O3O4", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
+            return true;
+            }
+
+        // Pentru D
+        if (strchr(permis.get_categorie().c_str(), 'D') != NULL &&
+            strstr("M2M3", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
+            return true;
+        }
+        return false;
+    }
+
 };
 
 class Joc {
@@ -622,7 +648,7 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "M1", 2020, 1600, 90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
         SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
 
@@ -755,12 +781,15 @@ public:
         for (int i = 0; i < 5; ++i) {
             std::cout << informatii[i] << '\n';
             afiseazaRaspunsuriPosibile();
-            std::cout << "Alegeti un raspuns: ";
+            std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
             std :: string raspuns;
             std::cin >> raspuns;
                 if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4") {
 
                     int raspunsInt = std::stoi(raspuns);
+                    for (int i = 0  ;i <= 100 ; i++) {
+                        std::cout<<'\n';
+                    }
                     if (informatii[i].esteRaspunsCorect(raspunsInt)) {
                         std::cout << "Raspuns corect!\n";
                         numarRaspunsuriCorecte++;
@@ -770,8 +799,8 @@ public:
                 } else {
                     std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4\n";
                 }
-
         }
+
     }
 
     // Destructor
