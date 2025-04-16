@@ -309,9 +309,9 @@ class SpecificatiiAutovechivul {
     std::string model;
     std::string culoare;
     std::string tipAutovehicul;
-    unsigned int anFabricatie;
-    unsigned int capacitateCilindrica;
-    unsigned int putere;
+    unsigned int anFabricatie = 0;
+    unsigned int capacitateCilindrica = 0;
+    unsigned int putere = 0;
 
 public:
     SpecificatiiAutovechivul(const std::string &serie_sasiu, const std::string &numar_inmatriculare,
