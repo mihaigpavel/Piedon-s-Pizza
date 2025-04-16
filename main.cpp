@@ -329,7 +329,7 @@ public:
           putere(putere) {
     }
 
-    SpecificatiiAutovechivul(const std::string &numar_inmatriculare)
+   explicit  SpecificatiiAutovechivul(const std::string &numar_inmatriculare)
        : numarInmatriculare(numar_inmatriculare) {
     }
 
