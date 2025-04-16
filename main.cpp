@@ -570,8 +570,9 @@ public:
             && raspuns == 1) {
             return true;
         }
-
-
+        if (coincideTalonCuMasina() && raspuns == 5) {
+            return true;
+        }
         return false;
     }
 
@@ -613,6 +614,15 @@ private:
         }
         return false;
     }
+    bool coincideTalonCuMasina() {
+        if (masina.get_culoare() == talon.get_autovehicul().get_culoare() &&
+            masina.get_marca() == talon.get_autovehicul().get_marca() &&
+            masina.get_model() == talon.get_autovehicul().get_model()&&
+            masina.get_numar_inmatriculare() == talon.get_autovehicul().get_numar_inmatriculare()) {
+            return true;
+        }
+        return false;
+    }
 };
 
 class Joc {
@@ -625,6 +635,7 @@ private:
         std::cout << "2. Contraventie(amenda)\n";
         std::cout << "3. Retinere permis + amenda\n";
         std::cout << "4. Retinere permis +dosar penal\n";
+        std::cout << "5. Retinere Certificat de inmatriculare + amenda\n";
     }
 
     InformatiiAfisiate construiesteInformatii1() {
@@ -793,7 +804,7 @@ public:
             std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
             std::string raspuns;
             std::cin >> raspuns;
-            if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4") {
+            if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4" || raspuns == "5") {
                 int raspunsInt = std::stoi(raspuns);
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
@@ -805,7 +816,7 @@ public:
                     std::cout << "Raspuns gresit!\n";
                 }
             } else {
-                std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4\n";
+                std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4,5\n";
             }
         }
     }
