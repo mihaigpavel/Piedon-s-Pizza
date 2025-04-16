@@ -137,6 +137,7 @@ public:
     [[nodiscard]] const std::string &get_cnp() const {
         return cnp;
     }
+
     [[nodiscard]] const std::string &get_data_nastere() const {
         return dataNastere;
     }
@@ -144,7 +145,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
         os << "//////////////////////////////////////////////" << '\n';
         os << "Nume: " << obj.nume << '\n';
-        os << "Prenume: " << obj.prenume<< '\n';
+        os << "Prenume: " << obj.prenume << '\n';
         os << "Cnp: " << obj.cnp << '\n';
         os << "Data nastere: " << obj.dataNastere << '\n';
         os << "sex: " << obj.sex << '\n';
@@ -179,6 +180,7 @@ public:
         : judetPrescurtat(judet_prescurtat),
           localitate(localitate) {
     }
+
     [[nodiscard]] const std::string &get_localitate() const {
         return localitate;
     }
@@ -220,9 +222,11 @@ public:
           adresaNastere(adresa_nastere),
           cetatenia(cetatenia) {
     }
+
     [[nodiscard]] const DatePersonale &get_datePersoanale() const {
         return datePersonale;
     }
+
     friend std::ostream &operator <<(std::ostream &os, const CarteIdentitate &p) {
         os << "CARTE DE IDENTITATE\n";
         os << "/////////////////////////////////////////////////////////////////\n";
@@ -239,8 +243,8 @@ public:
         os << "Domiciliu/Adresse/Address\n" << p.adresaDomiciliu;
         os << "Emis de/Delivre par/Issued by      Valabilitate/Validite/Validity\n";
         os << p.document.get_emitent() << "                      "
-           << p.document.get_data_eliberare() << " - "
-           << p.document.get_data_expirare() << '\n';
+                << p.document.get_data_eliberare() << " - "
+                << p.document.get_data_expirare() << '\n';
         os << "/////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -265,7 +269,7 @@ public:
         return persoana;
     }
 
-    [[nodiscard]] const std::string & get_categorie() const {
+    [[nodiscard]] const std::string &get_categorie() const {
         return categorie;
     }
 
@@ -305,9 +309,10 @@ class SpecificatiiAutovechivul {
     unsigned int putere;
 
 public:
-    SpecificatiiAutovechivul(const std::string &serie_sasiu, const std::string &numar_inmatriculare, const std::string &marca,
-                const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
-                unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere)
+    SpecificatiiAutovechivul(const std::string &serie_sasiu, const std::string &numar_inmatriculare,
+                             const std::string &marca,
+                             const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
+                             unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere)
         : serieSasiu(serie_sasiu),
           numarInmatriculare(numar_inmatriculare),
           marca(marca),
@@ -371,8 +376,6 @@ public:
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
-
-
 };
 
 class Talon {
@@ -392,7 +395,7 @@ public:
           dataExpirareItp(data_expirare_itp) {
     }
 
-    [[nodiscard]] const SpecificatiiAutovechivul & get_autovehicul() const {
+    [[nodiscard]] const SpecificatiiAutovechivul &get_autovehicul() const {
         return autovehicul;
     }
 
@@ -439,12 +442,12 @@ class DetectieRadar {
     }
 
 public:
-    DetectieRadar(const SpecificatiiAutovechivul &autovehicul, int viteza_detectata, const std::string &locatie_detectie)
+    DetectieRadar(const SpecificatiiAutovechivul &autovehicul, int viteza_detectata,
+                  const std::string &locatie_detectie)
         : autovehicul(autovehicul),
           vitezaDetectata(viteza_detectata),
           locatieDetectie(locatie_detectie) {
     }
-
 
 
     [[nodiscard]] int get_viteza_detectata() const {
@@ -546,9 +549,6 @@ public:
     }
 
 
-
-
-
     bool esteRaspunsCorect(int raspuns) {
         if (detectieRadar.esteCazAmenda() && raspuns == 2) {
             return true;
@@ -560,7 +560,7 @@ public:
              alcolemie.esteDosarPenal() ||
              !permis.esteValidaDataNasterePermisVsCnp() ||
              !suntDatelePersonaleIdentice() ||
-             !esteCorespunzatorPermisulPentruAutoturism())  && raspuns == 4) {
+             !esteCorespunzatorPermisulPentruAutoturism()) && raspuns == 4) {
             return true;
         }
         if (!detectieRadar.esteCazAmenda()
@@ -596,15 +596,15 @@ private:
 private:
     bool esteCorespunzatorPermisulPentruAutoturism() {
         // Pentru B
-        if (strchr(permis.get_categorie().c_str(),'B')!=NULL and
-            strstr("M1N1O1O2",talon.get_autovehicul().get_tip_autovehicul().c_str())!=NULL)  {
+        if (strchr(permis.get_categorie().c_str(), 'B') != NULL and
+            strstr("M1N1O1O2", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
             return true;
         }
         // Pentru C
         if (strchr(permis.get_categorie().c_str(), 'C') != NULL &&
             strstr("N2N3O3O4", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
             return true;
-            }
+        }
 
         // Pentru D
         if (strchr(permis.get_categorie().c_str(), 'D') != NULL &&
@@ -613,7 +613,6 @@ private:
         }
         return false;
     }
-
 };
 
 class Joc {
@@ -648,9 +647,11 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "M1", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "M1", 2020, 1600,
+                                          90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism",
+                                                 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -675,9 +676,11 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600,
+                                          90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism",
+                                                 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -702,9 +705,11 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600,
+                                          90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism",
+                                                 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -730,9 +735,11 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600,
+                                          90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism",
+                                                 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -757,9 +764,11 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("01.01.2021", "01.01.2025", "SPCLEP Constanta", "L10002212");
-        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autTalon("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600,
+                                          90);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "01.01.2025");
-        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism", 2020, 1600, 90);
+        SpecificatiiAutovechivul autPrezentFizic("12345678901234567", "B123ABC", "Dacia", "Logan", "Alb", "Turism",
+                                                 2020, 1600, 90);
 
         return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -782,25 +791,23 @@ public:
             std::cout << informatii[i] << '\n';
             afiseazaRaspunsuriPosibile();
             std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
-            std :: string raspuns;
+            std::string raspuns;
             std::cin >> raspuns;
-                if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4") {
-
-                    int raspunsInt = std::stoi(raspuns);
-                    for (int i = 0  ;i <= 100 ; i++) {
-                        std::cout<<'\n';
-                    }
-                    if (informatii[i].esteRaspunsCorect(raspunsInt)) {
-                        std::cout << "Raspuns corect!\n";
-                        numarRaspunsuriCorecte++;
-                    } else {
-                        std::cout << "Raspuns gresit!\n";
-                    }
-                } else {
-                    std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4\n";
+            if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4") {
+                int raspunsInt = std::stoi(raspuns);
+                for (int _ = 0; _ <= 100; _++) {
+                    std::cout << '\n';
                 }
+                if (informatii[i].esteRaspunsCorect(raspunsInt)) {
+                    std::cout << "Raspuns corect!\n";
+                    numarRaspunsuriCorecte++;
+                } else {
+                    std::cout << "Raspuns gresit!\n";
+                }
+            } else {
+                std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4\n";
+            }
         }
-
     }
 
     // Destructor
