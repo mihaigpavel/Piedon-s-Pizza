@@ -287,6 +287,27 @@ public:
         return dataNastere == ziNastere + "." + lunaNastere + "." + anNastere;
     }
 
+public:
+    bool estePermisulCorespunzatorCategoriaAutovehiculului(const std::string &tipAuto) {
+        const std::string tipB = "M1N1O1O2";
+        const std::string tipC = "N2N3O3O4";
+        const std::string tipD = "M2M3";
+        if (categorie.contains("B") and
+            tipB.contains(tipAuto)) {
+            return true;
+        }
+        if (categorie.contains("C") and
+            tipC.contains(tipAuto)) {
+            return true;
+        }
+        if (categorie.contains("D") and
+            tipD.contains(tipAuto)
+        ) {
+            return true;
+        }
+        return false;
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
         os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
@@ -329,8 +350,8 @@ public:
           putere(putere) {
     }
 
-   explicit  SpecificatiiAutovechivul(const std::string &numar_inmatriculare)
-       : numarInmatriculare(numar_inmatriculare) {
+    explicit SpecificatiiAutovechivul(const std::string &numar_inmatriculare)
+        : numarInmatriculare(numar_inmatriculare) {
     }
 
     [[nodiscard]] const std::string &get_serie_sasiu() const {
@@ -542,8 +563,8 @@ class AnalizaActe {
 
 public:
     AnalizaActe(const DetectieRadar &detectie_radar, const RezultatTestareAlcoolemie &alcolemie,
-                       const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
-                       const SpecificatiiAutovechivul &masina)
+                const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
+                const SpecificatiiAutovechivul &masina)
         : detectieRadar(detectie_radar),
           alcolemie(alcolemie),
           buletin(buletin),
@@ -605,28 +626,13 @@ private:
 
 private:
     bool esteCorespunzatorPermisulPentruAutoturism() {
-        // Pentru B
-        if (strchr(permis.get_categorie().c_str(), 'B') != NULL and
-            strstr("M1N1O1O2", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
-            return true;
-        }
-        // Pentru C
-        if (strchr(permis.get_categorie().c_str(), 'C') != NULL &&
-            strstr("N2N3O3O4", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
-            return true;
-        }
-
-        // Pentru D
-        if (strchr(permis.get_categorie().c_str(), 'D') != NULL &&
-            strstr("M2M3", talon.get_autovehicul().get_tip_autovehicul().c_str()) != NULL) {
-            return true;
-        }
-        return false;
+        return permis.estePermisulCorespunzatorCategoriaAutovehiculului(talon.get_autovehicul().get_tip_autovehicul());
     }
+
     bool coincideTalonCuMasina() {
         if (masina.get_culoare() == talon.get_autovehicul().get_culoare() &&
             masina.get_marca() == talon.get_autovehicul().get_marca() &&
-            masina.get_model() == talon.get_autovehicul().get_model()&&
+            masina.get_model() == talon.get_autovehicul().get_model() &&
             masina.get_numar_inmatriculare() == talon.get_autovehicul().get_numar_inmatriculare()) {
             return true;
         }
@@ -672,11 +678,13 @@ private:
 
         // Talon cu date valide și compatibile
         Document docTalon("20.02.2019", "20.02.2029", "SPCLEP Cluj", "CJ200123");
-        SpecificatiiAutovechivul autTalon("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1", 2017, 1200, 75);
+        SpecificatiiAutovechivul autTalon("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1", 2017,
+                                          1200, 75);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "20.02.2029");
 
         // Autovehiculul prezent fizic (aceleași date)
-        SpecificatiiAutovechivul autPrezentFizic("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1", 2017, 1200, 75);
+        SpecificatiiAutovechivul autPrezentFizic("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1",
+                                                 2017, 1200, 75);
 
 
         return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
@@ -702,10 +710,12 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("15.07.2020", "15.07.2030", "SRPCIV Bucuresti", "B200345");
-        SpecificatiiAutovechivul autTalon("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016, 1400, 105);
+        SpecificatiiAutovechivul autTalon("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016, 1400,
+                                          105);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "15.07.2030");
 
-        SpecificatiiAutovechivul autPrezentFizic("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016, 1400, 105);
+        SpecificatiiAutovechivul autPrezentFizic("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016,
+                                                 1400, 105);
 
         return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -730,10 +740,12 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("10.08.2021", "10.08.2031", "SRPCIV Ilfov", "IF876543");
-        SpecificatiiAutovechivul autTalon("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Negru", "M1", 2020, 1199, 100);
+        SpecificatiiAutovechivul autTalon("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Negru", "M1", 2020, 1199,
+                                          100);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "10.08.2031");
 
-        SpecificatiiAutovechivul autPrezentFizic("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Roz", "M1", 2020, 1199, 100);
+        SpecificatiiAutovechivul autPrezentFizic("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Roz", "M1", 2020,
+                                                 1199, 100);
 
         return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -759,10 +771,12 @@ private:
         Permis permis(docPermis, persCi, "B", adresaNastere);
 
         Document docTalon("05.05.2021", "05.05.2031", "SRPCIV Cluj", "CJ456789");
-        SpecificatiiAutovechivul autTalon("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015, 1242, 70);
+        SpecificatiiAutovechivul autTalon("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015, 1242,
+                                          70);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "05.05.2031");
 
-        SpecificatiiAutovechivul autPrezentFizic("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015, 1242, 70);
+        SpecificatiiAutovechivul autPrezentFizic("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015,
+                                                 1242, 70);
 
         return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
@@ -791,7 +805,8 @@ private:
         SpecificatiiAutovechivul autTalon("WAUZZZ8V0JA123456", "TM10VPT", "Audi", "A3", "Alb", "M1", 2018, 1395, 125);
         Talon talon(docTalon, autTalon, persCi, adresaCi, "12.12.2028");
 
-        SpecificatiiAutovechivul autPrezentFizic("WAUZZZ8V0JA123456", "TM10VPT", "Audi", "A3", "Alb", "M1", 2018, 1395, 125);
+        SpecificatiiAutovechivul autPrezentFizic("WAUZZZ8V0JA123456", "TM10VPT", "Audi", "A3", "Alb", "M1", 2018, 1395,
+                                                 125);
 
         return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
