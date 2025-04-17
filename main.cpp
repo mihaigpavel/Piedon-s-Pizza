@@ -273,11 +273,6 @@ public:
     [[nodiscard]] const DatePersonale &get_persoana() const {
         return persoana;
     }
-
-    [[nodiscard]] const std::string &get_categorie() const {
-        return categorie;
-    }
-
     bool esteValidaDataNasterePermisVsCnp() {
         const std::string cnp = persoana.get_cnp();
         const std::string dataNastere = persoana.get_data_nastere();
