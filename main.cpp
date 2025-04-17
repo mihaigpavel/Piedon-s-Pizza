@@ -532,7 +532,7 @@ public:
     }
 };
 
-class InformatiiAfisiate {
+class AnalizaActe {
     DetectieRadar detectieRadar;
     RezultatTestareAlcoolemie alcolemie;
     CarteIdentitate buletin;
@@ -541,7 +541,7 @@ class InformatiiAfisiate {
     SpecificatiiAutovechivul masina;
 
 public:
-    InformatiiAfisiate(const DetectieRadar &detectie_radar, const RezultatTestareAlcoolemie &alcolemie,
+    AnalizaActe(const DetectieRadar &detectie_radar, const RezultatTestareAlcoolemie &alcolemie,
                        const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
                        const SpecificatiiAutovechivul &masina)
         : detectieRadar(detectie_radar),
@@ -585,7 +585,7 @@ public:
         return false;
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const InformatiiAfisiate &p) {
+    friend std::ostream &operator<<(std::ostream &os, const AnalizaActe &p) {
         os << "Analizati urmatoarele informatii si raspundeti la intrebare\n\n";
         os << p.detectieRadar << '\n';
         os << p.alcolemie << '\n';
@@ -647,7 +647,7 @@ private:
         std::cout << "5. Retinere Certificat de inmatriculare + amenda\n";
     }
 
-    InformatiiAfisiate construiesteInformatii1() {
+    AnalizaActe construiesteInformatii1() {
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
@@ -679,10 +679,10 @@ private:
         SpecificatiiAutovechivul autPrezentFizic("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1", 2017, 1200, 75);
 
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+        return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
-    InformatiiAfisiate construiesteInformatii2() {
+    AnalizaActe construiesteInformatii2() {
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
@@ -707,10 +707,10 @@ private:
 
         SpecificatiiAutovechivul autPrezentFizic("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016, 1400, 105);
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+        return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
-    InformatiiAfisiate construiesteInformatii3() {
+    AnalizaActe construiesteInformatii3() {
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
@@ -735,11 +735,11 @@ private:
 
         SpecificatiiAutovechivul autPrezentFizic("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Roz", "M1", 2020, 1199, 100);
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+        return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
 
-    InformatiiAfisiate construiesteInformatii4() {
+    AnalizaActe construiesteInformatii4() {
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
@@ -764,10 +764,10 @@ private:
 
         SpecificatiiAutovechivul autPrezentFizic("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015, 1242, 70);
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+        return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
-    InformatiiAfisiate construiesteInformatii5() {
+    AnalizaActe construiesteInformatii5() {
         // trebuiesc create detectiile radar , detectie alcolemie
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
@@ -793,7 +793,7 @@ private:
 
         SpecificatiiAutovechivul autPrezentFizic("WAUZZZ8V0JA123456", "TM10VPT", "Audi", "A3", "Alb", "M1", 2018, 1395, 125);
 
-        return InformatiiAfisiate(detectie, rez, ci, permis, talon, autPrezentFizic);
+        return AnalizaActe(detectie, rez, ci, permis, talon, autPrezentFizic);
     }
 
 public:
@@ -803,7 +803,7 @@ public:
 
 public:
     void start() {
-        InformatiiAfisiate informatii[5] = {
+        AnalizaActe informatii[5] = {
             construiesteInformatii1(),
             construiesteInformatii2(),
             construiesteInformatii3(),
