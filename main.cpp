@@ -97,13 +97,14 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Document &obj) {
-        os << "//////////////////////////////////////////////" << '\n';
         os << "Data eliberare: " << obj.dataEliberare << '\n';
         os << "Data expirare: " << obj.dataExpirare << '\n';
         os << "Emitent: " << obj.emitent << '\n';
-        os << "Numar: " << obj.numar << '\n';
-        os << "Serie: " << obj.serie << '\n';
-        os << "//////////////////////////////////////////////" << '\n';
+        if (!obj.numar.empty())
+            os << "Numar: " << obj.numar << '\n';
+
+        if (!obj.serie.empty())
+            os << "Serie: " << obj.serie << '\n';
         return os;
     }
 };
@@ -148,13 +149,10 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
-        os << "//////////////////////////////////////////////" << '\n';
         os << "Nume: " << obj.nume << '\n';
         os << "Prenume: " << obj.prenume << '\n';
         os << "Cnp: " << obj.cnp << '\n';
         os << "Data nastere: " << obj.dataNastere << '\n';
-        os << "sex: " << obj.sex << '\n';
-        os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
 };
@@ -316,13 +314,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Permis &p) {
         os << "Permis sofer\n";
         os << "//////////////////////////////////////////////" << '\n';
-        os << "1. " << p.persoana.get_nume() << '\n';
-        os << "2. " << p.persoana.get_prenume() << '\n';
-        os << "3. " << p.persoana.get_data_nastere() << " " << p.adresaNastere.get_localitate() << ", " << p.
-                adresaNastere.get_judet_prescurtat() << '\n';
-        os << "4a. " << p.document.get_data_eliberare() << "   4c. " << p.document.get_emitent() << '\n';
-        os << "4b. " << p.document.get_data_expirare() << "   4d. " << p.persoana.get_cnp() << '\n';
-        os << p.categorie << '\n';
+ os<< p.persoana<<"Locul nasteri:"<<p.adresaNastere.get_localitate()<<' '<< p.adresaNastere.get_judet_prescurtat()<<"\nCategorie: "<<p.categorie << '\n'<<p.document;
         os << "//////////////////////////////////////////////" << '\n';
         return os;
     }
@@ -412,8 +404,7 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const SpecificatiiAutovechivul &p) {
-        os << "Autovehicul oprit la control\n";
-        os << "////////////////////////////////////////////////////////////////////\n";
+
         os << "Serie sasiu: " << p.serieSasiu << '\n';
         os << "Numar inmatriculare: " << p.numarInmatriculare << '\n';
         os << "Marca: " << p.marca << '\n';
@@ -423,7 +414,6 @@ public:
         os << "Capacitate cilindre: " << p.capacitateCilindrica << '\n';
         os << "Putere: " << p.putere << '\n';
         os << "Tip autovehicul: " << p.tipAutovehicul << '\n';
-        os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
 };
@@ -452,19 +442,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Talon &p) {
         os << "Certificat de inmatriculare\n";
         os << "////////////////////////////////////////////////////////////////////\n";
-        os << "Numar inmatriculare: " << p.autovehicul.get_numar_inmatriculare() << '\n';
-        os << "Tipul autovehiculului: " << p.autovehicul.get_tip_autovehicul() << '\n';
-        os << "Marca: " << p.autovehicul.get_marca() << '\n';
-        os << "Model: " << p.autovehicul.get_model() << '\n';
-        os << "Seria sasiu: " << p.autovehicul.get_serie_sasiu() << '\n';
-        os << "Proprietar: " << p.proprietar.get_nume() << ' ' << p.proprietar.get_prenume() << '\n';
-        os << "Adresa: " << p.adresaProprietar;
-        os << "Culoarea: " << p.autovehicul.get_culoare() << '\n';
-        os << "An fabricatie: " << p.autovehicul.get_an_fabricatie() << '\n';
-        os << "Capacitate cilindrica: " << p.autovehicul.get_capacitate_cilindrica() << '\n';
-        os << "Putere: " << p.autovehicul.get_putere() << '\n';
-        os << "Emitarote: " << p.document.get_emitent() << '\n';
-        os << "Data expirare itp: " << p.dataExpirareItp << '\n';
+        os << p.autovehicul << p.proprietar;
         os << "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
@@ -602,7 +580,8 @@ public:
         os << p.buletin << '\n';
         os << p.permis << '\n';
         os << p.talon << '\n';
-        os << p.masina;
+        os <<"Autovehicul oprit la control\n";
+        os << "////////////////////////////////////////////////////////////////////\n"<<p.masina<< "////////////////////////////////////////////////////////////////////\n";
         return os;
     }
 
