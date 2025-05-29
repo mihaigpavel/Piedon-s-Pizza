@@ -1,0 +1,30 @@
+#ifndef DATEPERSONALE_H
+#define DATEPERSONALE_H
+
+#include <string>
+#include <iostream>
+
+class DatePersonale {
+private:
+    std::string nume;
+    std::string prenume;
+    std::string cnp;
+    std::string dataNastere;
+    char sex = 'M';
+
+public:
+    DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
+                  const std::string &data_nastere, char sex);
+
+    DatePersonale(const std::string &nume, const std::string &prenume);
+
+    [[nodiscard]] const std::string &get_nume() const;
+    [[nodiscard]] const std::string &get_prenume() const;
+    [[nodiscard]] const std::string &get_cnp() const;
+    [[nodiscard]] const std::string &get_data_nastere() const;
+    [[nodiscard]] char get_sex() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj);
+};
+
+#endif // DATEPERSONALE_H

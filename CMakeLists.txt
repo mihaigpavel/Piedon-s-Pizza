@@ -52,6 +52,24 @@ add_executable(${MAIN_EXECUTABLE_NAME}
     main.cpp
     generated/src/Helper.cpp
         main.cpp
+        Document.cpp
+        Document.h
+        DatePersonale.cpp
+        DatePersonale.h
+        Adresa.cpp
+        Adresa.h
+        CarteIdentitate.cpp
+        CarteIdentitate.h
+        Permis.cpp
+        Permis.h
+        SpecificatiiAutovehicul.cpp
+        SpecificatiiAutovehicul.h
+        Talon.cpp
+        Talon.h
+        DetectieRadar.cpp
+        DetectieRadar.h
+        RezultatTestareAlcoolemie.cpp
+        RezultatTestareAlcoolemie.h
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
