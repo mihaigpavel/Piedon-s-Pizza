@@ -528,6 +528,17 @@ public:
     }
 
     bool esteRaspunsCorect(int raspuns) {
+        if (!detectieRadar.esteCazAmenda()
+         && !detectieRadar.esteCazRetinerePermis()
+         && !alcolemie.esteCazDeAmenda()
+         && !alcolemie.esteDosarPenal()
+         && permis.esteValidaDataNasterePermisVsCnp()
+         && suntDatelePersonaleIdentice()
+         && esteCorespunzatorPermisulPentruAutoturism()
+         && coincideTalonCuMasina() &&
+         raspuns == 1) {
+            return true;
+         }
         if (detectieRadar.esteCazAmenda() && raspuns == 2) {
             return true;
         }
@@ -540,17 +551,7 @@ public:
              !esteCorespunzatorPermisulPentruAutoturism()) && raspuns == 4) {
             return true;
         }
-        if (!detectieRadar.esteCazAmenda()
-            && !detectieRadar.esteCazRetinerePermis()
-            && !alcolemie.esteCazDeAmenda()
-            && !alcolemie.esteDosarPenal()
-            && permis.esteValidaDataNasterePermisVsCnp()
-            && suntDatelePersonaleIdentice()
-            && esteCorespunzatorPermisulPentruAutoturism()
-            && coincideTalonCuMasina() &&
-            raspuns == 1) {
-            return true;
-        }
+
         if (!coincideTalonCuMasina() && raspuns == 5) {
             return true;
         }
