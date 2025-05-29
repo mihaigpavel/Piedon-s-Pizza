@@ -283,7 +283,7 @@ public:
     }
 
 public:
-    bool estePermisulCorespunzatorCategoriaAutovehiculului(const std::string &tipAuto) {
+    bool categorieValida(const std::string &tipAuto) {
         const std::string tipB = "M1N1O1O2";
         const std::string tipC = "N2N3O3O4";
         const std::string tipD = "M2M3";
@@ -621,7 +621,7 @@ private:
 
 private:
     bool esteCorespunzatorPermisulPentruAutoturism() {
-        return permis.estePermisulCorespunzatorCategoriaAutovehiculului(talon.get_autovehicul().get_tip_autovehicul());
+        return permis.categorieValida(talon.get_autovehicul().get_tip_autovehicul());
     }
 
     bool coincideTalonCuMasina() {
