@@ -351,41 +351,20 @@ public:
         : numarInmatriculare(numar_inmatriculare) {
     }
 
-    [[nodiscard]] const std::string &get_serie_sasiu() const {
-        return serieSasiu;
-    }
+
 
     [[nodiscard]] const std::string &get_numar_inmatriculare() const {
         return numarInmatriculare;
     }
 
-    [[nodiscard]] const std::string &get_marca() const {
-        return marca;
-    }
 
-    [[nodiscard]] const std::string &get_model() const {
-        return model;
-    }
 
-    [[nodiscard]] const std::string &get_culoare() const {
-        return culoare;
-    }
+
 
     [[nodiscard]] const std::string &get_tip_autovehicul() const {
         return tipAutovehicul;
     }
 
-    [[nodiscard]] unsigned int get_an_fabricatie() const {
-        return anFabricatie;
-    }
-
-    [[nodiscard]] unsigned int get_capacitate_cilindrica() const {
-        return capacitateCilindrica;
-    }
-
-    [[nodiscard]] unsigned int get_putere() const {
-        return putere;
-    }
 
     friend bool operator==(const SpecificatiiAutovechivul &lhs, const SpecificatiiAutovechivul &rhs) {
         return lhs.serieSasiu == rhs.serieSasiu
