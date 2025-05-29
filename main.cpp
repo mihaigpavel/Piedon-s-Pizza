@@ -460,7 +460,7 @@ class DetectieRadar {
             return get_viteza_detectata() - get_viteza_max_legala_oras();
         } else if (get_locatie_detectie() == "autostrada") {
             return get_viteza_detectata() - get_viteza_max_legala_autostrada();
-        } else if (get_locatie_detectie() == "In afara localitatii") {
+        } else if (get_locatie_detectie() == "in afara localitatii") {
             return get_viteza_detectata() - get_viteza_max_legala_dn();
         }
         return 0;
@@ -690,7 +690,7 @@ private:
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
         SpecificatiiAutovechivul autDetectieRadar("B456DEF");
-        DetectieRadar detectie(autDetectieRadar, 72, "In afara localitatii");
+        DetectieRadar detectie(autDetectieRadar, 72, "in afara localitatii");
 
         DatePersonale persAlcoolTest("Georgescu", "Mihai");
         RezultatTestareAlcoolemie rez(persAlcoolTest, 1.21);
@@ -720,7 +720,7 @@ private:
         // trebuiesc create documentele care se prezinta la control
         // trebuie creat informatii despre autovechiculul prezent fizic la control
         SpecificatiiAutovechivul autDetectieRadar("IF88MNO");
-        DetectieRadar detectie(autDetectieRadar, 50, "In afara localitatii");
+        DetectieRadar detectie(autDetectieRadar, 50, "in afara localitatii");
 
         DatePersonale persAlcoolTest("Marin", "Elena");
         RezultatTestareAlcoolemie rez(persAlcoolTest, 0.0);
