@@ -148,6 +148,10 @@ public:
         return dataNastere;
     }
 
+    [[nodiscard]] char get_sex() const {
+        return sex;
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
         os << "Nume: " << obj.nume << '\n';
         os << "Prenume: " << obj.prenume << '\n';
@@ -240,7 +244,8 @@ public:
         os << p.datePersonale.get_nume() << '\n';
         os << "Prenume/Prenom/First name\n";
         os << p.datePersonale.get_prenume() << '\n';
-        os << "Cetatenie/Nationalite/Nationality\n" << p.cetatenia << '\n';
+        os << "Cetatenie/Nationalite/Nationality\n" << p.cetatenia<< '\n';
+        os<< "Sex/Sexe/Sex\n"<<p.datePersonale.get_sex()<<'\n';
         os << "Loc nastere/Lieu de naissance/Place of birth\n";
         os << "Jud. " << p.adresaNastere.get_judet_prescurtat() << " Loc. " << p.adresaNastere.get_localitate() << '\n';
         os << "Domiciliu/Adresse/Address\n" << p.adresaDomiciliu;
