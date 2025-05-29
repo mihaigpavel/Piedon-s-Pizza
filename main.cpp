@@ -456,12 +456,12 @@ class DetectieRadar {
     const int pragDepasireVitezaRetinerePermis = 50;
 
     int calculeazaDepasireViteza() {
-        if (get_locatie_detectie() == "oras") {
-            return get_viteza_detectata() - get_viteza_max_legala_oras();
-        } else if (get_locatie_detectie() == "autostrada") {
-            return get_viteza_detectata() - get_viteza_max_legala_autostrada();
-        } else if (get_locatie_detectie() == "in afara localitatii") {
-            return get_viteza_detectata() - get_viteza_max_legala_dn();
+        if (locatieDetectie== "oras") {
+            return vitezaDetectata - vitezaMaxLegalaOras;
+        } else if (locatieDetectie== "autostrada") {
+            return vitezaDetectata - vitezaMaxLegalaAutostrada;
+        } else if (locatieDetectie== "in afara localitatii") {
+            return vitezaDetectata - vitezaMaxLegalaDn;
         }
         return 0;
     }
@@ -474,26 +474,6 @@ public:
           locatieDetectie(locatie_detectie) {
     }
 
-
-    [[nodiscard]] int get_viteza_detectata() const {
-        return vitezaDetectata;
-    }
-
-    [[nodiscard]] const std::string &get_locatie_detectie() const {
-        return locatieDetectie;
-    }
-
-    [[nodiscard]] int get_viteza_max_legala_oras() const {
-        return vitezaMaxLegalaOras;
-    }
-
-    [[nodiscard]] int get_viteza_max_legala_autostrada() const {
-        return vitezaMaxLegalaAutostrada;
-    }
-
-    [[nodiscard]] int get_viteza_max_legala_dn() const {
-        return vitezaMaxLegalaDn;
-    }
 
     friend std::ostream &operator<<(std::ostream &os, const DetectieRadar &p) {
         os << "Detectie Radar:\n";
@@ -524,20 +504,12 @@ public:
     }
 
 
-    [[nodiscard]] double get_alcolemie() const {
-        return alcolemie;
-    }
-
-    [[nodiscard]] double get_prag_dosar_penal_alcolemie() const {
-        return pragDosarPenalAlcolemie;
-    }
-
     bool esteDosarPenal() {
-        return alcolemie > get_prag_dosar_penal_alcolemie();
+        return alcolemie > pragDosarPenalAlcolemie;
     }
 
     bool esteCazDeAmenda() {
-        return alcolemie > 0.0 && get_alcolemie() <= get_prag_dosar_penal_alcolemie();
+        return alcolemie > 0.0 && alcolemie <=  pragDosarPenalAlcolemie;
     }
 
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcoolemie &p) {
@@ -567,12 +539,6 @@ public:
           talon(talon),
           masina(masina) {
     }
-
-
-    [[nodiscard]] const RezultatTestareAlcoolemie &get_alcolemie() const {
-        return alcolemie;
-    }
-
 
     bool esteRaspunsCorect(int raspuns) {
         if (detectieRadar.esteCazAmenda() && raspuns == 2) {
