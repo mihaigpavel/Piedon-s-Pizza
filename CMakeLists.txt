@@ -72,6 +72,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         RezultatTestareAlcoolemie.h
         AnalizaActe.cpp
         AnalizaActe.h
+        Joc.cpp
+        Joc.h
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
