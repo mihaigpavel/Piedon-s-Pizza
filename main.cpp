@@ -765,7 +765,7 @@ public:
 
 public:
     void start() {
-        AnalizaActe informatii[5] = {
+        std::array<AnalizaActe, 5> informatii = {
             construiesteInformatii1(),
             construiesteInformatii2(),
             construiesteInformatii3(),
@@ -792,14 +792,12 @@ public:
             } else {
                 std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
             }
-        }
+        }std::cout << "Joc terminat. Numar raspunsuri corecte:" << numarRaspunsuriCorecte << std::endl;
     }
 
-    // Destructor
-    ~Joc() {
-        std::cout << "Joc terminat. Numar raspunsuri corecte:" << numarRaspunsuriCorecte << std::endl;
-    }
+    ~Joc() = default;
 };
+
 
 int main() {
     Joc joc = Joc();
