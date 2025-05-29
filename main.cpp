@@ -395,6 +395,21 @@ public:
         return putere;
     }
 
+    friend bool operator==(const SpecificatiiAutovechivul &lhs, const SpecificatiiAutovechivul &rhs) {
+        return lhs.serieSasiu == rhs.serieSasiu
+               && lhs.numarInmatriculare == rhs.numarInmatriculare
+               && lhs.marca == rhs.marca
+               && lhs.model == rhs.model
+               && lhs.culoare == rhs.culoare
+               && lhs.tipAutovehicul == rhs.tipAutovehicul
+               && lhs.anFabricatie == rhs.anFabricatie
+               && lhs.capacitateCilindrica == rhs.capacitateCilindrica
+               && lhs.putere == rhs.putere;
+    }
+
+    friend bool operator!=(const SpecificatiiAutovechivul &lhs, const SpecificatiiAutovechivul &rhs) {
+        return !(lhs == rhs);
+    }
 
     friend std::ostream &operator<<(std::ostream &os, const SpecificatiiAutovechivul &p) {
         os << "Autovehicul oprit la control\n";
@@ -604,13 +619,7 @@ private:
     }
 
     bool coincideTalonCuMasina() {
-        if (masina.get_culoare() == talon.get_autovehicul().get_culoare() &&
-            masina.get_marca() == talon.get_autovehicul().get_marca() &&
-            masina.get_model() == talon.get_autovehicul().get_model() &&
-            masina.get_numar_inmatriculare() == talon.get_autovehicul().get_numar_inmatriculare()) {
-            return true;
-        }
-        return false;
+      return masina ==talon.get_autovehicul();
     }
 };
 
@@ -817,14 +826,14 @@ public:
                     std::cout << "Raspuns gresit!\n";
                 }
             } else {
-                std::cout << "Raspuns invalid!Trebuiau introduse una din cifrele 1,2,3,4,5\n";
+                std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
             }
         }
     }
 
     // Destructor
     ~Joc() {
-        std::cout << "Joc terminat.Numar raspunsuri corecte:" << numarRaspunsuriCorecte << std::endl;
+        std::cout << "Joc terminat. Numar raspunsuri corecte:" << numarRaspunsuriCorecte << std::endl;
     }
 };
 
