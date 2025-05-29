@@ -274,12 +274,22 @@ public:
         return persoana;
     }
     bool esteValidaDataNasterePermisVsCnp() {
-        const std::string cnp = persoana.get_cnp();
-        const std::string dataNastere = persoana.get_data_nastere();
-        const std::string anNastere = cnp.substr(1, 2);
-        const std::string lunaNastere = cnp.substr(3, 2);
-        const std::string ziNastere = cnp.substr(5, 2);
-        return dataNastere == ziNastere + "." + lunaNastere + "." + anNastere;
+        const std::string& cnp = persoana.get_cnp();
+        const std::string& dataNastere = persoana.get_data_nastere();
+        char sexSiSecol = cnp[0];
+        std::string an = cnp.substr(1, 2);
+        std::string luna = cnp.substr(3, 2);
+        std::string zi = cnp.substr(5, 2);
+        std::string secol;
+        switch (sexSiSecol) {
+            case '1': case '2': secol = "19"; break;  // 1900-1999
+            case '3': case '4': secol = "18"; break;  // 1800-1899
+            case '5': case '6': secol = "20"; break;  // 2000-2099
+            default: return false;  // Cod S invalid
+        }
+
+        std::string dataDinCnp = zi + "." + luna + "." + secol + an;
+        return dataDinCnp == dataNastere;
     }
 
 public:
@@ -548,7 +558,6 @@ public:
             return true;
         }
         if ((alcolemie.esteDosarPenal() ||
-             alcolemie.esteDosarPenal() ||
              !permis.esteValidaDataNasterePermisVsCnp() ||
              !suntDatelePersonaleIdentice() ||
              !esteCorespunzatorPermisulPentruAutoturism()) && raspuns == 4) {
@@ -558,7 +567,11 @@ public:
             && !detectieRadar.esteCazRetinerePermis()
             && !alcolemie.esteCazDeAmenda()
             && !alcolemie.esteDosarPenal()
-            && raspuns == 1) {
+            && permis.esteValidaDataNasterePermisVsCnp()
+            && suntDatelePersonaleIdentice()
+            && esteCorespunzatorPermisulPentruAutoturism()
+            && coincideTalonCuMasina() &&
+            raspuns == 1) {
             return true;
         }
         if (!coincideTalonCuMasina() && raspuns == 5) {
@@ -627,7 +640,7 @@ private:
         RezultatTestareAlcoolemie rez(persAlcoolTest, 0.0);
 
         // Carte de identitate
-        DatePersonale persCi("Ionescu", "Andrei", "1980901123456", "01.09.1980", 'M');
+        DatePersonale persCi("Ionescu", "Andrei", "1800901123456", "01.09.1980", 'M');
         Document docCi("15.03.2018", "15.03.2028", "SPCLEP Cluj", "CJ123456", "CJ");
         Adresa adresaNastere("CJ", "Cluj-Napoca");
         Adresa adresaCi("Cluj-Napoca", "CJ", "Cluj-Napoca", "Strada Unirii", "5", "A", "10");
@@ -661,7 +674,7 @@ private:
         DatePersonale persAlcoolTest("Georgescu", "Mihai");
         RezultatTestareAlcoolemie rez(persAlcoolTest, 1.21);
 
-        DatePersonale persCi("Georgescu", "Mihai", "1960523123456", "23.05.1960", 'M');
+        DatePersonale persCi("Georgescu", "Mihai", "1600523123456", "23.05.1960", 'M');
         Document docCi("01.01.2015", "01.01.2025", "SPCLEP Bucuresti", "B123456", "B");
         Adresa adresaNastere("B", "Bucuresti");
         Adresa adresaCi("Bucuresti", "B", "Sector 1", "Strada Aviatorilor", "12", "1", "5");
