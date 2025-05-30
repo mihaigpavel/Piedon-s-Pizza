@@ -1,0 +1,98 @@
+{
+  "joc": [
+    {
+      "detectieRadar": {
+        "numar_inmatriculare": "CJ01XYZ",
+        "viteza_detectata": 65,
+        "locatie_detectie": "oras"
+      },
+      "testareAlcoolemie": {
+        "nume": "Ionescu",
+        "prenume": "Andrei",
+        "alcoolemie": 0.0
+      },
+      "ci": {
+        "nume": "Ionescu",
+        "prenume": "Andrei",
+        "cnp": "1800901123456",
+        "dataNastere": "01.09.1980",
+        "sex": "M",
+        "data_eliberare": "15.03.2018",
+        "data_expirare": "15.03.2028",
+        "emitent": "SPCLEP Cluj",
+        "numar": "123456",
+        "serie": "CJ",
+        "adresa_nastere": {
+          "judetPrescurtat": "CJ",
+          "localitate": "Cluj-Napoca"
+        },
+        "adresa_domiciliu": {
+          "judet": "Cluj-Napoca",
+          "judetPrescurtat": "CJ",
+          "localitate": "Cluj-Napoca",
+          "strada": "Strada Unirii",
+          "numar": "5",
+          "bloc": "A",
+          "apartament": "10"
+        },
+        "cetatenia": "Romana / ROU"
+      },
+      "permis": {
+        "data_eliberare": "10.06.2017",
+        "data_expirare": "10.06.2027",
+        "emitent": "SRPCIV Cluj",
+        "categorie": "B",
+        "nume": "Ionescu",
+        "prenume": "Andrei",
+        "cnp": "1800901123456",
+        "dataNastere": "01.09.1980",
+        "sex": "M",
+        "judetPrescurtat": "CJ",
+        "localitate": "Cluj-Napoca"
+      },
+      "talon": {
+        "data_eliberare": "20.02.2019",
+        "data_expirare": "20.02.2029",
+        "emitent": "SRPCIV Cluj",
+        "numar": "CJ200123",
+        "data_expirare_itp": "",
+        "autovehicul": {
+          "serie_sasiu": "VF1BB15C524652158",
+          "numar_inmatriculare": "CJ01XYZ",
+          "marca": "Renault",
+          "model": "Clio",
+          "culoare": "Albastru",
+          "tip_autovehicul": "M1",
+          "an_fabricatie": 2017,
+          "capacitate_cilindrica": 1200,
+          "putere": 75
+        },
+        "nume": "Ionescu",
+        "prenume": "Andrei",
+        "cnp": "1800901123456",
+        "dataNastere": "01.09.1980",
+        "sex": "M",
+        "adresa_domiciliu": {
+          "judet": "Cluj-Napoca",
+          "judetPrescurtat": "CJ",
+          "localitate": "Cluj-Napoca",
+          "strada": "Strada Unirii",
+          "numar": "5",
+          "bloc": "A",
+          "apartament": "10"
+        }
+      },
+      "autPrezentFizic": {
+        "serie_sasiu": "VF1BB15C524652158",
+        "numar_inmatriculare": "CJ01XYZ",
+        "marca": "Renault",
+        "model": "Clio",
+        "culoare": "Albastru",
+        "tip_autovehicul": "M1",
+        "an_fabricatie": 2017,
+        "capacitate_cilindrica": 1200,
+        "putere": 75
+      }
+    }
+  ]
+}
