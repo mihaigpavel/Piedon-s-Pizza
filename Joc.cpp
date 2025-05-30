@@ -75,7 +75,7 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
 void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
     if (!informatii.empty()) {
-        for (AnalizaActe &a: informatii) {
+        for (AnalizaActe a: informatii) {
             std::cout << a << '\n';
             afiseazaRaspunsuriPosibile();
             std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
