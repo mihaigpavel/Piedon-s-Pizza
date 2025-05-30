@@ -8,6 +8,7 @@
 #include "Permis.h"
 #include "Talon.h"
 #include "SpecificatiiAutovehicul.h"
+#include "Joc.h"
 
 class AnalizaActe {
 private:

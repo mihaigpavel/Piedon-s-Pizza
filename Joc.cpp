@@ -2,6 +2,8 @@
 #include "json.hpp"
 #include <fstream>
 #include <vector>
+#include "AnalizaActe.h"
+
 using json = nlohmann::json;
 
 // Constructor
@@ -74,11 +76,6 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
 
 void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
-
-    if (informatii[1].esteCorectRaspunsul(2)) {
-        std:: cout << "Raspuns corect!\n";
-    }
-    /*if (!informatii.empty()) {
         for (int i = 0 ; i < 5; i++) {
             AnalizaActe aa = informatii[i];
             std::cout << aa << '\n';
@@ -91,16 +88,15 @@ void Joc::start() {
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
                 }
-                if (!aa.esteCorectRaspunsul(raspunsInt)) {
-                    std::cout << "Raspuns gresit!\n";
-                } else {
+                if (aa.esteCorectRaspunsul(raspunsInt)) {
                     std::cout << "Raspuns corect!\n";
                     numarRaspunsuriCorecte++;
+                } else {
+                  std::cout << "Raspuns gresit!\n";
                 }
             } else {
                 std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
             }
         }
         std::cout << "Joc terminat. Numar raspunsuri corecte: " << numarRaspunsuriCorecte << std::endl;
-    }*/
 }
