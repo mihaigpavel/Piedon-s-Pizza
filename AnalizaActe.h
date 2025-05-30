@@ -23,7 +23,7 @@ public:
                 const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
                 const SpecificatiiAutovehicul &masina);
 
-    bool esteRaspunsCorect(int raspuns);
+    bool esteCorectRaspunsul(int raspuns);
 
     friend std::ostream &operator<<(std::ostream &os, const AnalizaActe &p);
 

@@ -87,7 +87,7 @@ void Joc::start() {
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
                 }
-                if (!aa.esteRaspunsCorect(raspunsInt)) {
+                if (!aa.esteCorectRaspunsul(raspunsInt)) {
                     std::cout << "Raspuns gresit!\n";
                 } else {
                     std::cout << "Raspuns corect!\n";
