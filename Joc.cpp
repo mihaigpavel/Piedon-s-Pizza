@@ -64,6 +64,7 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
                                                         ap["culoare"], ap["tip_autovehicul"], ap["an_fabricatie"],
                                                         ap["capacitate_cilindrica"], ap["putere"]);
                 AnalizaActe aa(detectie, rez, cidoc, permis, talon, autPrezentFizic);
+                bool a_ = aa.esteRaspunsCorect(-1);
                 informatii.push_back(aa);
             }
         }
