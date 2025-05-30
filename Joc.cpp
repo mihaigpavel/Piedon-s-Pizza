@@ -72,11 +72,16 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
     return informatii;
 }
 
+/*bool Joc::esteRaspunsValid(int raspuns) {
+    return raspuns >= 1 && raspuns <= 5;
+}*/
+
 void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
     if (!informatii.empty()) {
         for (int i = 0 ; i < 5; i++) {
-            std::cout << informatii[i] << '\n';
+            AnalizaActe aa = informatii[i];
+            std::cout << aa << '\n';
             afiseazaRaspunsuriPosibile();
             std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
             std::string raspuns;
@@ -86,7 +91,7 @@ void Joc::start() {
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
                 }
-                if (informatii[i].esteRaspunsCorect(raspunsInt)) {
+                if (aa.esteRaspunsCorect(raspunsInt)) {
                     std::cout << "Raspuns corect!\n";
                     numarRaspunsuriCorecte++;
                 } else {

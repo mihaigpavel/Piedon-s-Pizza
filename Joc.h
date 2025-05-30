@@ -11,6 +11,7 @@ class Joc {
 
 private:
     void afiseazaRaspunsuriPosibile();
+    //bool Joc::esteRaspunsValid(int raspuns);
     std::vector<AnalizaActe> citesteInformatii();
 public:
     Joc();
