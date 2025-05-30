@@ -10,11 +10,11 @@ private:
     std::string prenume;
     std::string cnp;
     std::string dataNastere;
-    char sex = 'M';
+    std::string sex;
 
 public:
     DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
-                  const std::string &data_nastere, char sex);
+                  const std::string &data_nastere, const std::string &sex);
 
     DatePersonale(const std::string &nume, const std::string &prenume);
 
@@ -22,7 +22,7 @@ public:
     [[nodiscard]] const std::string &get_prenume() const;
     [[nodiscard]] const std::string &get_cnp() const;
     [[nodiscard]] const std::string &get_data_nastere() const;
-    [[nodiscard]] char get_sex() const;
+    [[nodiscard]] const std::string &get_sex() const;
 
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj);
 };

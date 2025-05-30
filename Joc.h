@@ -5,19 +5,13 @@
 #include <array>
 #include <string>
 #include "AnalizaActe.h"  // Include toate clasele folosite în construcțiile din construiesteInformatiiX
-
+#include <vector>
 class Joc {
     int numarRaspunsuriCorecte = 0;
 
 private:
     void afiseazaRaspunsuriPosibile();
-
-    AnalizaActe construiesteInformatii1();
-    AnalizaActe construiesteInformatii2();
-    AnalizaActe construiesteInformatii3();
-    AnalizaActe construiesteInformatii4();
-    AnalizaActe construiesteInformatii5();
-
+    std::vector<AnalizaActe> citesteInformatii();
 public:
     Joc();
 

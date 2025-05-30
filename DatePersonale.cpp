@@ -1,7 +1,7 @@
 #include "DatePersonale.h"
 
 DatePersonale::DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
-                             const std::string &data_nastere, char sex)
+                             const std::string &data_nastere,const std::string &sex)
     : nume(nume),
       prenume(prenume),
       cnp(cnp),
@@ -30,7 +30,7 @@ const std::string &DatePersonale::get_data_nastere() const {
     return dataNastere;
 }
 
-char DatePersonale::get_sex() const {
+const std::string &DatePersonale::get_sex() const {
     return sex;
 }
 
