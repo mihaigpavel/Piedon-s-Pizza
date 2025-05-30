@@ -7,16 +7,17 @@
 #include "DatePersonale.h"
 #include "Adresa.h"
 
-class CarteIdentitate {
+class CarteIdentitate : public Document {
 private:
-    Document document;
     DatePersonale datePersonale;
     Adresa adresaDomiciliu;
     Adresa adresaNastere;
     std::string cetatenia;
 
 public:
-    CarteIdentitate(const Document &document, const DatePersonale &persoana, const Adresa &adresa_domiciliu,
+    CarteIdentitate(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent,
+                    const std::string &numar, const std::string &serie,
+                    const DatePersonale &persoana, const Adresa &adresa_domiciliu,
                     const Adresa &adresa_nastere, const std::string &cetatenia);
 
     [[nodiscard]] const DatePersonale &get_datePersoanale() const;

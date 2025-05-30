@@ -1,8 +1,11 @@
 #include "CarteIdentitate.h"
 
-CarteIdentitate::CarteIdentitate(const Document &document, const DatePersonale &persoana, const Adresa &adresa_domiciliu,
+CarteIdentitate::CarteIdentitate(const std::string &data_eliberare, const std::string &data_expirare,
+                                 const std::string &emitent,
+                                 const std::string &numar, const std::string &serie,
+                                 const DatePersonale &persoana, const Adresa &adresa_domiciliu,
                                  const Adresa &adresa_nastere, const std::string &cetatenia)
-    : document(document),
+    : Document(data_eliberare, data_expirare, emitent, numar, serie),
       datePersonale(persoana),
       adresaDomiciliu(adresa_domiciliu),
       adresaNastere(adresa_nastere),
@@ -17,7 +20,7 @@ std::ostream &operator<<(std::ostream &os, const CarteIdentitate &p) {
     os << "CARTE DE IDENTITATE\n";
     os << "/////////////////////////////////////////////////////////////////\n";
     os << "ROUMANIE                     ROMANIA                     ROMANIA\n";
-    os << "SERIA " << p.document.get_serie() << "     NR " << p.document.get_numar() << '\n';
+    os << "SERIA " << p.get_serie() << "     NR " << p.get_numar() << '\n';
     os << "CNP " << p.datePersonale.get_cnp() << '\n';
     os << "Nume/Nom/Last name\n";
     os << p.datePersonale.get_nume() << '\n';
@@ -29,9 +32,9 @@ std::ostream &operator<<(std::ostream &os, const CarteIdentitate &p) {
     os << "Jud. " << p.adresaNastere.get_judet_prescurtat() << " Loc. " << p.adresaNastere.get_localitate() << '\n';
     os << "Domiciliu/Adresse/Address\n" << p.adresaDomiciliu;
     os << "Emis de/Delivre par/Issued by      Valabilitate/Validite/Validity\n";
-    os << p.document.get_emitent() << "                      "
-       << p.document.get_data_eliberare() << " - "
-       << p.document.get_data_expirare() << '\n';
+    os << p.get_emitent() << "                      "
+            << p.get_data_eliberare() << " - "
+            << p.get_data_expirare() << '\n';
     os << "/////////////////////////////////////////////////////////////////\n";
     return os;
 }
