@@ -64,7 +64,6 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
                                                         ap["culoare"], ap["tip_autovehicul"], ap["an_fabricatie"],
                                                         ap["capacitate_cilindrica"], ap["putere"]);
                 AnalizaActe aa(detectie, rez, cidoc, permis, talon, autPrezentFizic);
-                bool a_ = aa.esteRaspunsCorect(-1);
                 informatii.push_back(aa);
             }
         }
@@ -72,10 +71,6 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
     file.close();
     return informatii;
 }
-
-/*bool Joc::esteRaspunsValid(int raspuns) {
-    return raspuns >= 1 && raspuns <= 5;
-}*/
 
 void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
@@ -92,11 +87,11 @@ void Joc::start() {
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
                 }
-                if (aa.esteRaspunsCorect(raspunsInt)) {
+                if (!aa.esteRaspunsCorect(raspunsInt)) {
+                    std::cout << "Raspuns gresit!\n";
+                } else {
                     std::cout << "Raspuns corect!\n";
                     numarRaspunsuriCorecte++;
-                } else {
-                    std::cout << "Raspuns gresit!\n";
                 }
             } else {
                 std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
