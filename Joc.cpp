@@ -31,10 +31,10 @@ AnalizaActe Joc::construiesteInformatii1() {
     // Document docPermis("10.06.2017", "10.06.2027", "SRPCIV Cluj");
     Permis permis("10.06.2017", "10.06.2027", "SRPCIV Cluj", persCi, "B", adresaNastere);
 
-    Document docTalon("20.02.2019", "20.02.2029", "SPCLEP Cluj", "CJ200123");
+   // Document docTalon("20.02.2019", "20.02.2029", "SPCLEP Cluj", "CJ200123");
     SpecificatiiAutovehicul autTalon("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1", 2017,
                                      1200, 75);
-    Talon talon(docTalon, autTalon, persCi, adresaCi, "20.02.2029");
+    Talon talon("20.02.2019", "20.02.2029", "SPCLEP Cluj", "CJ200123", autTalon, persCi, adresaCi, "20.02.2029");
 
     SpecificatiiAutovehicul autPrezentFizic("VF1BB15C524652158", "CJ01XYZ", "Renault", "Clio", "Albastru", "M1",
                                             2017, 1200, 75);
@@ -59,10 +59,10 @@ AnalizaActe Joc::construiesteInformatii2() {
     //Document docPermis("10.10.2018", "10.10.2028", "SPCLEP Bucuresti");
     Permis permis("10.10.2018", "10.10.2028", "SPCLEP Bucuresti", persCi, "B", adresaNastere);
 
-    Document docTalon("15.07.2020", "15.07.2030", "SRPCIV Bucuresti", "B200345");
+   // Document docTalon("15.07.2020", "15.07.2030", "SRPCIV Bucuresti", "B200345");
     SpecificatiiAutovehicul autTalon("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016, 1400,
                                      105);
-    Talon talon(docTalon, autTalon, persCi, adresaCi, "15.07.2030");
+    Talon talon("15.07.2020", "15.07.2030", "SRPCIV Bucuresti", "B200345", autTalon, persCi, adresaCi, "15.07.2030");
 
     SpecificatiiAutovehicul autPrezentFizic("WVWZZZ1JZYW000002", "B456DEF", "Skoda", "Octavia", "Gri", "M1", 2016,
                                             1400, 105);
@@ -87,10 +87,10 @@ AnalizaActe Joc::construiesteInformatii3() {
     //Document docPermis("01.07.2019", "01.07.2029", "SRPCIV Ilfov");
     Permis permis("01.07.2019", "01.07.2029", "SRPCIV Ilfov", persCi, "B", adresaNastere);
 
-    Document docTalon("10.08.2021", "10.08.2031", "SRPCIV Ilfov", "IF876543");
+   // Document docTalon("10.08.2021", "10.08.2031", "SRPCIV Ilfov", "IF876543");
     SpecificatiiAutovehicul autTalon("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Negru", "M1", 2020, 1199,
                                      100);
-    Talon talon(docTalon, autTalon, persCi, adresaCi, "10.08.2031");
+    Talon talon("10.08.2021", "10.08.2031", "SRPCIV Ilfov", "IF876543", autTalon, persCi, adresaCi, "10.08.2031");
 
     SpecificatiiAutovehicul autPrezentFizic("VF7ABC9HZBJ620123", "IF88MNO", "Peugeot", "208", "Roz", "M1", 2020,
                                             1199, 100);
@@ -115,10 +115,10 @@ AnalizaActe Joc::construiesteInformatii4() {
     // Document docPermis("15.06.2020", "15.06.2030", "SRPCIV Cluj");
     Permis permis("15.06.2020", "15.06.2030", "SRPCIV Cluj", persCi, "B", adresaNastere);
 
-    Document docTalon("05.05.2021", "05.05.2031", "SRPCIV Cluj", "CJ456789");
+    //Document docTalon("05.05.2021", "05.05.2031", "SRPCIV Cluj", "CJ456789");
     SpecificatiiAutovehicul autTalon("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015, 1242,
                                      70);
-    Talon talon(docTalon, autTalon, persCi, adresaCi, "05.05.2031");
+    Talon talon("05.05.2021", "05.05.2031", "SRPCIV Cluj", "CJ456789", autTalon, persCi, adresaCi, "05.05.2031");
 
     SpecificatiiAutovehicul autPrezentFizic("ZFA19900000512345", "CJ22ZZZ", "Fiat", "Punto", "Rosu", "M1", 2015,
                                             1242, 70);
@@ -144,10 +144,10 @@ AnalizaActe Joc::construiesteInformatii5() {
     // Document docPermis("01.01.2017", "01.01.2027", "SRPCIV Timis");
     Permis permis("01.01.2017", "01.01.2027", "SRPCIV Timis", persPermis, "B", adresaNastere);
 
-    Document docTalon("12.12.2018", "12.12.2028", "SRPCIV Timis", "TM321654");
+    //Document docTalon("12.12.2018", "12.12.2028", "SRPCIV Timis", "TM321654");
     SpecificatiiAutovehicul autTalon("WAUZZZ8V7KA123456", "TM10VPT", "Audi", "A3", "Negru", "M1", 2018, 1600,
                                      150);
-    Talon talon(docTalon, autTalon, persCi, adresaCi, "12.12.2028");
+    Talon talon("12.12.2018", "12.12.2028", "SRPCIV Timis", "TM321654", autTalon, persCi, adresaCi, "12.12.2028");
 
     SpecificatiiAutovehicul autPrezentFizic("WAUZZZ8V7KA123456", "TM10VPT", "Audi", "A3", "Negru", "M1", 2018,
                                             1600, 150);

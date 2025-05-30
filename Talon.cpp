@@ -1,8 +1,9 @@
 #include "Talon.h"
 
-Talon::Talon(const Document &document, const SpecificatiiAutovehicul &autovehicul, const DatePersonale &proprietar,
+Talon::Talon(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent,
+             const std::string &numar, const SpecificatiiAutovehicul &autovehicul, const DatePersonale &proprietar,
              const Adresa &adresa_proprietar, const std::string &data_expirare_itp)
-    : document(document),
+    : Document(data_eliberare, data_expirare, emitent, numar),
       autovehicul(autovehicul),
       proprietar(proprietar),
       adresaProprietar(adresa_proprietar),
