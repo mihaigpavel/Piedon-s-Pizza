@@ -7,15 +7,14 @@
 #include "DatePersonale.h"
 #include "Adresa.h"
 
-class Permis {
+class Permis  : public Document{
 private:
-    Document document;
     DatePersonale persoana;
     std::string categorie;
     Adresa adresaNastere;
 
 public:
-    Permis(const Document &document, const DatePersonale &persoana, const std::string &categorie,
+    Permis(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent, const DatePersonale &persoana, const std::string &categorie,
            const Adresa &adresa_nastere);
 
     [[nodiscard]] const DatePersonale &get_persoana() const;

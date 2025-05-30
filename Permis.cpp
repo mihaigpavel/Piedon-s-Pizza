@@ -1,8 +1,8 @@
 #include "Permis.h"
 
-Permis::Permis(const Document &document, const DatePersonale &persoana, const std::string &categorie,
+Permis::Permis(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent, const DatePersonale &persoana, const std::string &categorie,
                const Adresa &adresa_nastere)
-    : document(document),
+    :Document(data_eliberare, data_expirare,emitent),
       persoana(persoana),
       categorie(categorie),
       adresaNastere(adresa_nastere) {
@@ -57,7 +57,7 @@ std::ostream &operator<<(std::ostream &os, const Permis &p) {
     os << "//////////////////////////////////////////////\n";
     os << p.persoana << "Locul nasteri: " << p.adresaNastere.get_localitate() << ' ' << p.adresaNastere.get_judet_prescurtat() << "\n";
     os << "Categorie: " << p.categorie << '\n';
-    os << p.document;
+    os << static_cast<const Document &>(p);
     os << "//////////////////////////////////////////////\n";
     return os;
 }
