@@ -74,7 +74,11 @@ std::vector<AnalizaActe> Joc::citesteInformatii() {
 
 void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
-    if (!informatii.empty()) {
+
+    if (informatii[1].esteCorectRaspunsul(2)) {
+        std:: cout << "Raspuns corect!\n";
+    }
+    /*if (!informatii.empty()) {
         for (int i = 0 ; i < 5; i++) {
             AnalizaActe aa = informatii[i];
             std::cout << aa << '\n';
@@ -98,5 +102,5 @@ void Joc::start() {
             }
         }
         std::cout << "Joc terminat. Numar raspunsuri corecte: " << numarRaspunsuriCorecte << std::endl;
-    }
+    }*/
 }
