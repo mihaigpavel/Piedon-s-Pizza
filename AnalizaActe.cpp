@@ -11,7 +11,7 @@ AnalizaActe::AnalizaActe(const DetectieRadar &detectie_radar, const RezultatTest
       masina(masina) {
 }
 
-bool AnalizaActe::esteCorectRaspunsul(int raspuns) {
+bool AnalizaActe::esteRaspunsCorect(int raspuns) {
     if (!detectieRadar.esteCazAmenda()
      && !detectieRadar.esteCazRetinerePermis()
      && !alcolemie.esteCazDeAmenda()

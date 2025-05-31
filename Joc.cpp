@@ -2,7 +2,6 @@
 #include "json.hpp"
 #include <fstream>
 #include <vector>
-
 using json = nlohmann::json;
 
 // Constructor
@@ -19,7 +18,7 @@ void Joc::afiseazaRaspunsuriPosibile() {
     std::cout << "5. Retinere Certificat de inmatriculare + amenda\n";
 }
 
-std::array<AnalizaActe,5> Joc::citesteInformatii() {
+std::vector<AnalizaActe> Joc::citesteInformatii() {
     std::vector<AnalizaActe> informatii;
     std::fstream file;
     file.open("../data.json", std::ios::in);
@@ -70,14 +69,14 @@ std::array<AnalizaActe,5> Joc::citesteInformatii() {
         }
     }
     file.close();
-    return {informatii[0], informatii[1], informatii[2], informatii[3], informatii[4]};
+    return informatii;
 }
 
 void Joc::start() {
-    std::array<AnalizaActe,5> informatii = citesteInformatii();
-        for (int i = 0 ; i < 5; i++) {
-
-            std::cout << informatii[i] << '\n';
+    std::vector<AnalizaActe> informatii = citesteInformatii();
+    if (!informatii.empty()) {
+        for (AnalizaActe &a: informatii) {
+            std::cout << a << '\n';
             afiseazaRaspunsuriPosibile();
             std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
             std::string raspuns;
@@ -87,15 +86,16 @@ void Joc::start() {
                 for (int _ = 0; _ <= 100; _++) {
                     std::cout << '\n';
                 }
-                if (informatii[i].esteCorectRaspunsul(raspunsInt)) {
+                if (a.esteRaspunsCorect(raspunsInt)) {
                     std::cout << "Raspuns corect!\n";
                     numarRaspunsuriCorecte++;
                 } else {
-                  std::cout << "Raspuns gresit!\n";
+                    std::cout << "Raspuns gresit!\n";
                 }
             } else {
                 std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
             }
         }
         std::cout << "Joc terminat. Numar raspunsuri corecte: " << numarRaspunsuriCorecte << std::endl;
+    }
 }

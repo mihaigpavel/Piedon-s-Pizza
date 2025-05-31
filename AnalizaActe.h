@@ -8,6 +8,7 @@
 #include "Permis.h"
 #include "Talon.h"
 #include "SpecificatiiAutovehicul.h"
+
 class AnalizaActe {
 private:
     DetectieRadar detectieRadar;
@@ -22,7 +23,7 @@ public:
                 const CarteIdentitate &buletin, const Permis &permis, const Talon &talon,
                 const SpecificatiiAutovehicul &masina);
 
-    bool esteCorectRaspunsul(int raspuns);
+    bool esteRaspunsCorect(int raspuns);
 
     friend std::ostream &operator<<(std::ostream &os, const AnalizaActe &p);
 
