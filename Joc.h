@@ -11,7 +11,7 @@ class Joc {
 
 private:
     void afiseazaRaspunsuriPosibile();
-    std::vector<AnalizaActe> citesteInformatii();
+    std::array<AnalizaActe,5> citesteInformatii();
 public:
     Joc();
 
