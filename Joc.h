@@ -12,6 +12,7 @@ class Joc {
 private:
     void afiseazaRaspunsuriPosibile();
     std::vector<AnalizaActe> citesteInformatii();
+    void esteRaspunsValid(std::pmr::string);
 public:
     Joc();
 

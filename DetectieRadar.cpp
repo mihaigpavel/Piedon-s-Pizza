@@ -5,6 +5,7 @@ DetectieRadar::DetectieRadar(const SpecificatiiAutovehicul &autovehicul, int vit
     : autovehicul(autovehicul),
       vitezaDetectata(viteza_detectata),
       locatieDetectie(locatie_detectie) {
+    SpecificatiiAutovehicul::estePozitiv(vitezaDetectata);
 }
 
 int DetectieRadar::calculeazaDepasireViteza() {

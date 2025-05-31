@@ -2,7 +2,7 @@
 
 #include "NuEstePozitivEroare.h"
 
-void estePozitiv(int valoare) {
+void SpecificatiiAutovehicul::estePozitiv(int valoare) {
     if (valoare < 0) {
         throw NuEstePozitivEroare("Valoarea primita: " + std::to_string(valoare));
     }
@@ -21,7 +21,8 @@ SpecificatiiAutovehicul::SpecificatiiAutovehicul(const std::string &serie_sasiu,
       anFabricatie(an_fabricatie),
       capacitateCilindrica(capacitate_cilindrica),
       putere(putere) {
-      //estePozitiv(putere);
+      estePozitiv(putere);
+    estePozitiv(an_fabricatie);
 }
 
 

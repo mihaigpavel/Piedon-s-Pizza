@@ -11,23 +11,19 @@
 #include "DetectieRadar.h"
 #include "Document.h"
 #include "Joc.h"
+#include "JocEroare.h"
 #include "Permis.h"
 #include "RezultatTestareAlcoolemie.h"
 #include "SpecificatiiAutovehicul.h"
 #include "Talon.h"
-
-
-
-
-
-
-
-
-
-
-
 int main() {
-    Joc joc = Joc();
-    joc.start();
-    return 0;
+
+
+    try {
+        Joc joc = Joc();
+        joc.start();
+        return 0;
+     } catch (const JocEroare& e) {
+         std::cerr << "Eroare: " << e.what() << std::endl;
+     }
 }

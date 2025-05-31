@@ -2,6 +2,8 @@
 #include "ext/include/json/json.hpp"
 #include <fstream>
 #include <vector>
+
+#include "JocEroare.h"
 using json = nlohmann::json;
 
 // Constructor
@@ -17,7 +19,11 @@ void Joc::afiseazaRaspunsuriPosibile() {
     std::cout << "4. Retinere permis +dosar penal\n";
     std::cout << "5. Retinere Certificat de inmatriculare + amenda\n";
 }
-
+void Joc::esteRaspunsValid(std::pmr::string raspuns) {
+    if ( !(raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4" || raspuns == "5")) {
+        throw JocEroare("Raspunsul trebuie sa fie intre 1 si 5.");
+    }
+}
 std::vector<AnalizaActe> Joc::citesteInformatii() {
     std::vector<AnalizaActe> informatii;
     std::fstream file;
