@@ -5,4 +5,4 @@
 #include "NuEsteValidRaspunsul.h"
 
 NuEsteValidRaspunsul::NuEsteValidRaspunsul(const std::string& mesaj)
-    : JocEroare("Nu este un răspuns valid: " + mesaj) {}
+    : JocEroare("Nu este un raspuns valid:" + mesaj) {}

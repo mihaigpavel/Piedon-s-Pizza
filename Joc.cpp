@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "JocEroare.h"
+#include "NuEsteValidRaspunsul.h"
 using json = nlohmann::json;
 
 // Constructor
@@ -19,9 +20,9 @@ void Joc::afiseazaRaspunsuriPosibile() {
     std::cout << "4. Retinere permis +dosar penal\n";
     std::cout << "5. Retinere Certificat de inmatriculare + amenda\n";
 }
-void Joc::esteRaspunsValid(std::pmr::string raspuns) {
+void Joc::esteRaspunsValid(std::string raspuns) {
     if ( !(raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4" || raspuns == "5")) {
-        throw JocEroare("Raspunsul trebuie sa fie intre 1 si 5.");
+        throw NuEsteValidRaspunsul("Raspunsul trebuie sa fie intre 1 si 5. Raspuns nou: \n");
     }
 }
 std::vector<AnalizaActe> Joc::citesteInformatii() {
@@ -82,25 +83,34 @@ void Joc::start() {
     std::vector<AnalizaActe> informatii = citesteInformatii();
     if (!informatii.empty()) {
         for (AnalizaActe &a: informatii) {
+            std::string raspuns;
             std::cout << a << '\n';
             afiseazaRaspunsuriPosibile();
-            std::cout << "Introduceti cifra corespunzatoare raspunsului corect: ";
-            std::string raspuns;
-            std::cin >> raspuns;
-            if (raspuns == "1" || raspuns == "2" || raspuns == "3" || raspuns == "4" || raspuns == "5") {
-                int raspunsInt = std::stoi(raspuns);
-                for (int _ = 0; _ <= 100; _++) {
-                    std::cout << '\n';
+            int z = 1;
+            std::cout << "Introduceti cifra corespunzatoare raspunsului corect:";
+            while (z==1) {
+                try {
+
+                    std::cin >> raspuns;
+                    esteRaspunsValid(std::string(raspuns));
+                    z = 0;
+
+                } catch (const JocEroare& e) {
+                    std::cerr << "Eroare: " << e.what()<<'\n';
                 }
-                if (a.esteRaspunsCorect(raspunsInt)) {
-                    std::cout << "Raspuns corect!\n";
-                    numarRaspunsuriCorecte++;
-                } else {
-                    std::cout << "Raspuns gresit!\n";
-                }
-            } else {
-                std::cout << "Raspuns invalid! Trebuiau introduse una din cifrele 1, 2, 3, 4, 5\n";
             }
+
+            int raspunsInt = std::stoi(raspuns);
+            for (int _ = 0; _ <= 100; _++) {
+                std::cout << '\n';
+            }
+            if (a.esteRaspunsCorect(raspunsInt)) {
+                std::cout << "Raspuns corect!\n";
+                numarRaspunsuriCorecte++;
+            } else {
+                std::cout << "Raspuns gresit!\n";
+            }
+
         }
         std::cout << "Joc terminat. Numar raspunsuri corecte: " << numarRaspunsuriCorecte << std::endl;
     }
