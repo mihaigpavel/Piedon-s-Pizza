@@ -7,7 +7,7 @@
 #include <string>
 #include <ctime>
 #include <chrono>
-
+#include <iomanip>
 #include "NuEsteInTrecutEroare.h"
 
 void SpecificatiiAutovehicul::estePozitiv(int valoare) {
