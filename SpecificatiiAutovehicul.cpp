@@ -2,9 +2,42 @@
 
 #include "NuEstePozitivEroare.h"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <ctime>
+#include <chrono>
+
+#include "NuEsteInTrecutEroare.h"
+
 void SpecificatiiAutovehicul::estePozitiv(int valoare) {
     if (valoare < 0) {
         throw NuEstePozitivEroare("Valoarea primita: " + std::to_string(valoare));
+    }
+}
+void SpecificatiiAutovehicul::esteInTrecut(std::string data) {
+    // Parsează data din string
+    std::tm tm = {};
+    std::istringstream ss(data);
+    ss >> std::get_time(&tm, "%d.%m.%Y");
+    if (ss.fail()) {
+        std::cout << "Format de data invalid.\n";
+        return;
+    }
+
+    // Convertește data în timp calendaristic (time_t)
+    std::time_t input_time = std::mktime(&tm);
+
+    // Obține data curentă
+    auto now = std::chrono::system_clock::now();
+    std::time_t current_time = std::chrono::system_clock::to_time_t(now);
+
+    // Compară datele
+    if (difftime(input_time, current_time) < 0) {
+       // std::cout << "Data este in trecut.\n";
+    } else {
+       // std::cout << "Data NU este in trecut.\n";
+        throw NuEsteInTrecutEroare( data);
     }
 }
 

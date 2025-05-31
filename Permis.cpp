@@ -1,11 +1,14 @@
 #include "Permis.h"
 
+#include "SpecificatiiAutovehicul.h"
+
 Permis::Permis(const std::string &data_eliberare, const std::string &data_expirare, const std::string &emitent, const DatePersonale &persoana, const std::string &categorie,
                const Adresa &adresa_nastere)
     :Document(data_eliberare, data_expirare,emitent),
       persoana(persoana),
       categorie(categorie),
       adresaNastere(adresa_nastere) {
+    SpecificatiiAutovehicul::esteInTrecut(data_eliberare);
 }
 
 const DatePersonale &Permis::get_persoana() const {

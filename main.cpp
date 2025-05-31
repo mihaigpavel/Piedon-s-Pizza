@@ -18,7 +18,6 @@
 #include "Talon.h"
 int main() {
 
-
     try {
         Joc joc = Joc();
         joc.start();

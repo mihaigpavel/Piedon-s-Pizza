@@ -1,5 +1,7 @@
 #include "CarteIdentitate.h"
 
+#include "SpecificatiiAutovehicul.h"
+
 CarteIdentitate::CarteIdentitate(const std::string &data_eliberare, const std::string &data_expirare,
                                  const std::string &emitent,
                                  const std::string &numar, const std::string &serie,
@@ -10,6 +12,7 @@ CarteIdentitate::CarteIdentitate(const std::string &data_eliberare, const std::s
       adresaDomiciliu(adresa_domiciliu),
       adresaNastere(adresa_nastere),
       cetatenia(cetatenia) {
+    SpecificatiiAutovehicul::esteInTrecut(data_eliberare);
 }
 
 const DatePersonale &CarteIdentitate::get_datePersoanale() const {

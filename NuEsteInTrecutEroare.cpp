@@ -1,4 +1,4 @@
 #include "NuEsteInTrecutEroare.h"
  
 NuEsteInTrecutEroare::NuEsteInTrecutEroare(const std::string& mesaj)
-    : JocEroare("Nu este în trecut: " + mesaj) {}
+    : JocEroare("Data nu este in trecut: " + mesaj) {}

@@ -24,6 +24,7 @@ public:
 
     explicit SpecificatiiAutovehicul(const std::string &numar_inmatriculare);
     static void estePozitiv(int valoare);
+    static void esteInTrecut(std::string valoare);
     [[nodiscard]] const std::string &get_numar_inmatriculare() const;
     [[nodiscard]] const std::string &get_tip_autovehicul() const;
 

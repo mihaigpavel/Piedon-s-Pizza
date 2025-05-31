@@ -1,5 +1,7 @@
 #include "DatePersonale.h"
 
+#include "SpecificatiiAutovehicul.h"
+
 DatePersonale::DatePersonale(const std::string &nume, const std::string &prenume, const std::string &cnp,
                              const std::string &data_nastere,const std::string &sex)
     : nume(nume),
@@ -7,6 +9,7 @@ DatePersonale::DatePersonale(const std::string &nume, const std::string &prenume
       cnp(cnp),
       dataNastere(data_nastere),
       sex(sex) {
+    SpecificatiiAutovehicul::esteInTrecut(data_nastere);
 }
 
 DatePersonale::DatePersonale(const std::string &nume, const std::string &prenume)
