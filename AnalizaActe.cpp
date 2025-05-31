@@ -10,7 +10,7 @@ AnalizaActe::AnalizaActe(const DetectieRadar &detectie_radar, const RezultatTest
       talon(talon),
       masina(masina) {
 }
-
+// cppcheck-suppress unusedFunction
 bool AnalizaActe::esteRaspunsCorect(int raspuns) {
     if (!detectieRadar.esteCazAmenda()
      && !detectieRadar.esteCazRetinerePermis()
