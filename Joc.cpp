@@ -1,5 +1,5 @@
 #include "Joc.h"
-#include "json.hpp"
+#include "ext/include/json/json.hpp"
 #include <fstream>
 #include <vector>
 using json = nlohmann::json;

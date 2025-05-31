@@ -1,5 +1,13 @@
 #include "SpecificatiiAutovehicul.h"
 
+#include "NuEstePozitivEroare.h"
+
+void estePozitiv(int valoare) {
+    if (valoare < 0) {
+        throw NuEstePozitivEroare("Valoarea primita: " + std::to_string(valoare));
+    }
+}
+
 SpecificatiiAutovehicul::SpecificatiiAutovehicul(const std::string &serie_sasiu, const std::string &numar_inmatriculare,
                                                  const std::string &marca,
                                                  const std::string &model, const std::string &culoare, const std::string &tip_autovehicul,
@@ -13,7 +21,9 @@ SpecificatiiAutovehicul::SpecificatiiAutovehicul(const std::string &serie_sasiu,
       anFabricatie(an_fabricatie),
       capacitateCilindrica(capacitate_cilindrica),
       putere(putere) {
+      //estePozitiv(putere);
 }
+
 
 SpecificatiiAutovehicul::SpecificatiiAutovehicul(const std::string &numar_inmatriculare)
     : numarInmatriculare(numar_inmatriculare) {

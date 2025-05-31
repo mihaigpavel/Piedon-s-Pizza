@@ -23,7 +23,7 @@ public:
                              unsigned int an_fabricatie, unsigned int capacitate_cilindrica, unsigned int putere);
 
     explicit SpecificatiiAutovehicul(const std::string &numar_inmatriculare);
-
+    static void estePozitiv(int valoare);
     [[nodiscard]] const std::string &get_numar_inmatriculare() const;
     [[nodiscard]] const std::string &get_tip_autovehicul() const;
 
