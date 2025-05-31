@@ -20,10 +20,6 @@ void SpecificatiiAutovehicul::esteInTrecut(std::string data) {
     std::tm tm = {};
     std::istringstream ss(data);
     ss >> std::get_time(&tm, "%d.%m.%Y");
-    if (ss.fail()) {
-        std::cout << "Format de data invalid.\n";
-        return;
-    }
 
     // Convertește data în timp calendaristic (time_t)
     std::time_t input_time = std::mktime(&tm);
