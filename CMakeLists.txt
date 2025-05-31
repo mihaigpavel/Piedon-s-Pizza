@@ -74,6 +74,14 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         AnalizaActe.h
         Joc.cpp
         Joc.h
+        JocEroare.cpp
+        JocEroare.h
+        NuEstePozitivEroare.cpp
+        NuEstePozitivEroare.h
+        NuEsteInTrecutEroare.cpp
+        NuEsteInTrecutEroare.h
+        NuEsteValidRaspunsul.cpp
+        NuEsteValidRaspunsul.h
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
