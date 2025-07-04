@@ -4,17 +4,23 @@
 #include <iostream>
 #include <array>
 #include <string>
-#include "AnalizaActe.h"  // Include toate clasele folosite în construcțiile din construiesteInformatiiX
 #include <vector>
+#include "AnalizaActe.h"
+
 class Joc {
     int numarRaspunsuriCorecte = 0;
+
+    Joc();
+    Joc(const Joc&) = delete;
+    Joc& operator=(const Joc&) = delete;
 
 private:
     void afiseazaRaspunsuriPosibile();
     std::vector<AnalizaActe> citesteInformatii();
     void esteRaspunsValid(std::string);
+
 public:
-    Joc();
+    static Joc& getInstance();
 
     void start();
 

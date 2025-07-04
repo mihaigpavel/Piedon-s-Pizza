@@ -11,7 +11,10 @@ using json = nlohmann::json;
 Joc::Joc() {
     std::cout << "Jocul a inceput!\n";
 }
-
+Joc& Joc::getInstance() {
+    static Joc instance;
+    return instance;
+}
 void Joc::afiseazaRaspunsuriPosibile() {
     std::cout << "Raspunsuri posibile:\n";
     std::cout << "1. Fara sanctiune\n";

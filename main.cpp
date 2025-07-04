@@ -19,7 +19,7 @@
 int main() {
 
     try {
-        Joc joc = Joc();
+        Joc& joc = Joc::getInstance();
         joc.start();
         return 0;
      } catch (const JocEroare& e) {
