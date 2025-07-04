@@ -4,11 +4,11 @@ RezultatTestareAlcoolemie::RezultatTestareAlcoolemie(const DatePersonale &sofer,
     : sofer(sofer), alcolemie(alcolemie) {
 }
 
-bool RezultatTestareAlcoolemie::esteDosarPenal() {
+bool RezultatTestareAlcoolemie::esteDosarPenal() const{
     return alcolemie > pragDosarPenalAlcolemie;
 }
 
-bool RezultatTestareAlcoolemie::esteCazDeAmenda() {
+bool RezultatTestareAlcoolemie::esteCazDeAmenda() const{
     return alcolemie > 0.0 && alcolemie <= pragDosarPenalAlcolemie;
 }
 

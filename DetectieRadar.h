@@ -15,14 +15,14 @@ private:
     const int vitezaMaxLegalaDn = 90;
     const int pragDepasireVitezaRetinerePermis = 50;
 
-    int calculeazaDepasireViteza();
+    int calculeazaDepasireViteza() const;
 
 public:
     DetectieRadar(const SpecificatiiAutovehicul &autovehicul, int viteza_detectata,
                   const std::string &locatie_detectie);
 
-    bool esteCazRetinerePermis();
-    bool esteCazAmenda();
+    bool esteCazRetinerePermis() const;
+    bool esteCazAmenda()const;
 
     friend std::ostream &operator<<(std::ostream &os, const DetectieRadar &p);
 };

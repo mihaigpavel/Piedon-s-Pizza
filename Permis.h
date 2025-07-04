@@ -19,9 +19,9 @@ public:
 
     [[nodiscard]] const DatePersonale &get_persoana() const;
 
-    bool esteValidaDataNasterePermisVsCnp();
+    bool esteValidaDataNasterePermisVsCnp()const ;
 
-    bool categorieValida(const std::string &tipAuto);
+    bool categorieValida(const std::string &tipAuto) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Permis &p);
 };

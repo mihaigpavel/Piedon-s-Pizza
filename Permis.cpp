@@ -15,7 +15,7 @@ const DatePersonale &Permis::get_persoana() const {
     return persoana;
 }
 
-bool Permis::esteValidaDataNasterePermisVsCnp() {
+bool Permis::esteValidaDataNasterePermisVsCnp() const {
     const std::string& cnp = persoana.get_cnp();
     const std::string& dataNastere = persoana.get_data_nastere();
 
@@ -38,7 +38,7 @@ bool Permis::esteValidaDataNasterePermisVsCnp() {
     return dataDinCnp == dataNastere;
 }
 
-bool Permis::categorieValida(const std::string &tipAuto) {
+bool Permis::categorieValida(const std::string &tipAuto) const{
     const std::string tipB = "M1N1O1O2";
     const std::string tipC = "N2N3O3O4";
     const std::string tipD = "M2M3";

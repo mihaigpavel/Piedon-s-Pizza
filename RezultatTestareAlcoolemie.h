@@ -13,8 +13,8 @@ private:
 public:
     RezultatTestareAlcoolemie(const DatePersonale &sofer, double alcolemie);
 
-    bool esteDosarPenal();
-    bool esteCazDeAmenda();
+    bool esteDosarPenal() const;
+    bool esteCazDeAmenda() const;
 
     friend std::ostream &operator<<(std::ostream &os, const RezultatTestareAlcoolemie &p);
 };

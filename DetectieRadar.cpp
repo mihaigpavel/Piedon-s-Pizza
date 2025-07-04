@@ -8,7 +8,7 @@ DetectieRadar::DetectieRadar(const SpecificatiiAutovehicul &autovehicul, int vit
     SpecificatiiAutovehicul::estePozitiv(vitezaDetectata);
 }
 
-int DetectieRadar::calculeazaDepasireViteza() {
+int DetectieRadar::calculeazaDepasireViteza() const{
     if (locatieDetectie == "oras") {
         return vitezaDetectata - vitezaMaxLegalaOras;
     } else if (locatieDetectie == "autostrada") {
@@ -19,11 +19,11 @@ int DetectieRadar::calculeazaDepasireViteza() {
     return 0;
 }
 
-bool DetectieRadar::esteCazRetinerePermis() {
+bool DetectieRadar::esteCazRetinerePermis() const{
     return calculeazaDepasireViteza() > pragDepasireVitezaRetinerePermis;
 }
 
-bool DetectieRadar::esteCazAmenda() {
+bool DetectieRadar::esteCazAmenda() const{
     int depasire = calculeazaDepasireViteza();
     return depasire > 0 && depasire <= pragDepasireVitezaRetinerePermis;
 }

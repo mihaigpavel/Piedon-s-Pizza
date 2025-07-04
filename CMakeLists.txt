@@ -82,6 +82,18 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         NuEsteInTrecutEroare.h
         NuEsteValidRaspunsul.cpp
         NuEsteValidRaspunsul.h
+        Validare.cpp
+        Validare.h
+        ValidareOk.cpp
+        ValidareOk.h
+        ValidareAmenda.cpp
+        ValidareAmenda.h
+        ValidareRetinerePermis.cpp
+        ValidareRetinerePermis.h
+        ValidareDosarPenal.cpp
+        ValidareDosarPenal.h
+        ValidareRetinereTalon.cpp
+        ValidareRetinereTalon.h
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
