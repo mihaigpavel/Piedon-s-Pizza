@@ -6,6 +6,3 @@ bool ValidareRetinerePermis::verifica(const DetectieRadar& radar, const Rezultat
     return radar.esteCazRetinerePermis() || alcoolemie.esteCazDeAmenda();
 }
 
-std::shared_ptr<Validare> ValidareRetinerePermis::clone() const {
-    return std::make_shared<ValidareRetinerePermis>(*this);
-}

@@ -16,5 +16,5 @@ public:
                           const CarteIdentitate&, const Permis&,
                           const Talon&, const SpecificatiiAutovehicul&) const = 0;
 
-    virtual std::shared_ptr<Validare> clone() const = 0;
+
 };

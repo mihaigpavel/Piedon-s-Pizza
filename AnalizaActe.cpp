@@ -17,7 +17,7 @@ AnalizaActe::AnalizaActe(const DetectieRadar &detectie_radar, const RezultatTest
       permis(permis),
       talon(talon),
       masina(masina) {}
-
+// cppcheck-suppress unusedFunction
 bool AnalizaActe::esteRaspunsCorect(int raspuns) {
     std::shared_ptr<Validare> validare;
 

@@ -9,6 +9,5 @@ bool ValidareDosarPenal::verifica(const DetectieRadar&, const RezultatTestareAlc
            || !permis.categorieValida(talon.get_autovehicul().get_tip_autovehicul());
 }
 
-std::shared_ptr<Validare> ValidareDosarPenal::clone() const {
-    return std::make_shared<ValidareDosarPenal>(*this);
-}
+
+

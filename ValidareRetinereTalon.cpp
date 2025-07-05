@@ -6,6 +6,4 @@ bool ValidareRetinereTalon::verifica(const DetectieRadar&, const RezultatTestare
     return !(masina == talon.get_autovehicul());
 }
 
-std::shared_ptr<Validare> ValidareRetinereTalon::clone() const {
-    return std::make_shared<ValidareRetinereTalon>(*this);
-}
+

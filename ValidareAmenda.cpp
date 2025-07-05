@@ -6,6 +6,4 @@ bool ValidareAmenda::verifica(const DetectieRadar& radar, const RezultatTestareA
     return radar.esteCazAmenda();
 }
 
-std::shared_ptr<Validare> ValidareAmenda::clone() const {
-    return std::make_shared<ValidareAmenda>(*this);
-}
+

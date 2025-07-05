@@ -13,6 +13,3 @@ bool ValidareOk::verifica(const DetectieRadar& radar, const RezultatTestareAlcoo
         && masina == talon.get_autovehicul();
 }
 
-std::shared_ptr<Validare> ValidareOk::clone() const {
-    return std::make_shared<ValidareOk>(*this);
-}
