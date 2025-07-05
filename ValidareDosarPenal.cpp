@@ -5,7 +5,7 @@ bool ValidareDosarPenal::verifica(const DetectieRadar&, const RezultatTestareAlc
                                    const Talon& talon, const SpecificatiiAutovehicul&) const {
     return alcoolemie.esteDosarPenal()
            || !permis.esteValidaDataNasterePermisVsCnp()
-          // || buletin.get_datePersoanale() != permis.get_persoana()
+           || buletin.get_datePersoanale() != permis.get_persoana()
            || !permis.categorieValida(talon.get_autovehicul().get_tip_autovehicul());
 }
 

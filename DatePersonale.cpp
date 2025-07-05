@@ -44,3 +44,14 @@ std::ostream &operator<<(std::ostream &os, const DatePersonale &obj) {
     os << "Data nastere: " << obj.dataNastere << '\n';
     return os;
 }
+bool DatePersonale::operator==(const DatePersonale& other) const {
+    return cnp == other.cnp &&
+           nume == other.nume &&
+           prenume == other.prenume &&
+           dataNastere == other.dataNastere &&
+           sex == other.sex;
+}
+
+bool DatePersonale::operator!=(const DatePersonale& other) const {
+    return !(*this == other);
+}

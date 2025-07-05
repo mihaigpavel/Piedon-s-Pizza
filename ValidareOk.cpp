@@ -8,7 +8,7 @@ bool ValidareOk::verifica(const DetectieRadar& radar, const RezultatTestareAlcoo
         && !alcoolemie.esteCazDeAmenda()
         && !alcoolemie.esteDosarPenal()
         && permis.esteValidaDataNasterePermisVsCnp()
-       // && buletin.get_datePersoanale() == permis.get_persoana()
+        && buletin.get_datePersoanale() == permis.get_persoana()
         && permis.categorieValida(talon.get_autovehicul().get_tip_autovehicul())
         && masina == talon.get_autovehicul();
 }

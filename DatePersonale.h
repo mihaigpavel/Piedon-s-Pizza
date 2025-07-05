@@ -25,6 +25,8 @@ public:
     [[nodiscard]] const std::string &get_sex() const;
 
     friend std::ostream &operator<<(std::ostream &os, const DatePersonale &obj);
+    bool operator==(const DatePersonale& other) const;
+    bool operator!=(const DatePersonale& other) const;
 
 
 };
