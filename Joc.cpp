@@ -5,6 +5,7 @@
 
 #include "JocEroare.h"
 #include "NuEsteValidRaspunsul.h"
+#include "Validare.h"
 using json = nlohmann::json;
 
 // Constructor
@@ -105,7 +106,7 @@ void Joc::start() {
                 }
                 if (a.esteRaspunsCorect(raspunsInt)) {
                     std::cout << "Raspuns corect!\n";
-                    numarRaspunsuriCorecte++;
+                    Validare::adaugaRaspunsCorect();
                 } else {
                     std::cout << "Raspuns gresit!\n";
                 }
@@ -113,6 +114,6 @@ void Joc::start() {
                 std::cout << "Eroare: " << e.what() << '\n';
             }
         }
-        std::cout << "Joc terminat. Numar raspunsuri corecte: " << numarRaspunsuriCorecte << std::endl;
+        std::cout << "Joc terminat. Numar raspunsuri corecte: " << Validare::get_numarRaspunsuriValidate()<< std::endl;
     }
 }

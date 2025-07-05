@@ -3,3 +3,4 @@
 //
 
 #include "Validare.h"
+int Validare::numarRaspunsuriValidate = 0;

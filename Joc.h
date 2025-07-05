@@ -8,7 +8,6 @@
 #include "AnalizaActe.h"
 
 class Joc {
-    int numarRaspunsuriCorecte = 0;
 
     Joc();
     Joc(const Joc&) = delete;

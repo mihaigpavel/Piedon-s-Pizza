@@ -9,7 +9,11 @@
 #include "SpecificatiiAutovehicul.h"
 
 class Validare {
+    static int numarRaspunsuriValidate;
+
 public:
+    static void adaugaRaspunsCorect() { ++numarRaspunsuriValidate; }
+    static int get_numarRaspunsuriValidate() { return numarRaspunsuriValidate; }
     virtual ~Validare() = default;
 
     virtual bool verifica(const DetectieRadar&, const RezultatTestareAlcoolemie&,
