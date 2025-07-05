@@ -12,8 +12,8 @@ class Validare {
     static int numarRaspunsuriValidate;
 
 public:
-    static void adaugaRaspunsCorect() { ++numarRaspunsuriValidate; }
-    static int get_numarRaspunsuriValidate() { return numarRaspunsuriValidate; }
+    static void adaugaRaspunsCorect();
+    static int get_numarRaspunsuriValidate();
     virtual ~Validare() = default;
 
     virtual bool verifica(const DetectieRadar&, const RezultatTestareAlcoolemie&,
